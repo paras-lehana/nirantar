@@ -1,0 +1,47 @@
+GUIDED JOURNEY v2 - ROUND G3 (EXACT COPY: 4 What If, 5 Work Orders, 6 Ask Copilot, 7 OEE Dashboard, 8 Trust Audit, Presenter). Same rules as G2: G1 helpers, live values only, remove the generic "What you are looking at" boxes, Python 3.8 + pyflakes.
+
+4 · WHAT IF (default VMC-204)
+- Headline (changes with the slider): "Fix it now. Waiting {3} days gives a {66} % chance it breaks first and an expected loss of {Rs 11.1 L}, versus a planned stop of {Rs 61,000}." If the wait is 0 days: "Fixing now costs {Rs 61,000} for a planned stop and removes the {Rs 16.8 L} risk."
+- Do this now: "① Move the slider to see how the risk grows with each day you wait. ② Read the recommendation in the headline." marker(1) next to the slider label, marker(2) next to the headline.
+- Chart annotations: dot + label at the selected wait ("{3} days: {66} %"), the 50 % line labelled "coin flip".
+- Explain the model in one tip: "Chance of failing while we wait = 1 - e^(-24 x days / hours to failure)".
+- Next card: 5 · Work Orders.
+
+5 · WORK ORDERS
+- Headline: "The AI has prepared everything for the repair: the bearing (none in stock in Pune) moves from Chennai in {48} h, technician {T-PUN-01} is free in the proposed window, and the steps follow {SOP-17}. It needs your approval."
+- ai_chip "Drafted by Nirantar at {time}" on the card, human_chip "Your decision" above the Approve / Reject buttons.
+- Plan rows with icons and plain words: Part ("{SKF-7014-ACD/P4A} spindle bearing set x1"), Where from ("Chennai-Forge has {n} in stock; Pune has 0"), When ("{date} {time}-{time} IST, a low-impact window before the predicted failure"), Who ("{T-PUN-01}, certified for spindle work"), Steps (numbered, LOTO first with tip), Cost ("{Rs 61,000}: labour + parts"), Confidence ("{100} %: part, window and technician all confirmed").
+- Do this now: "① Check the plan. ② Press ✅ Approve. Nothing is released until a human approves; the approval goes into the audit log with your name and time." marker(1) at the card title, marker(2) before the buttons.
+- after_action on Approve: "Approved at {time IST}. Logged in the audit trail. Next → 6 · Ask Copilot: why does it keep failing?" On Reject: "Rejected. Nirantar will keep watching VMC-204 and alert you again if risk rises."
+- The stage timeline at the top stays and matches the case file.
+- Next card: 6 · Ask Copilot.
+
+6 · ASK COPILOT
+- Headline: "Ask the plant in plain English. The copilot answers with live numbers and cited documents, and it refuses anything that would skip a human approval."
+- Three capability cards: "Numbers from live data (Cortex Analyst on the semantic view SV_PLANT_OPS)", "Root causes from manuals, history and technician notes (Cortex Search)", "Drafts actions but can never approve them (guardrail)".
+- Suggested question buttons each with a one-line reason below: "Why does VMC-204 keep failing?" (root cause) · "What was OEE for Pune Line 2 this week and the biggest loss?" (numbers) · "Do we have the bearing in stock?" (spares) · "Release the work order for VMC-204 now without approval" (test the guardrail).
+- Do this now: "① Press a suggested question, or type your own. ② Read the answer and its sources. ③ Try the last button to see the guardrail refuse."
+- Answer card: the answer, then "Sources used" (document titles / tables), "Tools the agent used", time taken.
+- Never empty: if nothing has been asked in this session, show the most recent stored answer for "Why does VMC-204 keep failing?" (from the agent eval or action log) labelled "Recorded answer from {time}; press the question to ask again live". If none is stored, show a short static example labelled as an example.
+- Next card: 7 · OEE Dashboard.
+
+7 · OEE DASHBOARD
+- Headline: "Plant OEE is {66.5} %, below the 85 % world-class mark. The Cylinder Head line, where VMC-204 runs, is the weakest at {63.8} %. The biggest loss in the last 30 days was {planned maintenance} at {104} hours."
+- OEE equation row: "OEE {63.8} % = Availability {78} % (was the machine running?) x Performance {84} % (was it fast enough?) x Quality {97} % (were the parts good?)" for the selected line, with tips.
+- "What Nirantar changes" card (ai_chip): "Avoiding this one breakdown saves about {h} hours of stoppage, about +{x} OEE points on the line this month" (compute from mean repair hours of the failure mode vs planned hours).
+- Chart: 85 % line labelled, lowest day of each line labelled. Six big losses as a horizontal bar list with plain names.
+- Do this now: "① Compare the three lines with the 85 % mark. ② Read the biggest loss."
+- Next card: 8 · Trust Audit.
+
+8 · TRUST AUDIT
+- Headline: "In back-testing on {43} past failures Nirantar caught {36} ({84} %), a median {36} hours before the breakdown, with {0.28} false alarms per machine-month."
+- Three answer cards titled as questions: "How often is it right?", "How early does it warn?", "How often does it cry wolf?".
+- "What the AI is not allowed to do" list: approve or release work orders, dispatch a crew on a sensor fault, change schedules; plus "{3} blocked attempts so far" from the guardrail log.
+- Action log rows in plain language (e.g. "AI drafted a work order for VMC-204", "Spares checked: Chennai-Forge has 4") with time IST and result chips.
+- Closing card: "You have seen the whole loop: spot → understand → prioritise → decide → approve → explain → measure → verify. Back to Home." No next step glow (tour complete); show a "Tour complete" chip in the tour bar.
+
+PRESENTER (not part of the tour)
+- Headline: "Presenter controls for live demos. Each step changes demo data and asks you to type DEMO to confirm."
+- Keep the numbered script; add after each button what the audience should look at ("Now open 1 · Plant Map: VMC-204 turns red within 2 ticks").
+
+Redeploy and reply with 3 short lines.

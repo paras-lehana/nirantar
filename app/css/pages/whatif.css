@@ -1,0 +1,111 @@
+/* 4 · What If. Everything scoped under .wif (all page CSS files load globally). */
+.wif .wif-pick { display: grid; gap: 4px 10px; grid-template-columns: 1fr; padding: 10px 14px; }
+.wif .wif-pick select { max-width: 100%; }
+@media (min-width: 720px) { .wif .wif-pick { grid-template-columns: auto minmax(0, 420px) 1fr; align-items: center; } }
+
+.wif .wif-grid { display: grid; gap: var(--gap); grid-template-columns: 1fr; }
+@media (min-width: 1100px) { .wif .wif-grid { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); align-items: start; } }
+
+/* slider */
+.wif .wif-slider { display: grid; gap: 4px; padding: 10px 12px 6px; border-radius: var(--r-sm); background: var(--panel-2); border: 1px solid var(--line); margin-bottom: 8px; }
+.wif .wif-slider-label { display: flex; align-items: baseline; gap: 8px; font-weight: 600; }
+.wif .wif-slider-label output { font-size: var(--fs-xl); font-weight: 600; }
+.wif .wif-slider input[type="range"] { min-height: 40px; accent-color: var(--ink); cursor: pointer; }
+.wif .wif-scale { display: flex; justify-content: space-between; }
+.wif .wif-readout { font-size: var(--fs-md); margin-bottom: 4px; }
+.wif .wif-readout .act { color: var(--act); }
+.wif .wif-readout .watch { color: var(--watch); }
+.wif .wif-tip { margin-top: 8px; padding: 8px 10px; border-radius: var(--r-sm); background: var(--ai-bg); color: var(--ink); line-height: 1.5; }
+.wif .wif-tip sup { font-size: .8em; }
+.wif .wif-formula { display: block; margin: 4px 0 6px; padding: 6px 10px; border-radius: var(--r-sm); background: var(--panel); white-space: nowrap; overflow-x: auto; font-size: var(--fs-sm); }
+.wif .nw { white-space: nowrap; }
+/* chart labels stay legible where they cross the curve */
+.wif .chart text.lbl-strong { paint-order: stroke; stroke: var(--panel); stroke-width: 4px; stroke-linejoin: round; }
+.wif .wif-dl { margin-top: 10px; }
+.wif .wif-dl dd { color: var(--ink-2); }
+.wif .wif-dl dd b { color: var(--ink); }
+
+/* options table: a table on wide screens, stacked cards on phones */
+.wif .wif-opts .table td { vertical-align: top; }
+.wif .wif-opts tr.best td { background: var(--ok-bg); }
+.wif .wif-opts tr.best td:first-child { box-shadow: inset 4px 0 0 var(--ok-fill); }
+.wif .wif-opts tr.off td { color: var(--ink-3); }
+.wif .wif-oname { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; margin-bottom: 2px; }
+.wif .marker-sm { display: inline-grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid var(--ink-3); font-size: 11px; font-weight: 600; color: var(--ink-2); flex: none; }
+.wif .wif-verdict { display: flex; gap: 8px; align-items: flex-start; margin-top: 10px; color: var(--ai); }
+.wif .wif-verdict span { color: var(--ink); }
+.wif .wif-verdict svg { width: 18px; height: 18px; flex: none; margin-top: 1px; }
+@media (max-width: 719px) {
+  .wif .wif-opts { border: 0; background: transparent; overflow: visible; }
+  .wif .wif-opts table, .wif .wif-opts tbody, .wif .wif-opts tr, .wif .wif-opts td { display: block; width: 100%; }
+  .wif .wif-opts thead { display: none; }
+  .wif .wif-opts tr { border: 1px solid var(--line); border-radius: var(--r-md); background: var(--panel); margin-bottom: 8px; overflow: hidden; }
+  .wif .wif-opts tr.best { border-color: var(--ok-fill); box-shadow: 0 0 0 1px var(--ok-fill); }
+  .wif .wif-opts tr.best td:first-child { box-shadow: none; }
+  .wif .wif-opts td { border: 0; padding: 6px 12px; }
+  .wif .wif-opts td:first-child { padding-top: 10px; }
+  .wif .wif-opts td:last-child { padding-bottom: 10px; }
+  .wif .wif-opts td.n { display: flex; justify-content: space-between; gap: 12px; text-align: right; }
+  .wif .wif-opts td.n::before { content: attr(data-label); font-family: var(--sans); color: var(--ink-2); text-align: left; }
+}
+
+.wif .wif-approve { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--line); }
+.wif .wif-approve p { flex: 1 1 240px; }
+.wif .wif-go { display: flex; align-items: center; gap: 8px; flex: 1 1 auto; min-width: 0; }
+.wif .wif-go .btn { flex: 1 1 auto; white-space: normal; text-align: left; justify-content: flex-start; }
+@media (min-width: 720px) { .wif .wif-go { flex: none; } }
+
+/* production calendar */
+.wif .wif-cal { display: grid; gap: 6px; }
+.wif .wif-day { display: grid; grid-template-columns: 58px minmax(0, 1fr); gap: 4px 8px; align-items: center; }
+.wif .wif-day.has-ev { padding-bottom: 2px; }
+.wif .wif-dlabel { font-size: var(--fs-sm); line-height: 1.15; display: grid; }
+.wif .wif-dlabel span { color: var(--ink-3); font-size: var(--fs-xs); }
+.wif .wif-axis { min-height: 16px; }
+.wif .wif-axis + .wif-axis { margin-top: -4px; }
+.wif .wif-hours { position: relative; height: 16px; font-size: 11px; color: var(--ink-3); font-family: var(--mono); }
+.wif .wif-hours span { position: absolute; transform: translateX(-50%); }
+.wif .wif-hours span:first-child { transform: none; }
+.wif .wif-hours span:last-child { transform: translateX(-100%); }
+.wif .wif-track { position: relative; height: 30px; border-radius: 4px; overflow: hidden; background: var(--panel-2); border: 1px solid var(--line); }
+.wif .wif-shift { position: absolute; top: 0; bottom: 0; border-right: 1px solid var(--line); }
+.wif .wif-shiftrow { position: relative; height: 20px; }
+.wif .wif-shiftrow span { position: absolute; top: 0; bottom: 0; display: grid; place-items: center; font-size: var(--fs-xs); font-weight: 600; color: var(--ink-2); border-left: 1px solid var(--line-2); }
+.wif .wif-shiftrow span:first-child { border-left: 0; }
+.wif .wif-shift.s-A { background: var(--panel); }
+.wif .wif-shift.s-B { background: var(--panel-2); }
+.wif .wif-shift.s-C { background: color-mix(in srgb, var(--line) 45%, var(--panel-2)); }
+.wif .wif-low { position: absolute; top: 0; bottom: 0; background: repeating-linear-gradient(135deg, transparent 0 5px, color-mix(in srgb, var(--normal) 30%, transparent) 5px 7px); }
+.wif .wif-range { position: absolute; top: 0; bottom: 0; background: color-mix(in srgb, var(--act-fill) 16%, transparent); border-top: 2px dotted var(--act-fill); border-bottom: 2px dotted var(--act-fill); }
+.wif .wif-win { position: absolute; top: 2px; bottom: 2px; border: 3px solid var(--ok-fill); border-radius: 4px; background: color-mix(in srgb, var(--ok-fill) 22%, transparent); min-width: 6px; }
+.wif .wif-mark { position: absolute; top: -1px; bottom: -1px; width: 3px; margin-left: -1.5px; }
+.wif .wif-mark.m-now { background: var(--ink); }
+.wif .wif-mark.m-part { background: var(--ai-fill); }
+.wif .wif-mark.m-fail { background: var(--act-fill); width: 4px; margin-left: -2px; }
+.wif .wif-evs { grid-column: 2; display: flex; flex-wrap: wrap; gap: 4px 6px; }
+.wif .wif-ev { display: inline-flex; align-items: center; gap: 4px; font-size: var(--fs-xs); font-weight: 600; padding: 1px 7px; border-radius: 999px; border: 1px solid var(--line); background: var(--panel); color: var(--ink-2); white-space: nowrap; }
+.wif .wif-ev svg { width: 12px; height: 12px; }
+.wif .wif-ev.ev-now { color: var(--ink); }
+.wif .wif-ev.ev-part { color: var(--ai); border-color: var(--ai-bg); background: var(--ai-bg); }
+.wif .wif-ev.ev-win { color: var(--ok); border-color: var(--ok-fill); background: var(--ok-bg); }
+.wif .wif-ev.ev-fail { color: var(--act); border-color: var(--act-bg); background: var(--act-bg); }
+@media (min-width: 1100px) {
+  .wif .wif-day { grid-template-columns: 76px minmax(0, 1fr) 330px; }
+  .wif .wif-evs { grid-column: 3; }
+}
+.wif .wif-legend { margin-top: 12px; font-size: var(--fs-xs); }
+.wif .wif-sw { display: inline-block; width: 16px; height: 12px; border-radius: 3px; margin-right: 5px; vertical-align: -2px; border: 1px solid var(--line-2); }
+.wif .sw-shift { background: var(--panel); }
+.wif .sw-low { background: repeating-linear-gradient(135deg, var(--panel-2) 0 3px, var(--normal) 3px 4px); }
+.wif .sw-win { background: color-mix(in srgb, var(--ok-fill) 22%, var(--panel)); border: 2px solid var(--ok-fill); }
+.wif .sw-part { background: var(--ai-fill); width: 4px; border: 0; }
+.wif .sw-fail { background: var(--act-fill); width: 4px; border: 0; }
+.wif .sw-range { background: color-mix(in srgb, var(--act-fill) 16%, var(--panel)); border: 1px dotted var(--act-fill); }
+.wif .wif-why { margin-top: 14px; padding: 12px 14px; border-radius: var(--r-sm); background: var(--panel-2); border: 1px solid var(--line); }
+.wif .wif-why h3 { font-size: var(--fs-md); margin-bottom: 6px; }
+.wif .wif-why ol { margin: 0; padding-left: 20px; display: grid; gap: 6px; font-size: var(--fs-sm); color: var(--ink-2); }
+.wif .wif-why ol b { color: var(--ink); }
+
+/* tooltips terms: big enough to tap; inputs at 16px so iOS does not zoom on focus */
+.wif .term { display: inline-block; min-height: 24px; line-height: 24px; }
+@media (max-width: 719px) { .wif select.input, .wif input[type="range"] { font-size: 16px; } }

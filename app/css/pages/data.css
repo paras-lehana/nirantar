@@ -1,0 +1,51 @@
+/* Data & scenarios: scenario cards, seed, start over, exports, data facts and catalogues. */
+.dt-empty .row { gap: 12px; }
+.dt-scens { display: grid; gap: 10px; grid-template-columns: 1fr; }
+@media (min-width: 720px) { .dt-scens { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1280px) { .dt-scens { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.dt-scen { display: grid; gap: 8px; align-content: start; grid-template-rows: auto auto 1fr auto auto; }
+.dt-scen.current { border-color: var(--ok-fill); box-shadow: 0 0 0 2px var(--ok-bg); }
+.dt-scen-head { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; }
+.dt-scen-head h3 { font-size: var(--fs-md); }
+.dt-scen .btn { justify-self: start; }
+.dt-facts { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.dt-seed { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 10px; align-items: end; margin: 12px 0 6px; }
+@media (max-width: 400px) { .dt-seed { grid-template-columns: 1fr; } .dt-seed .btn { justify-self: start; } }
+.dt-seed .input { font-family: var(--mono); }
+.dt-err { color: var(--act); font-weight: 500; }
+
+.dt-over { display: grid; gap: 14px; }
+.dt-over > div { display: grid; gap: 6px; justify-items: start; }
+.dt-over > div + div { padding-top: 14px; border-top: 1px solid var(--line); }
+.dt-over h3 { font-size: var(--fs-md); }
+.dt-confirm { display: grid; gap: 8px; padding: 10px 12px; border-radius: var(--r-sm); background: var(--act-bg); border-left: 4px solid var(--act-fill); }
+
+.dt-exports { display: grid; gap: 12px; grid-template-columns: 1fr; }
+@media (min-width: 1100px) { .dt-exports { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.dt-exp { display: grid; gap: 8px; align-content: start; justify-items: start; padding: 12px; border: 1px solid var(--line); border-radius: var(--r-md); background: var(--panel-2); min-width: 0; }
+.dt-exp h3 { font-size: var(--fs-md); }
+.dt-exp .field { width: 100%; }
+
+.dt-truth { display: flex; gap: 8px; align-items: flex-start; padding: 10px 12px; border-radius: var(--r-sm); background: var(--panel-2); border: 1px solid var(--line); font-weight: 500; margin-bottom: 12px; }
+.dt-truth svg { width: 18px; height: 18px; flex: none; margin-top: 2px; color: var(--ok); }
+.dt-counts { display: grid; gap: 8px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (min-width: 720px) { .dt-counts { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (min-width: 1280px) { .dt-counts { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.dt-count { display: grid; gap: 1px; align-content: start; padding: 10px; border: 1px solid var(--line); border-radius: var(--r-sm); background: var(--panel-2); min-width: 0; }
+.dt-n { font-size: 1.45rem; font-weight: 500; line-height: 1.15; }
+.dt-l { font-weight: 600; font-size: var(--fs-sm); }
+.dt-m { font-size: var(--fs-xs); color: var(--ink-3); }
+.dt-h3 { font-size: var(--fs-md); margin: 18px 0 6px; }
+.dt-how { margin: 0; padding-left: 18px; display: grid; gap: 6px; font-size: var(--fs-sm); color: var(--ink-2); max-width: 80ch; }
+.dt-how b { color: var(--ink); }
+.datapage .table-wrap { margin-top: 6px; }
+.datapage .table td { vertical-align: top; }
+.dt-up, .dt-down { display: inline-block; width: 14px; height: 14px; vertical-align: -2px; margin-right: 3px; color: var(--ink-3); }
+.dt-up { transform: rotate(-90deg); }
+.dt-down { transform: rotate(90deg); }
+@media (max-width: 719px) { .datapage .input { font-size: 1rem; } }
+.datapage .table th.n { font-family: var(--sans); }
+.dt-swipe { margin-top: 4px; }
+@media (min-width: 900px) { .dt-swipe { display: none; } }
+.dt-exp-empty { display: grid; gap: 10px; justify-items: start; }

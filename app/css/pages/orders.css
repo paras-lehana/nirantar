@@ -1,0 +1,198 @@
+/* Step 5 · Work Orders: board, plan (= printable work card), decision box, transfer timeline, audit excerpt.
+   All rules are scoped to .orderspage because every page stylesheet is loaded globally. */
+
+/* ---------- board ---------- */
+.orderspage .wo-board { display: grid; gap: 10px; grid-template-columns: 1fr; align-items: start; }
+@media (min-width: 720px) { .orderspage .wo-board { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1100px) { .orderspage .wo-board { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.orderspage .wo-col { display: grid; gap: 8px; align-content: start; padding: 10px; border-radius: var(--r-md); background: var(--panel-2); border: 1px solid var(--line); min-width: 0; }
+.orderspage .wo-col h3 { font-size: var(--fs-sm); font-weight: 600; color: var(--ink-2); display: flex; align-items: center; gap: 6px; }
+.orderspage .wo-col .count { font: 600 var(--fs-xs) var(--mono); min-width: 22px; padding: 0 6px; border-radius: 999px; background: var(--panel); border: 1px solid var(--line); text-align: center; color: var(--ink); }
+.orderspage .wo-col p { color: var(--ink-3); }
+@media (max-width: 719px) {
+  .orderspage .wo-col.empty-col { grid-template-columns: auto minmax(0, 1fr); align-items: baseline; gap: 4px 10px; padding: 8px 10px; }
+}
+
+.orderspage .wo-card {
+  display: grid; gap: 5px; width: 100%; text-align: left; padding: 10px 12px; min-width: 0;
+  border-radius: var(--r-sm); border: 1px solid var(--line); border-left: 4px solid var(--normal);
+  background: var(--panel); color: var(--ink); transition: border-color var(--t-fast), box-shadow var(--t-fast);
+}
+.orderspage .wo-card:hover { border-color: var(--ink-3); }
+.orderspage .wo-card.s-pending { border-left-color: var(--ai-fill); }
+.orderspage .wo-card.s-approved { border-left-color: var(--ok-fill); }
+.orderspage .wo-card[aria-pressed="true"] { outline: 2px solid var(--ink); outline-offset: 1px; box-shadow: var(--shadow); }
+.orderspage .wo-card > span { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 6px; min-width: 0; }
+.orderspage .wo-card .wo-top b { font-size: var(--fs-sm); margin-right: auto; }
+.orderspage .wo-card .wo-title { font-weight: 600; line-height: 1.3; }
+.orderspage .wo-card .wo-meta { font-size: var(--fs-xs); color: var(--ink-3); }
+.orderspage .wo-card .wo-line { font-size: var(--fs-xs); color: var(--ink-2); flex-wrap: nowrap; }
+.orderspage .wo-card .wo-line svg { width: 14px; height: 14px; flex: none; color: var(--ink-3); }
+.orderspage .wo-rejected { margin-top: 10px; }
+.orderspage .wo-rejected summary { cursor: pointer; font-size: var(--fs-sm); font-weight: 500; color: var(--ink-2); min-height: 32px; display: flex; align-items: center; }
+.orderspage .wo-rej-list { display: grid; gap: 8px; margin-top: 6px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+
+/* ---------- plan + decision layout ---------- */
+.orderspage .wo-grid { display: grid; gap: var(--gap); align-items: start; min-width: 0; }
+.orderspage .wo-grid > * { min-width: 0; }
+@media (min-width: 1100px) {
+  .orderspage .wo-grid { grid-template-columns: minmax(0, 1.5fr) minmax(330px, 1fr); }
+  .orderspage .approve-box.sticky { position: sticky; top: calc(var(--top-h) + 14px); }
+}
+.orderspage .wo-sub { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; font-size: var(--fs-sm); color: var(--ink-2); margin: -4px 0 6px; }
+.orderspage .wo-detail .card-head h2 { line-height: 1.3; flex: 1 1 14rem; min-width: 0; }
+.orderspage .wo-detail .card-head { flex-wrap: nowrap; align-items: flex-start; }
+@media (max-width: 519px) { .orderspage .wo-detail .card-head { flex-wrap: wrap; } }
+
+.orderspage .plan { list-style: none; margin: 0; padding: 0; display: grid; }
+.orderspage .plan > li { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 12px; padding: 12px 0; border-top: 1px solid var(--line); }
+.orderspage .plan > li:first-child { border-top: 0; padding-top: 6px; }
+.orderspage .plan .pi { width: 34px; height: 34px; border-radius: var(--r-sm); display: grid; place-items: center; background: var(--panel-2); border: 1px solid var(--line); color: var(--ink-2); }
+.orderspage .plan .pi svg { width: 18px; height: 18px; }
+.orderspage .plan h3 { font-size: var(--fs-sm); font-weight: 600; color: var(--ink-3); margin-bottom: 3px; }
+.orderspage .plan p + p { margin-top: 8px; }
+.orderspage .plan .row { gap: 6px; }
+
+.orderspage .wo-steps { margin: 2px 0 6px; padding-left: 24px; display: grid; gap: 6px; }
+.orderspage .wo-steps > li { padding-left: 2px; }
+.orderspage .wo-steps > li::marker { font: 600 var(--fs-sm) var(--mono); color: var(--ink-2); }
+.orderspage .wo-steps .check { min-height: 32px; align-items: flex-start; cursor: pointer; }
+.orderspage .wo-steps .check input { width: 20px; height: 20px; margin-top: 2px; flex: none; }
+.orderspage .wo-steps .check input:checked + span { color: var(--ink-3); text-decoration: line-through; text-decoration-color: var(--ok-fill); }
+
+.orderspage .cost { display: grid; grid-template-columns: auto auto; justify-content: start; gap: 3px 22px; margin-bottom: 6px; }
+.orderspage .cost b { font: 500 var(--fs-md) var(--mono); font-variant-numeric: tabular-nums; text-align: right; }
+.orderspage .cost .cost-rule { grid-column: 1 / -1; height: 1px; background: var(--line-2); margin: 2px 0; }
+.orderspage .cost .tot { font-weight: 600; }
+
+/* ---------- decision box ---------- */
+.orderspage .approve-box { display: grid; gap: 12px; align-content: start; }
+.orderspage .approve-box .card-head { margin-bottom: 0; }
+.orderspage .approve-box .effects { padding: 10px 12px; border-radius: var(--r-sm); background: var(--panel-2); border: 1px solid var(--line); }
+.orderspage .approve-box .effects .ticks { margin-top: 4px; }
+.orderspage .decide-btns .btn.approve { flex: 1 1 160px; }
+.orderspage .decide-btns .btn.danger { flex: 0 1 auto; }
+@media (max-width: 719px) { .orderspage .approve-box .input { font-size: 16px; } }
+.orderspage .field-err { color: var(--act); font-size: var(--fs-sm); font-weight: 500; }
+.orderspage .input.invalid { animation: wo-glow 1s var(--ease) 3; }
+.orderspage .input.invalid:focus { outline-color: var(--act-fill); }
+@keyframes wo-glow {
+  0%, 100% { box-shadow: 0 0 0 3px var(--act-bg); }
+  50% { box-shadow: 0 0 0 7px var(--act-bg), 0 0 0 8px var(--act-fill); }
+}
+.orderspage .after { display: grid; gap: 8px; padding: 12px 14px; border-radius: var(--r-md); background: var(--ok-bg); border-left: 4px solid var(--ok-fill); color: var(--ink); }
+.orderspage .after:focus { outline: none; }
+.orderspage .after:focus-visible { outline: 3px solid var(--focus); }
+.orderspage .after ol { margin: 0; padding-left: 20px; display: grid; gap: 3px; }
+.orderspage .after .btn.primary { justify-self: start; }
+.orderspage .btn[disabled] { pointer-events: none; }
+
+/* ---------- transfer + schedule timeline ---------- */
+.orderspage .wo-timeline { display: grid; gap: 6px; }
+.orderspage .tstrip { position: relative; height: 30px; margin: 4px 6px 0; }
+.orderspage .tstrip .track { position: absolute; left: 0; right: 0; top: 12px; height: 6px; border-radius: 3px; background: var(--line); }
+.orderspage .tstrip .seg-transit { position: absolute; top: 12px; height: 6px; border-radius: 3px; background: var(--ink-3); }
+.orderspage .tstrip .seg-win { position: absolute; top: 6px; height: 18px; min-width: 4px; border-radius: 3px; background: var(--ok-fill); }
+.orderspage .tstrip .pin { position: absolute; top: 1px; width: 3px; height: 28px; margin-left: -1px; border-radius: 2px; background: var(--ink); }
+.orderspage .tstrip .pin.fail { background: var(--act-fill); }
+.orderspage .tlegend { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: var(--fs-xs); color: var(--ink-2); margin-bottom: 4px; }
+.orderspage .tlegend i { display: inline-block; width: 12px; height: 8px; border-radius: 2px; margin-right: 5px; vertical-align: 0; }
+.orderspage .tlegend .sw-now { width: 3px; height: 12px; background: var(--ink); vertical-align: -2px; }
+.orderspage .tlegend .sw-transit { background: var(--ink-3); }
+.orderspage .tlegend .sw-win { background: var(--ok-fill); }
+.orderspage .tlegend .sw-fail { width: 3px; height: 12px; background: var(--act-fill); vertical-align: -2px; }
+
+.orderspage .tl { list-style: none; margin: 0; padding: 0; display: grid; }
+.orderspage .tl > li { position: relative; display: grid; grid-template-columns: 30px minmax(0, 1fr); column-gap: 10px; padding-bottom: 12px; font-size: var(--fs-sm); }
+.orderspage .tl > li::before { content: ""; position: absolute; left: 14px; top: 30px; bottom: 0; width: 2px; background: var(--line); }
+.orderspage .tl > li:last-child { padding-bottom: 0; }
+.orderspage .tl > li:last-child::before { display: none; }
+.orderspage .tl > li.done::before { background: var(--ok-fill); }
+.orderspage .tl .tl-ic { grid-row: span 2; width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; border: 2px solid var(--line-2); background: var(--panel); color: var(--ink-2); }
+.orderspage .tl .tl-ic svg { width: 15px; height: 15px; }
+.orderspage .tl > li.done .tl-ic { background: var(--ok-fill); border-color: var(--ok-fill); color: var(--on-fill); }
+.orderspage .tl > li.next .tl-ic { border-color: var(--ink); color: var(--ink); }
+.orderspage .tl > li.fail .tl-ic { border-color: var(--act-fill); color: var(--act); }
+.orderspage .tl .tl-t { grid-column: 2; font: 400 var(--fs-xs) var(--mono); color: var(--ink-3); }
+
+/* ---------- history ---------- */
+.orderspage .h-sub { font-size: var(--fs-sm); font-weight: 600; color: var(--ink-2); margin: 16px 0 6px; }
+.orderspage .card-head + .h-sub { margin-top: 2px; }
+.orderspage .decisions { list-style: none; margin: 0 0 12px; padding: 0; display: grid; gap: 6px; font-size: var(--fs-sm); }
+.orderspage .decisions li { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; }
+.orderspage .audit-list { list-style: none; margin: 0; padding: 0; display: grid; border: 1px solid var(--line); border-radius: var(--r-md); overflow: hidden; }
+.orderspage .audit-list li { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 4px 10px; padding: 8px 10px; border-top: 1px solid var(--line); font-size: var(--fs-sm); background: var(--panel); }
+.orderspage .audit-list li:first-child { border-top: 0; }
+.orderspage .audit-list .au-t { color: var(--ink-3); font-size: var(--fs-xs); padding-top: 2px; }
+.orderspage .audit-list .au-what { grid-column: 2; overflow-wrap: anywhere; }
+@media (min-width: 900px) {
+  .orderspage .audit-list li { grid-template-columns: 96px minmax(150px, max-content) minmax(0, 1fr); align-items: start; }
+  .orderspage .audit-list .au-what { grid-column: auto; }
+}
+.orderspage .chip.sys { background: var(--panel-2); color: var(--ink-2); border: 1px solid var(--line); }
+
+/* confirm dialog (native <dialog> inside the page) */
+.orderspage .wo-dialog .ticks { margin: 0; }
+.orderspage .wo-dialog .d-head svg { width: 22px; height: 22px; color: var(--ok); }
+
+/* ---------- share across tools (MCP preview) ---------- */
+.orderspage .wo-share h3 .term { color: var(--ink-2); }
+.orderspage .wo-share .row { margin: 2px 0 6px; }
+.orderspage .wo-share .btn { min-height: 40px; flex: 1 1 auto; }
+@media (min-width: 720px) { .orderspage .wo-share .btn { flex: 0 1 auto; } }
+@media print { .orderspage .wo-share { display: none !important; } }
+
+/* ---------- MCP preview dialog (js/ui/mcp.js) ----------
+   The dialog sits on <body>, outside every page, so these rules are global; Shift brief uses the same dialog. */
+dialog.mcp-dlg { width: min(760px, calc(100vw - 24px)); }
+dialog.mcp-dlg[open] { display: flex; flex-direction: column; }
+.mcp-dlg .d-body { flex: 1 1 auto; min-height: 0; overflow-y: auto; gap: 10px; }
+.mcp-dlg .d-foot { flex: none; align-items: center; }
+.mcp-dlg .d-head { align-items: flex-start; }
+.mcp-dlg .d-head > svg { width: 28px; height: 28px; margin-top: 2px; color: var(--ink-2); }
+.mcp-dlg .mcp-h { display: grid; gap: 2px; min-width: 0; }
+.mcp-dlg .mcp-h h2 { font-size: var(--fs-xl); overflow-wrap: anywhere; }
+.mcp-dlg .mcp-meta { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 2px 12px; margin: 0; font-size: var(--fs-sm); }
+.mcp-dlg .mcp-meta dt { color: var(--ink-3); font-weight: 500; }
+.mcp-dlg .mcp-meta dd { margin: 0; min-width: 0; overflow-wrap: anywhere; }
+.mcp-dlg .mcp-what { font-size: var(--fs-sm); }
+.mcp-dlg .mcp-note { display: flex; gap: 8px; align-items: flex-start; padding: 10px 12px; border-radius: var(--r-sm); background: var(--panel-2); border: 1px solid var(--line-2); border-left: 4px solid var(--ink-3); font-size: var(--fs-sm); color: var(--ink); }
+.mcp-dlg .mcp-note > svg { width: 18px; height: 18px; flex: none; margin-top: 1px; color: var(--ink-2); }
+.mcp-dlg code { font: 500 1em var(--mono); padding: 0 4px; border-radius: 4px; background: var(--panel-2); border: 1px solid var(--line); overflow-wrap: anywhere; }
+.mcp-dlg .mcp-note code { background: var(--panel); }
+.mcp-dlg .mcp-pre-head { color: var(--ink-2); margin-bottom: -4px; }
+.mcp-dlg .mcp-json {
+  margin: 0; padding: 10px 12px; max-height: min(44dvh, 440px); overflow: auto;
+  font: 400 var(--fs-xs)/1.5 var(--mono); white-space: pre-wrap; overflow-wrap: anywhere; tab-size: 2;
+  background: var(--panel-2); color: var(--ink); border: 1px solid var(--line); border-radius: var(--r-sm);
+}
+.mcp-dlg .mcp-status { flex: 1 1 14rem; min-width: 0; margin-right: auto; color: var(--ink-2); }
+.mcp-dlg .mcp-status:empty { display: none; }
+.mcp-dlg .mcp-status.ok { color: var(--ok); font-weight: 500; }
+@media print { .mcp-dlg { display: none !important; } }
+
+/* ---------- printable work card ---------- */
+.orderspage .print-only { display: none; }
+@media print {
+  body.print-wo {
+    --paper: #fff; --panel: #fff; --panel-2: #fff; --ink: #000; --ink-2: #222; --ink-3: #444; --line: #999; --line-2: #666;
+    --ai: #000; --ai-bg: #fff; --ai-fill: #000; --ok: #000; --ok-bg: #fff; --ok-fill: #000; --act: #000; --act-bg: #fff; --act-fill: #000;
+    --watch: #000; --watch-bg: #fff; --watch-fill: #000; --normal: #444;
+    background: #fff; color: #000;
+  }
+  body.print-wo .topbar, body.print-wo .rail, body.print-wo .tabbar, body.print-wo .toasts, body.print-wo .skip, body.print-wo #dlg { display: none !important; }
+  body.print-wo .shell { display: block; min-height: 0; }
+  body.print-wo .main { padding: 0; max-width: none; }
+  body.print-wo .orderspage { display: block; }
+  body.print-wo .orderspage > :not(.wo-grid), body.print-wo .orderspage .wo-grid > :not(#woCard) { display: none !important; }
+  body.print-wo .orderspage .wo-grid { display: block; }
+  body.print-wo .orderspage #woCard { border: 1px solid #000; border-left-width: 1px; box-shadow: none; padding: 12px 14px; }
+  body.print-wo .orderspage #woCard .no-print, body.print-wo .orderspage #woCard .marker { display: none !important; }
+  body.print-wo .orderspage .print-only { display: block; }
+  body.print-wo .orderspage .print-head { font-size: 11pt; margin-bottom: 8px; padding-bottom: 6px; border-bottom: 1px solid #000; }
+  body.print-wo .orderspage .sign { margin-top: 14px; padding-top: 10px; border-top: 1px solid #000; display: grid; gap: 10px; font-size: 10.5pt; }
+  body.print-wo .orderspage .plan > li { break-inside: avoid; }
+  body.print-wo .orderspage .term { border-bottom: 0; }
+  body.print-wo .orderspage .chip, body.print-wo .orderspage .state { border: 1px solid #000; }
+  body.print-wo .orderspage a { color: #000; text-decoration: none; }
+}

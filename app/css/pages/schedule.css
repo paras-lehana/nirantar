@@ -1,0 +1,168 @@
+/* Tool · Maintenance calendar: 7-day Gantt (desktop) / agenda (phone), stop bundling, technician load, PM table.
+   Scoped to .schedpage. Colour = meaning: grey normal, amber watch, red act, blue AI-made, green a person's decision. */
+.schedpage { --lw: 156px; }
+.schedpage .card-head .sub { flex: 1 1 200px; }
+
+/* ---------- Gantt (desktop and tablet; scrolls sideways rather than squeezing) ---------- */
+.schedpage .g-scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--r-md); background: var(--panel); }
+.schedpage .g-hint { display: none; margin: 6px 0 0; }
+@media (min-width: 641px) and (max-width: 1395px) { .schedpage .g-hint { display: flex; gap: 6px; align-items: center; } .schedpage .g-hint svg { width: 14px; height: 14px; } }
+.schedpage .gantt { min-width: 1060px; font-size: var(--fs-sm); }
+.schedpage .g-head { display: grid; grid-template-columns: var(--lw) minmax(0, 1fr); background: var(--panel-2); border-bottom: 1px solid var(--line-2); border-radius: var(--r-md) var(--r-md) 0 0; }
+.schedpage .g-corner { position: sticky; left: 0; z-index: 3; display: flex; align-items: flex-end; padding: 8px 10px 12px; font-weight: 600; color: var(--ink-2); border-right: 1px solid var(--line); background: var(--panel-2); border-radius: var(--r-md) 0 0 0; }
+.schedpage .g-days { position: relative; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); padding-bottom: 8px; }
+.schedpage .g-day { position: relative; padding: 6px 8px 22px; border-left: 1px solid var(--line); white-space: nowrap; overflow: hidden; }
+.schedpage .g-day:first-child { border-left: 0; }
+.schedpage .g-day b { font-weight: 600; color: var(--ink); }
+.schedpage .g-day.today b { color: var(--ink); text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 3px; }
+.schedpage .g-tick { position: absolute; bottom: 3px; transform: translateX(-50%); font: 11px/1 var(--mono); color: var(--ink-3); }
+.schedpage .g-slots { position: absolute; left: 0; right: 0; bottom: 0; height: 6px; }
+.schedpage .g-slots span { position: absolute; top: 0; bottom: 0; background: var(--normal-2); border-radius: 2px; }
+.schedpage .g-nowtag { position: absolute; top: 27px; z-index: 2; padding: 1px 6px; border-radius: 999px; background: var(--ink); color: var(--panel); font: 600 12px/1.35 var(--sans); white-space: nowrap; }
+
+.schedpage .g-body { position: relative; }
+.schedpage .g-over { position: absolute; top: 0; bottom: 0; left: var(--lw); right: 0; pointer-events: none; overflow: hidden; }
+.schedpage .g-past { position: absolute; top: 0; bottom: 0; left: 0; background: repeating-linear-gradient(135deg, var(--line) 0 1px, transparent 1px 7px); opacity: .7; }
+.schedpage .g-band { position: absolute; top: 0; bottom: 0; background: var(--paper); opacity: .55; }
+.schedpage .g-mid { position: absolute; top: 0; bottom: 0; width: 0; border-left: 1px solid var(--line); }
+.schedpage .g-nowline { position: absolute; top: 0; bottom: 0; width: 0; margin-left: -1px; border-left: 2px solid var(--ink); }
+
+.schedpage .g-row { position: relative; display: grid; grid-template-columns: var(--lw) minmax(0, 1fr); border-bottom: 1px solid var(--line); }
+.schedpage .g-row:last-child { border-bottom: 0; }
+.schedpage .g-label { position: sticky; left: 0; z-index: 3; display: grid; gap: 3px; align-content: start; justify-items: start; padding: 8px 10px; border-right: 1px solid var(--line); background: var(--panel); }
+.schedpage .g-label b { font-weight: 600; color: var(--ink); line-height: 1.25; }
+.schedpage .g-track { position: relative; z-index: 1; }
+.schedpage .g-empty { position: absolute; left: 8px; top: 9px; padding: 1px 4px; border-radius: 3px; background: var(--panel); }
+
+.schedpage .g-bar { position: absolute; height: 20px; min-width: 6px; border-radius: 4px; box-sizing: border-box; }
+.schedpage .g-bar.prop { background: var(--ai-bg); border: 2px dashed var(--ai-fill); }
+.schedpage .g-bar.ok { background: var(--ok-fill); }
+.schedpage .g-bar.pm { background: var(--ok-bg); border: 2px solid var(--ok-fill); }
+.schedpage .g-lab, .schedpage .g-mk { position: absolute; height: 20px; display: inline-flex; align-items: center; white-space: nowrap; font-size: 12px; line-height: 1; }
+.schedpage .g-lab { padding: 0 4px; border-radius: 3px; background: var(--panel); font-weight: 600; color: var(--ink-2); }
+.schedpage .g-mk { gap: 4px; transform: translateX(-10px); }
+.schedpage .g-mk.side-l { flex-direction: row-reverse; transform: translateX(10px); }
+.schedpage .g-lab-in { padding: 1px 4px; border-radius: 3px; background: var(--panel); color: var(--ink-2); font-weight: 500; }
+.schedpage .t-ai { color: var(--ai); }
+.schedpage .t-ok { color: var(--ok); }
+.schedpage .t-act { color: var(--act); font-weight: 600; }
+.schedpage .t-watch { color: var(--watch); font-weight: 600; }
+.schedpage .g-vl { position: absolute; top: 0; bottom: 0; width: 0; margin-left: -1px; border-left: 2px dashed var(--act-fill); }
+
+/* marker dots (also used in the legend) */
+.schedpage .g-dot { display: inline-grid; place-items: center; flex: none; width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid var(--line-2); background: var(--panel); color: var(--ink-2); }
+.schedpage .g-dot svg { width: 12px; height: 12px; }
+.schedpage .g-dot.fail, .schedpage .fail > .g-dot { background: var(--act-fill); border-color: var(--act-fill); color: var(--on-fill); }
+.schedpage .g-dot.risk, .schedpage .risk > .g-dot { background: var(--watch-fill); border-color: var(--watch-fill); color: var(--on-watch); }
+.schedpage .done > .g-dot { background: var(--ok-fill); border-color: var(--ok-fill); color: var(--on-fill); }
+.schedpage .pmdue > .g-dot { border-style: dashed; }
+
+/* legend */
+.schedpage .sch-legend { margin-top: 10px; gap: 6px 16px; }
+.schedpage .sch-legend > span { display: inline-flex; align-items: center; gap: 6px; }
+.schedpage .sch-legend .term { line-height: 20px; min-height: 20px; }
+.schedpage .lg { display: inline-block; flex: none; width: 22px; height: 12px; border-radius: 3px; box-sizing: border-box; }
+.schedpage .lg.band { background: var(--normal-2); }
+.schedpage .lg.prop { background: var(--ai-bg); border: 2px dashed var(--ai-fill); }
+.schedpage .lg.ok { background: var(--ok-fill); }
+.schedpage .lg.pm { background: var(--ok-bg); border: 2px solid var(--ok-fill); }
+.schedpage .lg.now { width: 0; height: 16px; border-left: 2px solid var(--ink); border-radius: 0; margin: 0 4px; }
+
+/* ---------- phone agenda (same events) ---------- */
+.schedpage .agenda { display: none; gap: 12px; }
+.schedpage .ag-note, .schedpage .ag-over, .schedpage .ag-later { display: flex; gap: 8px; align-items: flex-start; flex-wrap: wrap; }
+.schedpage .ag-note svg, .schedpage .ag-later svg { width: 16px; height: 16px; flex: none; margin-top: 4px; color: var(--ink-3); }
+.schedpage .ag-note > span, .schedpage .ag-later > span { flex: 1 1 200px; }
+.schedpage .ag-over { padding: 8px 10px; border-radius: var(--r-sm); background: var(--watch-bg); align-items: center; }
+.schedpage .ag-later { color: var(--act); }
+.schedpage .ag-later svg { color: var(--act); }
+.schedpage .ag-day { display: grid; gap: 6px; padding-top: 10px; border-top: 1px solid var(--line); }
+.schedpage .ag-day h3 { font-size: var(--fs-md); }
+.schedpage .ag-day ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.schedpage .ag-day li { display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: 8px; align-items: start; padding: 8px 10px; border-radius: var(--r-sm); border: 1px solid var(--line); background: var(--panel-2); font-size: var(--fs-sm); }
+.schedpage .ag-t { font-size: var(--fs-sm); color: var(--ink-2); padding-top: 1px; }
+.schedpage .ag-what { display: flex; gap: 6px; align-items: flex-start; min-width: 0; overflow-wrap: anywhere; }
+.schedpage .ag-what > svg { width: 16px; height: 16px; flex: none; margin-top: 2px; color: var(--ink-3); }
+.schedpage .ag-what .chip, .schedpage .ag-what .state { margin-top: 3px; white-space: normal; }
+.schedpage .ag-stop.t-ai { border: 2px dashed var(--ai-fill); background: var(--ai-bg); }
+.schedpage .ag-stop.t-ok, .schedpage .ag-pm { border-left: 4px solid var(--ok-fill); }
+.schedpage .ag-fail { border-left: 4px solid var(--act-fill); background: var(--act-bg); }
+.schedpage .ag-fail .ag-what > svg { color: var(--act); }
+.schedpage .ag-order.t-watch { border-left: 4px solid var(--watch-fill); background: var(--watch-bg); }
+.schedpage .ag-order.t-watch .ag-what > svg { color: var(--watch); }
+.schedpage .ag-now { background: transparent !important; border: 0 !important; border-top: 2px solid var(--ink) !important; border-radius: 0 !important; padding: 4px 10px 0 !important; }
+.schedpage .ag-now .ag-t { color: var(--ink); font-weight: 600; }
+
+@media (max-width: 640px) {
+  .schedpage .g-scroll { display: none; }
+  .schedpage .agenda { display: grid; }
+  .schedpage .sch-cal .card-head .right { margin-left: 0; }
+}
+
+/* ---------- fit more into the same stop + technician load ---------- */
+.schedpage .sch-grid { display: grid; gap: var(--gap); align-items: start; }
+.schedpage .sch-grid > * { min-width: 0; }
+@media (min-width: 1100px) { .schedpage .sch-grid { grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); } }
+.schedpage .sch-signer { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; margin: 10px 0 0; }
+.schedpage .sch-signer .btn { min-height: 32px; }
+.schedpage .sch-name { margin-top: 10px; max-width: 460px; }
+.schedpage .field-err { color: var(--act); font-size: var(--fs-sm); font-weight: 500; }
+.schedpage .fit-stops { display: grid; gap: 12px; margin-top: 12px; }
+.schedpage .fit-stop { display: grid; gap: 10px; padding: 12px; border: 1px solid var(--line); border-radius: var(--r-md); background: var(--panel-2); }
+.schedpage .fit-stop.pending { border: 2px dashed var(--ai-fill); }
+.schedpage .fit-stop.booked { border-left: 4px solid var(--ok-fill); }
+.schedpage .fit-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 6px 10px; }
+.schedpage .fit-list, .schedpage .fit-added { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.schedpage .fit-list > li { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 12px; padding: 10px; border-radius: var(--r-sm); border: 1px solid var(--line); background: var(--panel); }
+.schedpage .fit-what { display: grid; gap: 4px; flex: 1 1 260px; min-width: 0; font-size: var(--fs-sm); }
+.schedpage .fit-why { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.schedpage .fit-list .btn, .schedpage .fit-self .btn { flex: none; }
+.schedpage .fit-self { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 12px; padding: 8px 10px; border-radius: var(--r-sm); background: var(--panel); border: 1px dashed var(--line-2); }
+.schedpage .fit-self > span { display: flex; gap: 6px; align-items: flex-start; flex: 1 1 240px; }
+.schedpage .fit-self svg { width: 16px; height: 16px; flex: none; margin-top: 2px; color: var(--ink-3); }
+.schedpage .fit-added > li { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; font-size: var(--fs-sm); }
+.schedpage .fit-empty { display: grid; gap: 8px; padding: 14px; border: 1.5px dashed var(--line-2); border-radius: var(--r-md); }
+
+.schedpage .tech-list { list-style: none; margin: 10px 0 0; padding: 0; display: grid; gap: 8px; }
+.schedpage .tech-list > li { display: grid; gap: 6px; padding: 10px 12px; border: 1px solid var(--line); border-radius: var(--r-sm); background: var(--panel-2); }
+.schedpage .tech-list > li.clash { border-color: var(--watch-fill); box-shadow: inset 4px 0 0 var(--watch-fill); background: var(--watch-bg); }
+.schedpage .tl-row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 12px; align-items: flex-start; }
+.schedpage .tl-who { display: grid; gap: 1px; min-width: 0; }
+.schedpage .tl-load b { font-size: var(--fs-lg); }
+.schedpage .tl-jobs { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.schedpage .tl-jobs li { padding: 2px 8px; border-radius: var(--r-sm); font-size: var(--fs-xs); font-weight: 600; background: var(--panel); border: 1px solid var(--line-2); color: var(--ink-2); }
+.schedpage .tl-jobs li.p { border: 1.5px dashed var(--ai-fill); color: var(--ai); background: var(--ai-bg); }
+.schedpage .tl-jobs li.b { border-color: var(--ok-fill); color: var(--ok); background: var(--ok-bg); }
+.schedpage .tl-clash { display: flex; flex-wrap: wrap; gap: 6px; align-items: flex-start; font-size: var(--fs-sm); }
+
+/* ---------- preventive jobs table ---------- */
+.schedpage .pm-none { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 10px 0 0; }
+.schedpage .pm-wrap { margin-top: 12px; }
+.schedpage .pm-table td { vertical-align: top; }
+.schedpage .nowrap { white-space: nowrap; }
+.schedpage .pm-table .sub, .schedpage .g-label .sub { display: block; margin-top: 2px; }
+.schedpage .pm-table td.c-act { text-align: right; white-space: nowrap; }
+.schedpage .pm-table tr.row-watch td:first-child { box-shadow: inset 4px 0 0 var(--watch-fill); }
+.schedpage .pm-table .c-machine b { font-weight: 600; }
+.schedpage .pm-more { display: none; margin-top: 10px; }
+
+@media (max-width: 640px) {
+  .schedpage .pm-wrap { border: 0; background: transparent; overflow: visible; }
+  .schedpage .pm-table thead { display: none; }
+  .schedpage .pm-table, .schedpage .pm-table tbody { display: block; }
+  .schedpage .pm-table tr { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 8px 12px; padding: 10px 12px; margin-bottom: 8px; border: 1px solid var(--line); border-radius: var(--r-sm); background: var(--panel-2); }
+  .schedpage .pm-table tr.row-watch { border-left: 4px solid var(--watch-fill); }
+  .schedpage .pm-table tr.row-watch td:first-child { box-shadow: none; }
+  .schedpage .pm-table td { display: block; padding: 0; border: 0; min-width: 0; }
+  .schedpage .pm-table td::before { content: attr(data-label); display: block; font-size: var(--fs-xs); font-weight: 600; color: var(--ink-3); }
+  .schedpage .pm-table td[data-label=""]::before, .schedpage .pm-table td.c-machine::before { display: none; }
+  .schedpage .pm-table td.c-machine, .schedpage .pm-table td.c-act { grid-column: 1 / -1; }
+  .schedpage .pm-table td.c-act { text-align: left; white-space: normal; }
+  .schedpage .pm-table td.c-act:empty { display: none; }
+  .schedpage .pm-table td.c-act .btn { width: 100%; min-height: 40px; }
+  .schedpage .pm-table tr.pm-later { display: none; }
+  .schedpage .pm-wrap.all tr.pm-later { display: grid; }
+  .schedpage .pm-more { display: inline-flex; min-height: 40px; }
+  .schedpage .fit-list .btn, .schedpage .fit-self .btn { width: 100%; }
+  .schedpage .sch-signer .btn { min-height: 40px; }
+}

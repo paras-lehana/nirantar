@@ -1,0 +1,56 @@
+/* Presenter: time controls + live counters (side panel on desktop, first on phone) and the numbered demo script. */
+.pr-grid { display: grid; gap: var(--gap); min-width: 0; }
+.pr-grid > * { min-width: 0; }
+.pr-side { display: grid; gap: var(--gap); align-content: start; min-width: 0; }
+@media (min-width: 1100px) {
+  .pr-grid { grid-template-columns: minmax(0, 1fr) 340px; align-items: start; }
+  .pr-side { order: 2; position: sticky; top: calc(var(--top-h) + 16px); max-height: calc(100dvh - var(--top-h) - 32px); overflow-y: auto; overscroll-behavior: contain; }
+}
+
+.pr-clockline { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
+.pr-controls { display: grid; grid-template-columns: 1fr; gap: 10px; align-items: end; }
+@media (min-width: 480px) and (max-width: 1099px) { .pr-controls { grid-template-columns: auto minmax(0, 1fr); } }
+.pr-jumps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; margin-top: 10px; }
+.pr-jumps .btn { min-height: 40px; padding: 6px 8px; }
+@media (min-width: 560px) and (max-width: 1099px) { .pr-jumps { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
+.pr-note { margin-top: 10px; }
+
+.pr-counters { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.pr-ctr { display: grid; gap: 2px; align-content: start; padding: 8px 10px; border: 1px solid var(--line); border-radius: var(--r-sm); background: var(--panel-2); min-width: 0; color: var(--ink); text-decoration: none; }
+.pr-ctr.wide { grid-column: 1 / -1; }
+a.pr-ctr:hover { border-color: var(--ink-3); }
+.pr-k { font-size: var(--fs-xs); color: var(--ink-3); font-weight: 500; }
+.pr-v { font-size: var(--fs-sm); overflow-wrap: anywhere; }
+.pr-v.big { font-size: 1.5rem; line-height: 1.2; font-weight: 500; }
+.pr-go { display: inline-flex; align-items: center; gap: 3px; font-size: var(--fs-xs); color: var(--ink-2); }
+.pr-go svg { width: 13px; height: 13px; }
+.pr-ctr.act { border-left: 4px solid var(--act-fill); }
+.pr-ctr.act .pr-v.big { color: var(--act); }
+.pr-ctr.watch { border-left: 4px solid var(--watch-fill); }
+.pr-ctr.watch .pr-v.big { color: var(--watch); }
+.pr-ctr.ok { border-left: 4px solid var(--ok-fill); }
+
+/* the script */
+.pr-steps { list-style: none; margin: 0 0 12px; padding: 0; display: grid; gap: 0; }
+.pr-step { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 12px; padding: 14px 0; border-top: 1px solid var(--line); }
+.pr-step:first-child { border-top: 0; padding-top: 4px; }
+.pr-num { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: var(--ink); color: var(--panel); font: 600 var(--fs-md)/1 var(--mono); }
+.pr-num svg { width: 16px; height: 16px; }
+.pr-step.blocked .pr-num { background: var(--panel-2); color: var(--ink-3); border: 1.5px solid var(--line-2); }
+.pr-step.done .pr-num { background: var(--ok-fill); color: var(--on-fill); border: 0; }
+.pr-body { display: grid; gap: 8px; min-width: 0; }
+.pr-body h3 { font-size: var(--fs-lg); }
+.pr-why { display: inline-flex; align-items: flex-start; gap: 5px; color: var(--ink-2); }
+.pr-why svg { width: 15px; height: 15px; flex: none; margin-top: 2px; }
+.pr-look { display: flex; gap: 8px; align-items: flex-start; font-size: var(--fs-sm); padding: 8px 10px; border-radius: var(--r-sm); background: var(--panel-2); border: 1px solid var(--line); }
+.pr-look > svg { width: 16px; height: 16px; flex: none; margin-top: 2px; color: var(--ink-3); }
+.pr-result { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: baseline; font-size: var(--fs-sm); color: var(--ink-2); }
+.pr-fields { display: grid; gap: 8px; grid-template-columns: 1fr; }
+@media (min-width: 560px) { .pr-fields { grid-template-columns: repeat(2, minmax(0, 1fr)); } .pr-fields .pr-hint { grid-column: 1 / -1; } }
+.pr-fields .input { min-width: 0; }
+.pr-script > .small .chip { margin: 0 2px; }
+/* a blocked step's button stays readable: grey and dashed instead of a faded colour */
+.pr-step .btn[disabled] { opacity: 1; background: var(--panel-2); color: var(--ink-3); border: 1px dashed var(--line-2); cursor: not-allowed; }
+.pr-chips { margin-top: 6px; }
+/* 16 px inputs on phones so iOS Safari does not zoom on focus */
+@media (max-width: 719px) { .presenter .input { font-size: 1rem; } }

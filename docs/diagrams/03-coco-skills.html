@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Nirantar CoCo skills</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
+<style>
+:root { --ink:#16202b; --ink2:#46525f; --ink3:#6b7682; --paper:#f4f5f7; --panel:#ffffff; --line:#d5dae0;
+  --coco:#5b3fb8; --cocobg:#efeafb; --ai:#2b5ecb; --aibg:#e9effb; --ok:#1f7a49; --okbg:#e6f3ec; --snow:#1a8fc4; --snowbg:#e8f5fb; --act:#c4342a; }
+* { box-sizing: border-box; margin: 0; }
+body { width: 1600px; height: 900px; background: var(--paper); color: var(--ink); font: 400 13.5px/1.4 "IBM Plex Sans", sans-serif; padding: 26px 30px; display: flex; flex-direction: column; }
+h1 { font-size: 27px; font-weight: 700; letter-spacing: -.01em; }
+h1 b { color: var(--coco); }
+.sub { color: var(--ink2); font-size: 14px; margin-top: 3px; }
+.sec { font-size: 11.5px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--ink3); margin: 24px 0 10px; }
+.phases { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.ph { background: var(--panel); border: 1px solid var(--line); border-top: 5px solid var(--coco); border-radius: 12px; padding: 13px 14px; display: flex; flex-direction: column; gap: 7px; }
+.ph h3 { font-size: 17px; font-weight: 700; color: var(--coco); display: flex; justify-content: space-between; align-items: baseline; }
+.ph h3 small { font-size: 11.5px; color: var(--ink3); font-weight: 500; }
+.ph p { font-size: 14px; color: var(--ink2); }
+.sk { display: flex; flex-wrap: wrap; gap: 5px; }
+.sk code { font: 600 11.6px "IBM Plex Mono", monospace; background: var(--cocobg); color: var(--coco); border-radius: 6px; padding: 2px 7px; }
+.sk code.b { background: #eef0f3; color: var(--ink2); }
+.ev { font-size: 11.8px; color: var(--ink3); margin-top: auto; }
+.chain { display: grid; grid-template-columns: 196px 34px 1fr 34px 1fr 34px 1fr 34px 196px; align-items: stretch; }
+.io { background: var(--panel); border: 1.5px dashed var(--ink3); border-radius: 12px; padding: 11px 12px; font-size: 13px; color: var(--ink2); display: flex; flex-direction: column; justify-content: center; gap: 4px; }
+.io b { color: var(--ink); font-size: 14px; }
+.io code { font: 500 12px "IBM Plex Mono", monospace; color: var(--ink); white-space: nowrap; }
+.io.out { border: 2px solid var(--ok); background: var(--okbg); }
+.arr { display: grid; place-items: center; color: var(--coco); font-size: 22px; font-weight: 700; }
+.step { background: var(--panel); border: 2px solid var(--coco); border-radius: 12px; padding: 13px 14px; display: flex; flex-direction: column; gap: 5px; }
+.step h4 { font: 600 15px "IBM Plex Mono", monospace; color: var(--coco); }
+.step .t { font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--ink3); }
+.step p { font-size: 14px; color: var(--ink2); }
+.step p b { color: var(--ink); }
+.bottom { display: grid; grid-template-columns: 1.15fr 1fr 1fr; gap: 12px; }
+.box { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 13px 14px; }
+.box h3 { font-size: 15px; font-weight: 700; margin-bottom: 5px; }
+.box ul { padding-left: 17px; font-size: 14px; color: var(--ink2); }
+.box li { margin: 2px 0; }
+.box li b { color: var(--ink); }
+.box code { font: 500 11.8px "IBM Plex Mono", monospace; color: var(--ink); }
+.foot { margin-top: auto; display: flex; justify-content: space-between; font-size: 11.5px; color: var(--ink3); }
+</style></head><body>
+<div><h1>Built with <b>Snowflake CoCo</b>: 8 reusable skills across the lifecycle</h1>
+<div class="sub">CoCo planned, built, ran and tested every Snowflake object. The skills package that know-how so the next plant takes hours, not weeks.</div></div>
+
+<div class="sec">What CoCo did in each phase · the skills that package it · evidence in the repository</div>
+<div class="phases">
+  <div class="ph"><h3>Planning <small>docs/evidence/P</small></h3><p>Framed the problem (personas, decisions, cost of not knowing); drew the ontology ER (ISA-95 × ISO 14224 × ERP × CMMS) and the workflow; wrote the build plan and the top risks.</p>
+    <div class="sk"><code>nirantar-ontology-semantic-view</code><code class="b">built-in planning</code></div><div class="ev">Planning document of 437 lines + journal row</div></div>
+  <div class="ph"><h3>Development <small>docs/evidence/D</small></h3><p>Generated the 3-plant synthetic enterprise with failure physics; built Dynamic Tables, the scoring procedure, the semantic view, Cortex Search, the Cortex Agent and its tools, and the Streamlit app.</p>
+    <div class="sk"><code>nirantar-synthetic-plant</code><code>nirantar-command-center</code><code>nirantar-work-order</code></div><div class="ev">6.8 M telemetry rows · 34 documents · agent with 5 tools</div></div>
+  <div class="ph"><h3>Execution <small>docs/evidence/E</small></h3><p>Created the serverless tasks and alert, ran the hero scenario end to end (alert → AI-drafted work order), and scheduled the morning briefing as a CoCo Automation.</p>
+    <div class="sk"><code>nirantar-alert-triage</code><code>nirantar-reliability-brief</code></div><div class="ev">Risk 0.99 · RUL 66.8 h · automation daily 07:00 IST</div></div>
+  <div class="ph"><h3>Testing <small>docs/evidence/T</small></h3><p>Wrote and ran data, physics, pattern, guardrail and edge-case tests (sensor fault, no spares, approval bypass, stale data) plus the agent golden set; reported failures honestly.</p>
+    <div class="sk"><code>nirantar-rca</code><code>nirantar-coco-evidence</code></div><div class="ev">Test table with PASS / FAIL per check · back-test 36 of 43</div></div>
+</div>
+
+<div class="sec">Chained workflow: input → processing → output (each skill is a SKILL.md with references, tools and trigger phrases)</div>
+<div class="chain">
+  <div class="io"><b>Input</b><span>a plant or a line</span><code>PUNE-MACH line PUN-L2</code></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="t">1 · prioritise</span><h4>$nirantar-alert-triage</h4><p>Joins OT risk with <b>₹ downtime</b>, <b>orders due</b>, <b>spares</b> and open work orders; suppresses suspected <b>sensor faults</b>. → VMC-204 is #1.</p></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="t">2 · explain</span><h4>$nirantar-rca</h4><p><b>5 whys + fishbone</b> grounded in SQL over telemetry, work-order history, lots and notes, with <b>citations</b> and stated confidence.</p></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="t">3 · act</span><h4>$nirantar-work-order</h4><p><b>Parts-ready, production-aware</b> draft: LOTO steps from the SOP, spares across plants, a window from the schedule, a qualified technician.</p></div>
+  <div class="arr">→</div>
+  <div class="io out"><b>Output</b><span>a drafted work order, <b>waiting for a named person</b> to approve; logged in ACTION_LOG</span></div>
+</div>
+
+<div class="sec">Where it ran · how to reuse · guardrails on the agent that built it</div>
+<div class="bottom">
+  <div class="box"><h3>Surfaces</h3><ul>
+    <li><b>Snowsight CoCo panel</b>: 20+ chats, parallel sessions, workspace files, skills in <code>.snowflake/cortex/skills/</code></li>
+    <li><b>CoCo Automations</b>: Morning Reliability Briefing (<code>$nirantar-reliability-brief</code>)</li>
+    <li><b>Cortex Agent</b> in the Streamlit app and in Snowflake CoWork for business users</li></ul></div>
+  <div class="box"><h3>Reuse in another account</h3><ul>
+    <li>Snowsight: upload <code>skills/</code> to <code>.snowflake/cortex/skills/</code></li>
+    <li>CLI: <code>cortex skill add https://github.com/paras-lehana/nirantar</code></li>
+    <li>Plugin manifest <code>.cortex-plugin/plugin.json</code>; start with <code>/nirantar-synthetic-plant</code></li></ul></div>
+  <div class="box"><h3>Guardrails for CoCo itself</h3><ul>
+    <li><b>Least privilege</b>: built as role <code>NIRANTAR_BUILDER</code></li>
+    <li><b>Cost caps</b>: resource monitor, CoCo credit caps, X-Small warehouse</li>
+    <li><b>Workspace rules</b> (<code>AGENTS.md</code>): no auto-approval, sensor-fault veto, journal row per milestone</li></ul></div>
+</div>
+<div class="foot"><span>Snowflake CoCo CLI Hackathon 2026 · GCC Edition · Problem #03 · Team Aidhunik India</span><span>github.com/paras-lehana/nirantar/tree/main/skills</span></div>
+</body></html>

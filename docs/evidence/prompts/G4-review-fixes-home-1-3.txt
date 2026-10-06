@@ -1,0 +1,30 @@
+GUIDED JOURNEY v2 - ROUND G4 (fixes from a browser review of the live 1.46.1 app: global + Home + pages 1-3). Python 3.8 rules, pyflakes, AppTest all 10 pages (default_timeout 120, no live agent call), deploy to the live app keeping the 1.46.1 pin and RUNTIME_NAME. Reply with a short list of what changed.
+
+GLOBAL
+1. One step indicator, not two. Every tour page currently shows the circle stepper AND a row of pills with the same 8 steps. Keep ONE row: the clickable page_link pills, styled as a stepper (done = green outline with a check, current = filled blue, upcoming = grey outline, thin connector line between pills). Remove the decorative circle stepper. Keep the top-right "Next ->" button.
+2. Double arrows: the big Next button reads "-> Next -> 2 · Machine Detail: ..." and Back reads "<- < Back to ...". Use the icon OR the arrow text, not both: "Next: 2 · Machine Detail - What exactly is wrong, and how sure are we?" with icon ":material/arrow_forward:", and "Back to 1 · Plant Map" with icon ":material/arrow_back:".
+3. Tour progress in the sidebar shows "1 of 8 steps" while I am on step 3 (opened by link). Show progress as max(steps visited, current step) and the label "Step 3 of 8 · Prioritise".
+4. Time labels: the sidebar shows the live clock (06 Oct 02:30) and "Simulated plant time: 04 Oct 15:11", while the case file says "Alert raised 05 Oct 00:17". Rename the second label to "Sensor data up to 04 Oct 15:11 IST (demo replay of synthetic data)" and add a tip(): "The plant is simulated. Sensor readings are replayed from 01-04 Oct; alerts and work orders carry the real time they were created."
+5. Sidebar contrast: "FOR LIVE DEMOS" and "Presenter" are almost invisible; give them the same muted-but-readable colour as other secondary text (contrast >= 4.5:1 on the sidebar background).
+6. Number formatting everywhere: hours above 240 h show as days ("187 days"); chart axis ticks max 1 decimal (RPM ticks show 14218.7: show 14,219); money always "Rs 16.8 L" style.
+7. Raw names: never show tag codes or column names to users. "Vib Rms" -> "Vibration"; table headers "Wo Type", "Failure Mode Id", "Cause Text", "Created At" -> "Type", "Problem", "Cause", "Created (IST)"; map WO types PM/CM to "Preventive"/"Breakdown repair"; FM codes to their names.
+
+HOME
+8. Order: the hero ("Nirantar: catch machine failures before they stop the line." + sub-line) goes FIRST, directly under the page title, with a big green primary page_link button "Start the 3-minute tour" (-> 1 · Plant Map) and a secondary "Replay the intro". Then RIGHT NOW, YOUR TO-DO, THE 8 STEPS, CHOOSE YOUR PATH, AI vs HUMAN, THE PLANT IN NUMBERS. Do not show the step pills row or the case file on Home (the 8 step cards already do that job).
+9. Make every one of the 8 step cards a page_link to its page (whole card or a "Open ->" link at the bottom of each card), not only the first one.
+
+1 · PLANT MAP
+10. Machine labels on the map repeat ("101, 102, 101, 102..." on the Crankshaft line, "201, 201, 201" on Cylinder Head). Show the real short machine id under each circle (e.g. "LTH-101", "VMC-204", "CHL-101") so every label is unique; the hero keeps its red tag "VMC-204 · bearing wear, 67 h".
+11. Next to each line title add a one-word status chip: "All healthy" (green) or "1 needs action" (red).
+12. Machine card label "RUL TO FAILURE" -> "TIME TO FAILURE" (tip: "Remaining useful life: how long the machine can run before it is likely to fail").
+
+2 · MACHINE DETAIL
+13. Contradiction to fix: the vibration chart's projection label says "At the last-12 h rate: trip level in about 3 h" while the KPI says about 67 h to failure. Replace the straight last-12 h projection with the model estimate: a dashed line from Now to the trip line at Now + {67} h, labelled "Nirantar's estimate: reaches the trip line in about {67} h (likely {36}-{97} h)". Keep the "Alarm crossed 03 Oct 09:30" dot and the Now rule.
+14. Chart right-edge labels are clipped ("Ala", "Tri"): reserve right padding so "Alarm" and "Trip" are fully visible, or place the labels at the left end above the lines. Value label at the last point must not overlap the Trip label.
+15. "Recent work orders": plain headers (see 7) and a one-line caption: "Previous repairs on VMC-204. Two were breakdowns ({problem names})."
+16. "Spare part stock": show only the part needed for this failure mode first, as a sentence: "The repair needs 1 x SKF-7014-ACD/P4A spindle bearing set. Pune has 0, Chennai-Forge has 2 -> Nirantar planned a transfer (see 5 · Work Orders)." Put the full table in a collapsed expander "All spare parts".
+
+3 · ALERT TRIAGE
+17. The decision buttons are all dark. Make "Acknowledge" the primary (green) button since "Do this now" says to press it; keep Snooze and Escalate secondary.
+18. Replace "Draft WO" (the work order is already drafted, the chip says so) with a page_link "Open the drafted work order" -> 5 · Work Orders. Only show a "Draft work order" button when no draft exists.
+19. Watch list: show friendly machine names ("Chiller CHL-101 · Utilities") instead of full ids like PUN-U1-CHL-101, and hours as days (see 6).

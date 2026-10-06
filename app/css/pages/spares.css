@@ -1,0 +1,70 @@
+/* Tool · Spares & logistics: stock matrix, suggestions, transfers, route diagram. Scoped to .sparespage. */
+.sparespage .h-sub { font-size: var(--fs-sm); font-weight: 600; color: var(--ink-2); margin: 14px 0 6px; }
+.sparespage .h-sub .dim { font-weight: 400; }
+
+/* stock matrix: wide, scrolls inside its frame on phones; the part column stays put */
+.sparespage .sp-table .table { min-width: 760px; }
+.sparespage .sp-table th.sticky-col { position: sticky; left: 0; z-index: 2; background: var(--panel); min-width: 168px; max-width: 220px; white-space: normal; text-align: left; border-right: 1px solid var(--line); }
+.sparespage .sp-table thead th.sticky-col { z-index: 3; background: var(--panel-2); }
+.sparespage .sp-table tbody th.sticky-col { font-weight: 500; color: var(--ink); vertical-align: top; padding: 9px 10px; border-bottom: 1px solid var(--line); }
+.sparespage .sp-table tbody th .p-name { display: block; line-height: 1.3; }
+.sparespage .sp-table tbody th .xs { display: block; margin-top: 2px; font-weight: 400; }
+.sparespage .sp-table td { vertical-align: top; }
+.sparespage .sp-cell { min-width: 112px; }
+.sparespage .sp-cell .qty { display: block; font: 600 var(--fs-lg) var(--mono); color: var(--ink); line-height: 1.2; }
+.sparespage .sp-cell.unused .qty { color: var(--ink-3); font-weight: 500; }
+.sparespage .sp-cell .tagline { display: flex; justify-content: flex-end; margin-top: 3px; font-family: var(--sans); }
+.sparespage .sp-cell .tagline .xs { white-space: normal; text-align: right; line-height: 1.3; max-width: 120px; }
+.sparespage .sp-table tr.row-act th.sticky-col { box-shadow: inset 4px 0 0 var(--act-fill); }
+.sparespage .sp-table tr.row-act td, .sparespage .sp-table tr.row-act th.sticky-col { background: var(--act-bg); }
+.sparespage .sp-table tfoot th, .sparespage .sp-table tfoot td { padding: 9px 10px; border-top: 1px solid var(--line-2); background: var(--panel-2); font-weight: 600; }
+.sparespage .sp-table tfoot td { text-align: right; font-family: var(--mono); }
+
+/* suggestions + side column */
+.sparespage .sp-grid { display: grid; gap: var(--gap); align-items: start; }
+.sparespage .sp-grid > * { min-width: 0; }
+@media (min-width: 1100px) { .sparespage .sp-grid { grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); } }
+.sparespage .sg-urgent { display: grid; gap: 6px; padding: 10px 12px; margin-top: 10px; border-radius: var(--r-sm); background: var(--act-bg); border-left: 4px solid var(--act-fill); font-size: var(--fs-sm); }
+.sparespage .sg-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.sparespage .sg-list li { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 12px; padding: 10px 12px; border: 1px solid var(--line); border-radius: var(--r-sm); background: var(--panel-2); }
+.sparespage .sg-what { display: grid; gap: 2px; min-width: 0; flex: 1 1 260px; font-size: var(--fs-sm); }
+.sparespage .sg-what .mono { font-weight: 600; }
+.sparespage .sg-list .btn { flex: none; }
+
+/* transfers */
+.sparespage .tr-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.sparespage .tr-list li { display: grid; gap: 6px; padding: 10px 12px; border: 1px solid var(--line); border-radius: var(--r-sm); background: var(--panel-2); }
+.sparespage .tr-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px 10px; font-size: var(--fs-sm); }
+.sparespage .tr-route { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 6px; font-size: var(--fs-sm); }
+.sparespage .tr-route svg { width: 16px; height: 16px; color: var(--ink-3); }
+.sparespage .tr-route > span:not(.dim) { font-weight: 600; }
+
+/* route diagram */
+.sparespage .sp-route-wrap { max-width: 380px; margin: 0 auto; }
+.sparespage .sp-route text { font-size: 12px; }
+.sparespage .sp-legend { margin-top: 6px; font-size: var(--fs-xs); }
+
+/* how it works */
+.sparespage .how-list { margin: 0 0 10px; padding-left: 20px; display: grid; gap: 6px; }
+.sparespage .how-list li::marker { font-family: var(--mono); font-weight: 600; }
+
+/* phone: part cards instead of the wide table */
+.sparespage .sp-cards { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.sparespage .sp-pc { display: grid; gap: 8px; padding: 10px 12px; border: 1px solid var(--line); border-radius: var(--r-sm); background: var(--panel-2); }
+.sparespage .sp-pc.row-act { background: var(--act-bg); border-color: var(--act-fill); box-shadow: inset 4px 0 0 var(--act-fill); }
+.sparespage .pc-head { display: grid; gap: 1px; }
+.sparespage .pc-plants { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+.sparespage .pc-cell { display: grid; align-content: start; gap: 1px; padding: 6px 8px; border-radius: var(--r-sm); background: var(--panel); border: 1px solid var(--line); min-width: 0; }
+.sparespage .pc-cell .qty { font: 600 var(--fs-lg) var(--mono); line-height: 1.2; }
+.sparespage .pc-st { display: flex; gap: 3px; align-items: flex-start; font-size: var(--fs-xs); font-weight: 600; line-height: 1.25; color: var(--ink-2); overflow-wrap: anywhere; }
+.sparespage .pc-st svg { width: 12px; height: 12px; flex: none; margin-top: 1px; }
+.sparespage .pc-cell.t-act { border-color: var(--act-fill); }
+.sparespage .pc-cell.t-act .pc-st, .sparespage .pc-cell.t-act .qty { color: var(--act); }
+.sparespage .pc-cell.t-watch { background: var(--watch-bg); border-color: var(--watch-fill); }
+.sparespage .pc-cell.t-watch .pc-st { color: var(--watch); }
+.sparespage .pc-cell.t-unused .qty, .sparespage .pc-cell.t-unused .pc-st { color: var(--ink-3); font-weight: 500; }
+.sparespage .sg-total { margin-top: 8px; }
+@media (max-width: 719px) { .sparespage .sp-table { display: none; } }
+@media (min-width: 720px) { .sparespage .sp-cards { display: none; } }
+.sparespage .sg-what .mono { white-space: nowrap; }
+.sparespage .sp-table thead th { font-family: var(--sans); }

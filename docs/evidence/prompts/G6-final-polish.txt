@@ -1,0 +1,21 @@
+GUIDED JOURNEY v2 - ROUND G6 (final polish from the browser review after G5). Same rules: read before edit, Python 3.8, pyflakes, real-data smoke test of every helper you touch, deploy the whole folder (RUNTIME_NAME warehouse, 1.46.1 pin, owner NIRANTAR_BUILDER, ACCOUNTADMIN usage, live version). Do NOT change ML tables. Reply with a short list.
+
+1. What If: the slider label renders raw HTML: '<span class="nir-marker">1</span> Wait (days)'. Widget labels cannot render HTML. Put marker(1) in an st.markdown line just above the slider and give the slider the plain label "Wait (days)". Check every other widget label in the app for the same bug.
+
+2. One number, one meaning (a judge will compare step 2 with step 4). Today Machine Detail says "Risk of failure 99 % - chance it fails within 72 hours" next to "Hours to failure 67 h (likely 36-97 h)", and What If says waiting 3 days gives a 66 % chance. These cannot all be true. The 99 % is the classifier's confidence that a real failure is developing; the timing comes from the RUL estimate. Make the wording say exactly that, everywhere it appears (Home, welcome dialog, Plant Map card, Machine Detail KPI, Alert Triage headline and card, Work Orders, glossary):
+   - KPI title "FAILURE CONFIDENCE", value "99 %", meaning line "how sure Nirantar is that this is real bearing wear (not noise or a sensor fault)".
+   - Timing stays "About 67 h to failure (likely 36-97 h)".
+   - Alert Triage headline: "VMC-204 is #1 of 1 open alerts: 99 % failure confidence x Rs 16.8 L of orders at stake x the Maratha Motors order due Friday 09 Oct."; rank line "Rank = failure confidence x money at stake x order-deadline pressure".
+   - What If keeps its RUL-based curve; add one tip: "Uses the time-to-failure estimate (67 h); the 99 % on step 2 is how sure we are that a failure is developing, not when."
+
+3. Green primary buttons: "Approve" (Work Orders) and "Acknowledge" (Alert Triage) still render dark although they are type="primary". In Streamlit 1.46 they are button[data-testid="stBaseButton-primary"]; a generic button rule in common.py CSS overrides them. Add a rule after it: background #16a34a, border #16a34a, color #fff, hover #15803d (!important if needed). Keep secondary buttons dark. "Start the 3-minute tour" (page_link) stays as it is.
+
+4. "IST IST": Work Orders WHEN line ("07 Oct 06:00 IST IST") and every Trust Audit action-log time ("05 Oct 00:26 IST IST"). The time formatter already appends IST; remove the extra literal. grep the whole folder for "IST IST" patterns and for f"... IST" after fmt_ist-like helpers.
+
+5. Trust Audit action log: "Spares checked: Pune plant; Chennai Forge plant has 2 x" and "... Pune plant has 5 x" are missing the part name after "x". Show "Chennai Forge plant has 2 x SKF-7014-ACD/P4A bearing set; Pune plant has 0".
+
+6. Trust Audit: add a fourth answer card "Does the copilot answer correctly?" reading NIRANTAR.OPS.V_AGENT_EVAL_SUMMARY: "{passed} of {total} golden questions passed ({pct} %), last run {time IST}" with a tip "15 fixed questions with expected facts; a refusal counts as a fail unless the question asks for one". If the view is empty, show "Evaluation running" instead of 0.
+
+7. Ask Copilot: the recorded-answer timestamps read "2026-10-05 14:44" (not IST). Show "Recorded 06 Oct 03:14 IST" using the same IST helper as the rest of the app.
+
+8. Case file strip (every page): the last two stages say "later". Fill them from the work-order data: "Bearing moved Chennai -> Pune: ETA {07 Oct 00:26 IST}" and "Repaired: planned {07 Oct 02:00-06:00 IST}". Keep them grey (not done yet).

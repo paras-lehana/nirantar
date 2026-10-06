@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Nirantar system architecture</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
+<style>
+:root { --ink:#16202b; --ink2:#46525f; --ink3:#6b7682; --paper:#f4f5f7; --panel:#ffffff; --line:#d5dae0;
+  --snow:#1a8fc4; --snowbg:#e8f5fb; --ai:#2b5ecb; --aibg:#e9effb; --ok:#1f7a49; --okbg:#e6f3ec; --act:#c4342a; --actbg:#fbeceb;
+  --watch:#9a6400; --watchbg:#fbf2e0; --coco:#5b3fb8; --cocobg:#efeafb; }
+* { box-sizing: border-box; margin: 0; }
+body { width: 1600px; height: 900px; background: var(--paper); color: var(--ink); font: 400 13px/1.35 "IBM Plex Sans", sans-serif; padding: 26px 30px; }
+h1 { font-size: 27px; font-weight: 700; letter-spacing: -.01em; }
+h1 b { color: var(--snow); }
+.sub { color: var(--ink2); font-size: 14px; margin-top: 3px; }
+.top { display: flex; justify-content: space-between; align-items: flex-end; }
+.tag { font-size: 12px; color: var(--ink3); text-align: right; }
+.grid { display: grid; grid-template-columns: 250px 1fr 270px; gap: 16px; margin-top: 16px; }
+.col-h { font-size: 11.5px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--ink3); margin-bottom: 7px; }
+.src { background: var(--panel); border: 1px solid var(--line); border-left: 5px solid var(--c); border-radius: 10px; padding: 9px 11px; margin-bottom: 9px; }
+.src h3 { font-size: 14.5px; font-weight: 600; display: flex; justify-content: space-between; align-items: center; }
+.src p { color: var(--ink2); font-size: 12.8px; margin-top: 3px; }
+.kind { font-size: 10.5px; font-weight: 600; padding: 1px 7px; border-radius: 99px; background: #eef0f3; color: var(--ink2); }
+.snow { background: var(--snowbg); border: 2px solid var(--snow); border-radius: 14px; padding: 11px 12px 12px; }
+.snow-h { display: flex; justify-content: space-between; align-items: baseline; }
+.snow-h b { color: var(--snow); font-size: 16px; }
+.snow-h span { font-size: 11.5px; color: var(--ink2); }
+.lanes { display: grid; grid-template-columns: repeat(5, 1fr); gap: 9px; margin-top: 9px; }
+.lane { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 8px 9px; display: flex; flex-direction: column; gap: 5px; position: relative; }
+.lane h4 { font-size: 13.5px; font-weight: 700; }
+.lane h4 small { font-weight: 500; color: var(--ink3); font-size: 11.5px; }
+.obj { border: 1px solid var(--line); border-radius: 7px; padding: 5px 7px; font-size: 12.6px; background: #fafbfc; }
+.obj code { font: 500 11px "IBM Plex Mono", monospace; color: var(--ink); }
+.obj.h { border-color: var(--ok); background: var(--okbg); }
+.obj.a { border-color: var(--ai); background: var(--aibg); }
+.flow { display: grid; grid-template-columns: repeat(5, 1fr); gap: 9px; margin-top: 5px; }
+.flow span { text-align: center; font-size: 11.5px; font-weight: 600; color: var(--snow); letter-spacing: .03em; }
+.loop { margin-top: 8px; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 9px 12px; font-size: 13.6px; }
+.loop b.l { color: var(--act); }
+.step { display: inline; }
+.step i { font-style: normal; color: var(--ink3); padding: 0 3px; }
+.guards { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 9px; }
+.chip { font-size: 11.6px; padding: 3px 9px; border-radius: 99px; border: 1px solid var(--line); background: var(--panel); }
+.chip.g { border-color: var(--ok); color: var(--ok); background: var(--okbg); font-weight: 600; }
+.exp { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 9px 11px; margin-bottom: 9px; }
+.exp h3 { font-size: 14.5px; font-weight: 600; }
+.exp p { font-size: 12.8px; color: var(--ink2); margin-top: 3px; }
+.exp.pub { border: 2px dashed var(--ai); }
+.exp.hum { border: 2px solid var(--ok); }
+.coco { margin-top: 14px; background: var(--cocobg); border: 2px solid var(--coco); border-radius: 14px; padding: 10px 12px; display: grid; grid-template-columns: 170px repeat(4, 1fr) 1.35fr; gap: 9px; align-items: stretch; }
+.coco .lbl b { color: var(--coco); font-size: 16px; display: block; }
+.coco .lbl span { font-size: 12px; color: var(--ink2); }
+.ph { background: var(--panel); border-radius: 9px; padding: 7px 9px; border: 1px solid #d9d0f3; }
+.ph h5 { font-size: 13px; font-weight: 700; color: var(--coco); }
+.ph p { font-size: 11.8px; color: var(--ink2); margin-top: 2px; }
+.ph.sk p code { font: 500 10.8px "IBM Plex Mono", monospace; color: var(--ink); }
+.foot { margin-top: 10px; display: flex; justify-content: space-between; font-size: 11.5px; color: var(--ink3); }
+</style></head><body>
+<div class="top">
+  <div><h1>Nirantar on <b>Snowflake</b>: from a sensor to an approved repair</h1>
+  <div class="sub">IT + OT converged in one account · predict → prioritise → explain → act → approve → measure · built, run and tested with Snowflake CoCo</div></div>
+  <div class="tag">Snowflake CoCo CLI Hackathon 2026 · GCC Edition<br>Problem #03 · Team Aidhunik India</div>
+</div>
+<div class="grid">
+  <div>
+    <div class="col-h">Data sources (synthetic “Indus Group”)</div>
+    <div class="src" style="--c:#c4342a"><h3>OT telemetry <span class="kind">structured</span></h3><p>PLC / SCADA / historian: vibration, temperature, current, pressure, RPM · 315 tags on 48 machines · 1-minute ticks (<code>SIM.EMIT_TICK</code>) · 6.8 M rows</p></div>
+    <div class="src" style="--c:#9a6400"><h3>ERP <span class="kind">structured</span></h3><p>Spare-part stock by plant, supplier lots, production and sales orders, ₹ downtime cost per line</p></div>
+    <div class="src" style="--c:#1f7a49"><h3>CMMS <span class="kind">structured</span></h3><p>Work orders, ISO 14224 failure codes, technicians and skills, 43 past failure episodes</p></div>
+    <div class="src" style="--c:#5b3fb8"><h3>Documents <span class="kind">unstructured</span></h3><p>OEM manuals, LOTO SOPs, supplier quality notes, technician notes in English and Hinglish</p></div>
+    <div class="src" style="--c:#46525f"><h3>3 plants · 2 industries</h3><p>Pune machining · Chennai forging · Chittorgarh cement</p></div>
+  </div>
+  <div>
+    <div class="snow">
+      <div class="snow-h"><b>❄ Snowflake account · database NIRANTAR</b><span>warehouse X-Small · serverless tasks + alerts · role NIRANTAR_BUILDER</span></div>
+      <div class="lanes">
+        <div class="lane"><h4>RAW <small>landed as-is</small></h4>
+          <div class="obj">OT telemetry, states, alarms</div><div class="obj">ERP stock, lots, orders</div><div class="obj">CMMS work orders, techs</div><div class="obj">Doc chunks (34 docs)</div></div>
+        <div class="lane"><h4>CORE <small>Dynamic Tables</small></h4>
+          <div class="obj">Ontology: plant → line → machine → sensor (ISA-95)</div><div class="obj"><code>FACT_TELEMETRY_15M</code></div><div class="obj">Downtime + OEE facts (A × P × Q)</div></div>
+        <div class="lane"><h4>ML <small>scoring</small></h4>
+          <div class="obj"><code>ML.SCORE_LATEST()</code> rules-v1</div><div class="obj">Health 0–100 · ISO 10816 zone</div><div class="obj">72 h risk · RUL with range</div><div class="obj">Sensor-fault veto</div><div class="obj">Back-test on 43 failures</div></div>
+        <div class="lane"><h4>APP <small>decide + act</small></h4>
+          <div class="obj">Alerts · <code>V_PRIORITY</code> (risk × ₹ × orders)</div><div class="obj a">AI drafts work order (spares, window, technician)</div><div class="obj h"><code>APPROVE_WORK_ORDER</code> person only</div><div class="obj"><code>ACTION_LOG</code> audit</div></div>
+        <div class="lane"><h4>AI <small>Cortex</small></h4>
+          <div class="obj">Semantic View <code>SV_PLANT_OPS</code></div><div class="obj">Cortex Search <code>CSS_MAINT_KNOWLEDGE</code></div><div class="obj a">Cortex Agent <code>NIRANTAR_COPILOT</code></div><div class="obj">Tools: ASSET_360 · CHECK_SPARES · PROPOSE_WINDOW · DRAFT_WORK_ORDER · WHAT_IF_DEFER</div></div>
+      </div>
+      <div class="flow"><span>ingest ▶</span><span>conform ▶</span><span>score ▶</span><span>decide + act ▶</span><span>◀ explain + ask</span></div>
+      <div class="loop"><b class="l">Closed loop:</b>
+        <span class="step">vibration spike on VMC-204<i>→</i></span><span class="step">99 % risk, ≈ 67 h left<i>→</i></span><span class="step">alert ranked by ₹16.8 L × order due Friday<i>→</i></span><span class="step">AI drafts the work order: bearing from Chennai (48 h), low-impact window, technician, SOP-17<i>→</i></span><span class="step"><b style="color:var(--ok)">a named person approves</b><i>→</i></span><span class="step">audit + savings on OEE</span></div>
+      <div class="guards"><span class="chip g">Approval gate (POL-G8)</span><span class="chip g">Sensor fault → inspection, no crew (SOP-50)</span><span class="chip">Resource monitor + CoCo credit caps</span><span class="chip">Least-privilege role</span><span class="chip">Every action in ACTION_LOG</span><span class="chip">Tests + agent golden set</span></div>
+    </div>
+  </div>
+  <div>
+    <div class="col-h">Experience and action</div>
+    <div class="exp"><h3>Streamlit Command Center</h3><p>In Snowflake (warehouse runtime, Streamlit 1.46): 8-step guided tour, map, machine detail, triage, what-if, work orders, copilot, OEE, trust</p></div>
+    <div class="exp hum"><h3>Person approves</h3><p>Planner or plant head approves with their name; nothing is released by the AI</p></div>
+    <div class="exp"><h3>Snowflake CoWork</h3><p>The same Cortex Agent for business users: plain English or Hinglish, cited answers</p></div>
+    <div class="exp"><h3>CoCo Automation</h3><p>Morning Reliability Briefing, daily 07:00 IST</p></div>
+    <div class="exp pub"><h3>Public interactive demo</h3><p>GitHub Pages, no login: the same model and numbers in the browser, plus calendar, technician job card (EN / हिन्दी), root cause, alarm rules, business case</p></div>
+  </div>
+</div>
+<div class="coco">
+  <div class="lbl"><b>CoCo build lane</b><span>Snowsight CoCo panel (20+ chats) · Automations · skills in the workspace</span></div>
+  <div class="ph"><h5>Planning</h5><p>Problem framing, ontology ER, workflow, build plan, risks</p></div>
+  <div class="ph"><h5>Development</h5><p>Synthetic enterprise + failure physics, Dynamic Tables, scoring, procedures, semantic view, search, agent, app</p></div>
+  <div class="ph"><h5>Execution</h5><p>Serverless tasks and alerts, hero run, scheduled briefing</p></div>
+  <div class="ph"><h5>Testing</h5><p>Data, physics, guardrail and edge-case tests; agent golden set</p></div>
+  <div class="ph sk"><h5>8 reusable skills</h5><p><code>synthetic-plant</code> · <code>ontology-semantic-view</code> · <code>command-center</code> · <code>alert-triage → rca → work-order</code> · <code>reliability-brief</code> · <code>coco-evidence</code></p></div>
+</div>
+<div class="foot"><span>All data synthetic · fictional company “Indus Group”</span><span>github.com/paras-lehana/nirantar</span></div>
+</body></html>

@@ -1,0 +1,38 @@
+GUIDED JOURNEY v2 - ROUND G2 (EXACT COPY: Home, 1 Plant Map, 2 Machine Detail, 3 Alert Triage). Use the G1 helpers (page_frame, case_file, headline, do_this, marker, tip, ai_chip, human_chip, why_it_matters, next_card, after_action). Every value in {braces} must come from live data (ML.V_LATEST_PRED, alerts, work orders, telemetry, sales orders); never hard-code numbers. Remove the old generic "What you are looking at" boxes on these pages: the headline now states the conclusion instead. Python 3.8 rules + pyflakes as before.
+
+HOME (step 0, "Start here")
+- Hero (gradient): "Nirantar निरंतर: catch machine failures before they stop the line." Sub: "An AI reliability command center built inside Snowflake. It watches every machine's sensors, predicts failures days ahead, prices the risk in rupees, drafts the repair, and waits for a human to approve."
+- RIGHT NOW card (red left border, headline helper): "{VMC-204} on the {Cylinder Head line} in {Pune} is wearing out its spindle bearing. It will probably fail in about {67} hours. {Rs 16.8 L} of customer orders depend on it. The AI has already drafted the repair; it needs your approval."
+- HOW TO USE THIS APP (3 minutes): "Follow the glowing item in the left menu. Each page asks one question, answers it in the first sentence, and tells you what to press. Switch the tour off in the sidebar if you know the way."
+- THE 8 STEPS: a row of 8 small cards (number, verb, the step question), the next one (1 Plant Map) highlighted with "Start here →".
+- CHOOSE YOUR PATH: 3 cards. "Plant head: show me the money at risk → 3 · Alert Triage". "Maintenance planner: show me the repair plan → 5 · Work Orders". "Engineer or judge: show me the evidence → 2 · Machine Detail and 8 · Trust Audit".
+- WHAT IS AI AND WHAT IS HUMAN: two columns. Done by Nirantar: watch sensors every 15 minutes, predict failures, rank by money at risk, draft work orders and parts transfers, explain root causes. Your decision: approve or reject repairs, release crew and parts, change schedules. Footer: "Nothing is released without a human. Every action is logged."
+- KPI cards keep their numbers but each gets a one-line meaning and a tip(): Machines monitored ("sensors scored every 15 min"), Open alerts ("machines that need action"), Money at risk ("customer orders that depend on alerted machines"), Early detection ("{36} of {43} past failures caught, median {36} h ahead").
+
+1 · PLANT MAP
+- Headline: "1 of {48} machines needs attention: {VMC-204} on the Cylinder Head line (red, with the pulsing ring). The other {47} are healthy or being watched."
+- Do this now: "① Find the red circle with the ring on the map. ② Read its card under the map. Then open 2 · Machine Detail to see the evidence."
+- Put marker(1) next to the map title and marker(2) next to the asset card title.
+- Legend row: green = healthy (health 80-100), amber = watch (50-79), red = act now (below 50); ring = open alert; bigger circle = more critical machine. Use tip() on "health".
+- Asset card for VMC-204 (ai_chip): Health {32}/100 (tip: 0 = failed, 100 = new), ISO zone {C} (tip: A good, B acceptable, C plan a repair, D stop now), Risk of failure {99 %} in 72 h, About {67} h to failure (likely {36}-{97} h), Top signal: "{Vibration} is {4.1}x its normal level and rising".
+- why_it_matters: "If VMC-204 stops unplanned, {Rs 16.8 L} of orders are at risk."
+- Map caption: "Each lane is a production line; each circle a machine. Hover a circle for its numbers."
+
+2 · MACHINE DETAIL (default VMC-204)
+- Headline: "The spindle bearing is wearing out. Vibration rose from {1.5} to {6.5} mm/s in 3 days ({4.1}x normal) and crossed the alarm line on {date time}. Bearing temperature is up {18} C. Nirantar is {99} % sure this is bearing wear, not a sensor fault: all related sensors agree."
+- Do this now: "① Look at the first chart: the blue line climbs through the amber alarm line. ② Compare it with the flat charts of the healthy signals (RPM, pressure)." marker(1) on the VIB_RMS chart title, marker(2) on the RPM chart title.
+- Under the 4 KPI cards add one-line meanings + tips: Health 32/100 ("0 = failed, 100 = new"), ISO zone C ("plan a repair soon"), Risk 99 % ("chance it fails within 72 hours"), Hours to failure 67 h ("best estimate; likely between {36} and {97} h").
+- Chart annotations (svg_line_chart: add optional annotations=[(x, y, label)] and a vertical "Now" rule): on VIB_RMS mark the first point above the alarm line with an amber dot and label "Alarm crossed {dd Mon hh:mm}", a "Now" rule at the last point, and a dashed straight projection from the last 12 h trend to the trip line labelled "Trip level in about {h} h". Captions under each chart in plain words ("Rising: 4.1x normal" / "Normal").
+- Section "Why Nirantar thinks this" (ai_chip): 3 bullets from data: the rising signals, the failure-mode match from the knowledge base (cite the manual/SOP title from Cortex Search if available), "previous failures of this machine: {n}".
+- Next card: 3 · Alert Triage.
+
+3 · ALERT TRIAGE
+- Headline: "VMC-204 is #1 of {1} open alerts: {99} % risk x {Rs 16.8 L} of orders at stake x the {customer} order due {day}. The next machine on the watch list is only at {3.5} % risk."
+- Two chips above the card: ai_chip "Nirantar ranked the alerts and already drafted a work order" and human_chip "Your decision: acknowledge, snooze or escalate".
+- Do this now: "① Read the red card. ② Press 👁 Acknowledge to tell the team you have seen it. Then open 4 · What If to decide when to repair." marker(1) at the card title, marker(2) before the button row.
+- Rank formula line with tips: "Rank = risk of failure x money at stake x order-deadline pressure."
+- After a button press use after_action: Acknowledge -> "Done: alert acknowledged at {time IST}. Next → 4 · What If." Snooze -> "Snoozed for 4 hours; Nirantar will remind you." Escalate -> "Escalated to the plant head with the evidence." Draft WO -> "Work order drafted. Next → 5 · Work Orders."
+- Watch list caption: "These machines are healthy for now; Nirantar keeps watching them every 15 minutes." Risk and hours columns keep their formatting.
+- Next card: 4 · What If.
+
+Redeploy and reply with 3 short lines.

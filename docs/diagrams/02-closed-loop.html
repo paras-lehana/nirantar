@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Nirantar closed loop</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+Devanagari:wght@500&display=swap">
+<style>
+:root { --ink:#16202b; --ink2:#46525f; --ink3:#6b7682; --paper:#f4f5f7; --panel:#ffffff; --line:#d5dae0;
+  --ai:#2b5ecb; --aibg:#e9effb; --ok:#1f7a49; --okbg:#e6f3ec; --act:#c4342a; --actbg:#fbeceb; --watch:#9a6400; --watchbg:#fbf2e0; }
+* { box-sizing: border-box; margin: 0; }
+body { width: 1600px; height: 900px; background: var(--paper); color: var(--ink); font: 400 13px/1.35 "IBM Plex Sans", sans-serif; padding: 26px 30px; display: flex; flex-direction: column; }
+h1 { font-size: 27px; font-weight: 700; letter-spacing: -.01em; }
+.sub { color: var(--ink2); font-size: 14px; margin-top: 3px; }
+.top { display: flex; justify-content: space-between; align-items: flex-end; }
+.legend { display: flex; gap: 14px; font-size: 12.5px; color: var(--ink2); }
+.legend span::before { content: ""; display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; background: var(--c); }
+.loop { margin-top: 22px; display: grid; grid-template-columns: 112px repeat(9, 1fr); grid-template-rows: auto auto auto; gap: 10px 8px; }
+.lane-l { display: flex; flex-direction: column; justify-content: center; padding: 0 6px; border-radius: 10px; font-weight: 700; font-size: 14px; }
+.lane-l small { font-weight: 500; font-size: 11.5px; color: var(--ink2); }
+.lane-l.ai { background: var(--aibg); color: var(--ai); }
+.lane-l.hu { background: var(--okbg); color: var(--ok); }
+.hd { display: flex; align-items: center; gap: 7px; padding: 2px 2px 4px; position: relative; }
+.hd .n { width: 24px; height: 24px; border-radius: 50%; background: var(--ink); color: #fff; font-weight: 700; font-size: 12.5px; display: grid; place-items: center; flex: none; }
+.hd b { font-size: 15.5px; }
+.hd small { display: block; font-size: 11px; color: var(--ink3); font-weight: 500; }
+.hd::after { content: "▶"; position: absolute; right: -9px; top: 6px; color: var(--ink3); font-size: 11px; }
+.hd.last::after { content: ""; }
+.card { border-radius: 10px; padding: 10px 10px; font-size: 13.4px; line-height: 1.42; min-height: 214px; }
+.card.ai { background: var(--panel); border: 1.5px solid var(--ai); box-shadow: inset 0 3px 0 var(--ai); }
+.card.hu { background: var(--panel); border: 1.5px solid var(--ok); box-shadow: inset 0 3px 0 var(--ok); }
+.card.none { border: 1.5px dashed var(--line); background: transparent; color: var(--ink3); display: grid; place-items: center; text-align: center; font-size: 11.5px; }
+.card b { font-weight: 600; }
+.card .num { font-weight: 700; font-variant-numeric: tabular-nums; color: var(--ink); white-space: nowrap; }
+.card .red { color: var(--act); font-weight: 700; white-space: nowrap; }
+.card .k { display: block; font-size: 11.2px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--ink3); margin-bottom: 3px; }
+.deva { font-family: "IBM Plex Sans Devanagari", "IBM Plex Sans"; font-synthesis-weight: none; }
+.back { margin-top: 14px; display: flex; align-items: center; gap: 10px; background: var(--panel); border: 1px dashed var(--ink3); border-radius: 10px; padding: 10px 14px; font-size: 14px; color: var(--ink2); }
+.back b { color: var(--ink); }
+.back .arr { font-size: 18px; color: var(--ink3); }
+.guards { margin-top: 14px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.g { background: var(--panel); border: 1px solid var(--line); border-left: 5px solid var(--c); border-radius: 10px; padding: 12px 13px; }
+.g h3 { font-size: 15px; font-weight: 700; }
+.g p { font-size: 13.2px; color: var(--ink2); margin-top: 4px; }
+.foot { margin-top: auto; display: flex; justify-content: space-between; font-size: 11.5px; color: var(--ink3); }
+</style></head><body>
+<div class="top">
+  <div><h1>The closed loop: from a vibration spike to a verified repair</h1>
+  <div class="sub">Hero case VMC-204 (spindle bearing, Pune). The AI prepares every step; a named person makes every decision that changes the plant.</div></div>
+  <div class="legend"><span style="--c:var(--ai)">Done by Nirantar AI</span><span style="--c:var(--ok)">Decided or done by a person</span></div>
+</div>
+<div class="loop">
+  <div></div>
+  <div class="hd"><span class="n">1</span><div><b>Spot</b><small>Plant Map</small></div></div>
+  <div class="hd"><span class="n">2</span><div><b>Understand</b><small>Machine Detail</small></div></div>
+  <div class="hd"><span class="n">3</span><div><b>Prioritise</b><small>Alert Triage</small></div></div>
+  <div class="hd"><span class="n">4</span><div><b>Decide</b><small>What If</small></div></div>
+  <div class="hd"><span class="n">5</span><div><b>Approve</b><small>Work Orders</small></div></div>
+  <div class="hd"><span class="n">6</span><div><b>Ask why</b><small>Copilot</small></div></div>
+  <div class="hd"><span class="n">7</span><div><b>Repair</b><small>Technician view</small></div></div>
+  <div class="hd"><span class="n">8</span><div><b>Measure</b><small>OEE</small></div></div>
+  <div class="hd last"><span class="n">9</span><div><b>Verify</b><small>Trust Audit</small></div></div>
+
+  <div class="lane-l ai">Nirantar AI<small>in Snowflake</small></div>
+  <div class="card ai"><span class="k">scores 48 machines / 15 min</span>VMC-204 turns red: health <span class="num">32</span>, <span class="num">99 %</span> failure confidence. Everything else stays grey.</div>
+  <div class="card ai"><span class="k">explains</span>Vibration <span class="num">4×</span>, bearing temp <span class="num">+18 °C</span>, BPFO peak: bearing wear. 4 sensors agree, so not a sensor fault. ≈ <span class="num">66 h</span> left (36–96 h).</div>
+  <div class="card ai"><span class="k">ranks</span>Attention <span class="num">0.87</span> = confidence × criticality × <span class="red">Rs 16.8 L</span> at stake × Maratha Motors order due Friday.</div>
+  <div class="card ai"><span class="k">prices the wait</span>Wait 3 days: <span class="num">61 %</span> chance it breaks first, expected loss <span class="num">Rs 10.2 L</span> vs a <span class="num">Rs 61,000</span> planned repair.</div>
+  <div class="card ai"><span class="k">drafts the work order</span>Pune has no bearing: one moves from Chennai (<span class="num">48 h</span>). Technician, low-impact window before the failure, SOP-17 steps, cost.</div>
+  <div class="card ai"><span class="k">answers with sources</span>Sensors, manual, history, stock, cited. Asked to release without approval: <span class="red">refused and logged</span>.</div>
+  <div class="card ai"><span class="k">enforces the gates</span>Steps locked until lock-out is ticked and the part is on site; release only at ≤ <span class="num">2.3 mm/s</span>.</div>
+  <div class="card ai"><span class="k">counts the result</span>Planned repair saved <span class="num">46 h</span> and <span class="num">Rs 16.2 L</span>; OEE = A × P × Q by line and shift.</div>
+  <div class="card ai"><span class="k">proves it</span>Back-test: <span class="num">36 of 43</span> failures caught, median <span class="num">36 h</span> early, <span class="num">0.28</span> false alarms per machine-month.</div>
+
+  <div class="lane-l hu">People<small>planner · plant head · technician</small></div>
+  <div class="card none">looks for colour:<br>grey means normal</div>
+  <div class="card none">judges whether the evidence convinces</div>
+  <div class="card hu"><span class="k">acts on the alert</span>Acknowledge, shelve with a reason, or escalate, with a name.</div>
+  <div class="card hu"><span class="k">chooses</span>Fix now in the planned window, or accept the risk.</div>
+  <div class="card hu"><span class="k">approves</span>Only a named person can approve; the transfer and window are then booked. Overdue jobs can join the same stop.</div>
+  <div class="card hu"><span class="k">asks</span>In English or Hinglish (“VMC-204 kab tak chalega?”).</div>
+  <div class="card hu"><span class="k">does the job</span>Lock-out, signed steps, release reading <span class="num">1.9 mm/s</span>, in English or <span class="deva">हिन्दी</span>.</div>
+  <div class="card none">reads what it means for output</div>
+  <div class="card hu"><span class="k">verifies + tunes</span>Sets the alert threshold, marks alerts useful or not, reads the audit log.</div>
+</div>
+<div class="back"><span class="arr">↺</span><span><b>The loop learns and repeats:</b> feedback (useful / not useful) and the alert policy change the next ranking; the next machine that drifts starts again at step 1.</span></div>
+<div class="guards">
+  <div class="g" style="--c:var(--ok)"><h3>The AI cannot approve</h3><p>No path lets the AI approve, release, schedule or close a work order (policy POL-G8).</p></div>
+  <div class="g" style="--c:var(--watch)"><h3>No crew for a broken sensor</h3><p>A frozen or disagreeing sensor gets an inspection task, never a repair crew (SOP-50).</p></div>
+  <div class="g" style="--c:var(--act)"><h3>Safety before speed</h3><p>Lock-out first; steps unlock only with the part on site; release only below 2.3 mm/s (ISO 10816 zone A).</p></div>
+  <div class="g" style="--c:var(--ai)"><h3>Everything is logged</h3><p>Every AI action and human decision goes to the audit log with who and when (ACTION_LOG in Snowflake).</p></div>
+</div>
+<div class="foot"><span>All data synthetic · fictional company “Indus Group” · numbers as shown in the app</span><span>Try it: paras-lehana.github.io/nirantar/app</span></div>
+</body></html>

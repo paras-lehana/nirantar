@@ -1,0 +1,36 @@
+UI ROUND 3 - GUIDED JOURNEY + REAL DESIGN (role NIRANTAR_BUILDER, Streamlit 1.22 warehouse runtime, no GRANTs, redeploy as before). The portal currently just lists things: no explanation of what is happening, a basic look, and a clock that does not tick. Fix all of it. The audience is a plant head, a maintenance planner and hackathon judges who have never seen the app; every screen must tell them what they are looking at, why it matters and what to click next.
+
+A) THE JOURNEY RAIL (every page, directly under the page title)
+A 5-step stepper rendered as one HTML row: 1 Detect (Twin) -> 2 Triage -> 3 Draft work order -> 4 Approve (Work Orders) -> 5 Prove it (OEE, Trust). Current step filled in accent, done steps with a check, later steps muted. Under it one plain-English sentence for the current step, e.g. "Step 2 of 5. The model ranks every machine by failure risk and money at stake. Pick the top one and draft a work order."
+
+B) EVERY PAGE GETS THREE BLOCKS (use helpers in common.py)
+1. "What you are looking at": 2-3 plain sentences, no jargon, no column names.
+2. A legend where colours or scores appear (health colours, ISO 10816 zones A-D, what risk % and RUL hours mean).
+3. A "Next" callout at the bottom with one sentence and a button/link-styled hint to the next step.
+Add help= tooltips on every widget. Add a glossary expander in the sidebar: OEE, RUL, MTBF, ISO zone, LOTO, Work order, A x P x Q.
+
+C) HOME = A STORY, NOT A LIST
+Open with one headline sentence generated from live data: "VMC-204 (cylinder-head line, Pune) is wearing its spindle bearing. Expected failure in about 67 hours. Rs 16.8 L of orders are at risk. A work order is ready to approve." Then 4 KPI cards (each with an icon glyph, a one-line meaning underneath and a tiny inline SVG sparkline), a primary button "Start the guided tour" that goes to Twin, and a 3-card "How Nirantar works" row (Sense, Decide, Act) with one sentence each.
+
+D) REAL-TIME CLOCK
+The sidebar clock must tick every second in IST. Use st.components.v1.html with a small inline JS clock (new Date() with timeZone Asia/Kolkata, tabular numerals, a pulsing green Live dot). Below it, in muted text: "Plant data as of <last tick time IST> - refreshed <n> min ago" and a "Refresh data" button that reruns. Show the simulation clock separately and label it "Simulated plant time". Never label a UTC value as IST.
+
+E) TYPOGRAPHY AND VISUAL DESIGN (next-level-website-designer rules: technical/tool direction)
+- Fonts: add @import for Google Fonts Inter (400/500/600/700) and JetBrains Mono (500) at the top of the CSS; font stack "Inter","Segoe UI",system-ui,sans-serif and mono for ids/numbers. Page title 28px/700, section titles 18px/600, body 15px/1.55, captions 13px muted. Tabular numerals (font-variant-numeric: tabular-nums) for every number. If the font import is blocked in the runtime, keep the fallback stack and tell me.
+- Layout: 8px spacing grid, max content width 1200px, cards with 14px radius, 1px #22314F border, soft shadow, hover lift (transform only, 150ms). Hero banner on Home with a subtle gradient (#0B1220 -> #16233F with an accent glow), not a flat box.
+- Status is never colour alone: every chip has a word and a glyph (OK, Watch, Alert, Critical).
+- Charts: dark theme, accent #29B5E8 line, warn/bad bands, light gridlines, axis titles with units, direct labels, no default Streamlit/Altair look. A one-line chart caption under each chart saying what to conclude ("Vibration crossed the ISO zone C limit 3 days ago").
+- Empty and loading states: friendly sentence plus what to do; spinners with text ("Scoring 48 assets...").
+- Plain-English labels everywhere: replace column ids with human names and units (Risk of failure, Hours to failure, Money at stake, Line, Machine). Rupees formatted Rs 16.8 L, hours as 66.8 h, percentages with 1 decimal.
+
+F) PAGE-SPECIFIC GUIDANCE
+- Twin: caption explaining the map (lanes = production lines, circles = machines, ring = open alert, size = criticality). Click-to-select asset card to the right with a plain-English diagnosis sentence ("Bearing wear: vibration is 3.1x normal and rising").
+- Triage: explain the rank formula in one line (risk x money at stake x due-date pressure); show why-ranked chips per row (Vibration, Temperature, Supplier lot, Due orders).
+- Work Orders: a visual timeline for the selected draft: Detected -> Drafted -> Approved -> Parts moved -> Repaired, current step highlighted, plus the parts transfer card and the guardrail note "A human must approve. Nothing is released automatically."
+- OEE: one paragraph "OEE = Availability x Performance x Quality" with the three numbers for the selected line, and the biggest loss in words.
+- Copilot: 4 suggested questions as buttons, answers rendered in a card with the sources listed, and a visible guardrail note.
+- What-if and Trust: each starts with the question it answers in plain words ("What if we fix it Thursday instead of now?", "How often is the model right, and how early does it warn?").
+- Presenter: numbered demo script (Reset, Inject, Watch, Draft, Approve) with a button per step.
+
+G) QUALITY BAR
+No raw dataframes, no unreadable widget, no overlapping text, no exceptions, works at 1440 and about 900 px width. After deploy, list per page what you changed. Keep the answer short.

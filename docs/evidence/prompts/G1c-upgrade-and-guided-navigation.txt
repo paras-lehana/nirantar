@@ -1,0 +1,23 @@
+GUIDED JOURNEY v2 - ROUND G1c (UPGRADE + REAL GUIDED NAVIGATION). Do this after G2 is deployed, in the live app NIRANTAR.APP.NIRANTAR_COMMAND_CENTER (workspace nirantar/05_app, stage @NIRANTAR.APP.SRC). The staging app NIRANTAR_COMMAND_CENTER_V146 proved that every current page runs unchanged on Streamlit 1.46.1 on the warehouse runtime.
+
+1) UPGRADE: add environment.yml next to Home.py (workspace + stage): channels [snowflake]; dependencies streamlit=1.46.1 plus the packages the live app already uses (plotly, pydeck). Re-create the live app exactly as before (same name, MAIN_FILE 'Home.py', same warehouse, same ACCOUNTADMIN access) but with RUNTIME_NAME = 'SYSTEM$WAREHOUSE_RUNTIME' so the pin takes effect. Verify with DESCRIBE STREAMLIT that user_packages shows streamlit==1.46.1. Keep the no-f-string-backslash rule and pyflakes.
+
+2) REAL NEXT / BACK BUTTONS: change next_card(step) to render, under its sentence, st.page_link to the next page with label "Next → {n} · {name}: {question}" and icon ":material/arrow_forward:", styled as a big accent pill (CSS on [data-testid="stPageLink"] a / [data-testid="stPageLink-NavLink"]: background #29B5E8, text #0B1220, bold, radius 12px, padding 12px 18px, hover lift). Add a smaller "← Back to {n-1} · {name}" page_link next to it. Put the same compact "Next →" page_link at the top right of the tour bar.
+
+3) CLICKABLE STEPS: under the HTML tour bar render the 8 steps as st.page_link pills in one row (st.columns(8)), label "{n} {verb}", current step filled accent, done steps green tick, later steps outlined, so the viewer can jump to any step.
+
+4) WELCOME DIALOG (first visit to Home, once per session): @st.dialog("Welcome to Nirantar", width="large"). Three short blocks: "The problem: an unplanned stop of one machine can hold up Rs {16.8 L} of customer orders." / "Today's case: {VMC-204 sentence from live data}." / "How to follow: 8 steps, about 3 minutes. Every page answers one question in its first sentence and has a Next button." Buttons: primary "Start the 3-minute tour" -> st.switch_page("pages/1_Plant_Map.py"); secondary "I'll explore on my own" closes. Sidebar button "Replay the intro" reopens it.
+
+5) Guided tour switch becomes st.toggle("Guided tour", value=True, help=...). Keep the progress meter.
+
+6) HOME: "Choose your path" cards and "Your to-do" rows become st.page_link buttons (material icons :material/currency_rupee:, :material/build:, :material/insights:, :material/task_alt:).
+
+7) ASK COPILOT: st.chat_message bubbles (history in session_state) and st.chat_input("Ask about OEE, failures, spares or work orders…") at the bottom; keep the 4 suggested-question buttons with their one-line reasons; each answer bubble shows Sources used and Tools used; guardrail note stays visible.
+
+8) FEEDBACK: after Acknowledge / Snooze / Escalate / Draft WO / Approve / Reject also call st.toast with the same message (keep the persistent after_action card with the Next page_link).
+
+9) CHECK CSS on 1.46.1: menu numbering, NEXT glow, dark selects/tabs/buttons, primary buttons green via [data-testid="stBaseButton-primary"], table and chart styling. Fix selectors that changed (1.46 uses stBaseButton-primary / stBaseButton-secondary).
+
+10) After the live app is verified, drop the probe app NIRANTAR.APP.STREAMLIT_VERSION_TEST + stage SRC_VTEST and the staging app NIRANTAR_COMMAND_CENTER_V146 + stage SRC_V146.
+
+Reply with 5 short lines.

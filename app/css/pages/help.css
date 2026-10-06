@@ -1,0 +1,50 @@
+/* Help & glossary. Loaded by js/pages/help.js (index.html has no <link> for it yet). */
+.hp-steps { list-style: none; margin: 10px 0 0; padding: 0; display: grid; gap: 8px; grid-template-columns: 1fr; }
+@media (min-width: 720px) { .hp-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.hp-steps > li { display: grid; gap: 6px; align-content: start; padding: 10px; border: 1px solid var(--line); border-radius: var(--r-md); background: var(--panel-2); min-width: 0; }
+.hp-step { display: flex; gap: 10px; align-items: flex-start; color: var(--ink); text-decoration: none; }
+.hp-step > span:last-child { display: grid; gap: 1px; min-width: 0; }
+.hp-step:hover b { text-decoration: underline; }
+.hp-who { display: grid; gap: 4px; font-size: var(--fs-sm); color: var(--ink-2); padding-left: 32px; }
+.hp-who .chip { margin-right: 4px; }
+
+.hp-colours { list-style: none; margin: 12px 0 8px; padding: 0; display: grid; gap: 8px; }
+.hp-colours li { display: grid; grid-template-columns: 126px minmax(0, 1fr); gap: 10px; align-items: start; font-size: var(--fs-sm); }
+.hp-colours li > .state, .hp-colours li > .chip { justify-self: start; }
+
+.hp-keys { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 8px 14px; margin: 0; font-size: var(--fs-sm); align-items: center; }
+.hp-keys dt { white-space: nowrap; }
+.hp-keys dt:first-child { white-space: normal; }
+.hp-keys dd { margin: 0; color: var(--ink-2); }
+.hp-keys .kbd { display: inline-block; min-width: 22px; text-align: center; line-height: 1.6; }
+.hp-keys-h { font-size: var(--fs-sm); font-weight: 600; color: var(--ink-2); margin: 14px 0 8px; }
+.hp-go { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px 12px; font-size: var(--fs-sm); color: var(--ink-2); }
+.hp-go li { display: flex; gap: 8px; align-items: center; min-width: 0; }
+.hp-go .kbd { min-width: 22px; text-align: center; line-height: 1.6; flex: none; }
+@media (max-width: 400px) { .hp-keys { grid-template-columns: 1fr; gap: 2px; } .hp-keys dd { margin-bottom: 6px; } }
+
+.hp-search { display: grid; gap: 10px; margin-bottom: 12px; }
+.hp-search .seg { justify-self: start; max-width: 100%; }
+.hp-terms { margin: 0; display: grid; gap: 8px; grid-template-columns: 1fr; }
+@media (min-width: 1100px) { .hp-terms { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.hp-term { display: grid; gap: 4px; align-content: start; padding: 12px 14px; border: 1px solid var(--line); border-radius: var(--r-md); background: var(--panel-2); min-width: 0; }
+.hp-term[hidden] { display: none; }
+.hp-term dt { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; }
+.hp-term dt b { font-size: var(--fs-md); }
+.hp-term dd { margin: 0; font-size: var(--fs-sm); color: var(--ink-2); line-height: 1.55; }
+.hp-term dd b { color: var(--ink); }
+.hp-live { display: inline-flex; gap: 4px; align-items: baseline; color: var(--ai); font-weight: 500; }
+.hp-live svg { width: 13px; height: 13px; align-self: center; flex: none; }
+.hp-see { display: inline-flex; gap: 3px; align-items: center; white-space: nowrap; font-weight: 500; }
+.hp-see svg { width: 14px; height: 14px; }
+.hp-none { padding: 14px; color: var(--ink-2); }
+
+.hp-faq { display: grid; gap: 8px; }
+.hp-faq details { border: 1px solid var(--line); border-radius: var(--r-md); background: var(--panel-2); padding: 0 14px; }
+.hp-faq summary { cursor: pointer; font-weight: 600; padding: 12px 0; min-height: 44px; list-style-position: inside; }
+.hp-faq details[open] summary { border-bottom: 1px solid var(--line); margin-bottom: 10px; }
+.hp-faq details p { font-size: var(--fs-sm); color: var(--ink-2); margin-bottom: 10px; max-width: 75ch; }
+.hp-faq details p.row { color: inherit; }
+.hp-replay { margin-top: 14px; }
+@media (max-width: 719px) { .helppage .input { font-size: 1rem; } }
+@media (min-width: 720px) { .hp-search .field { max-width: 560px; } }

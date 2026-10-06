@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "ok": false,
+  "command": "finalize",
+  "status": "fail",
+  "type": "sequence",
+  "quality": "showcase",
+  "specification": {
+    "path": "/root/ideas/coco-cli/docs/diagrams/archify/sequence-closed-loop-20261006-2040/candidate.json",
+    "sha256": "8835a599a4597385e55c4ba2e01744946069053c34149d3879302dec1192acc5",
+    "bytes": 6004
+  },
+  "artifact": {
+    "path": "/root/ideas/coco-cli/docs/diagrams/archify/sequence-closed-loop-20261006-2040/closed-loop.html",
+    "sha256": "efbbbd6269b5b369ba45ce28bf8911fc6141e3a03aaa0daf49f8ae6b864896b0",
+    "bytes": 763583
+  },
+  "gates": {
+    "validate": "pass",
+    "deliver": "pass",
+    "check": "pass",
+    "browser-check": "fail"
+  },
+  "failedStage": "browser-check",
+  "diagnostics": [
+    {
+      "code": "viewer/evidence-path-conflict",
+      "severity": "error",
+      "message": "browser-check will not replace the existing unowned evidence path \"/root/ideas/coco-cli/docs/diagrams/archify/sequence-closed-loop-20261006-2040/closed-loop.browser-check.json\".",
+      "subject": {
+        "artifact": "/root/ideas/coco-cli/docs/diagrams/archify/sequence-closed-loop-20261006-2040/closed-loop.html",
+        "evidencePath": "/root/ideas/coco-cli/docs/diagrams/archify/sequence-closed-loop-20261006-2040/closed-loop.browser-check.json"
+      },
+      "evidence": {
+        "reason": {
+          "code": "ownership-artifact-mismatch"
+        }
+      },
+      "supportedFixes": [
+        "move the conflicting file aside, or choose a separate --out-dir, then rerun browser-check"
+      ]
+    }
+  ],
+  "diagnosticSummary": {
+    "total": 1,
+    "shown": 1,
+    "truncated": false
+  },
+  "evidence": {
+    "receipt": "/root/ideas/coco-cli/docs/diagrams/archify/sequence-closed-loop-20261006-2040/closed-loop.finalize.json",
+    "summaryReceipt": "/root/ideas/coco-cli/docs/diagrams/archify/sequence-closed-loop-20261006-2040/closed-loop.finalize-summary.json",
+    "browserCheckReceipt": "/root/ideas/coco-cli/docs/diagrams/archify/sequence-closed-loop-20261006-2040/closed-loop.browser-check.json"
+  },
+  "update": {
+    "status": "current",
+    "installedVersion": "3.0.1",
+    "availableVersion": "3.0.1",
+    "releaseNotes": null,
+    "checkedAt": "2026-10-06T14:57:25.561Z",
+    "source": "cache",
+    "noticeRequired": false,
+    "noticeText": null
+  },
+  "visualReview": "not-requested",
+  "durationMs": 1186
+}

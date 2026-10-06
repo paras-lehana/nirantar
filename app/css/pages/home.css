@@ -1,0 +1,39 @@
+/* Home */
+.home .sec-title { font-size: var(--fs-lg); margin-bottom: 8px; }
+.hero { display: grid; gap: 18px; padding: 20px; border-radius: var(--r-lg); background: var(--panel); border: 1px solid var(--line); }
+.hero-title { font-size: var(--fs-3xl); line-height: 1.08; letter-spacing: -.02em; max-width: 21ch; }
+.hero-sub { font-size: var(--fs-lg); color: var(--ink-2); max-width: 60ch; margin: 10px 0 14px; }
+.hero .deva { font-family: var(--deva); }
+.hero-copy { display: grid; gap: 4px; align-content: start; }
+.hero-copy .row { margin-top: 4px; }
+.hero-pf { margin: 0; align-self: center; }
+.hero-pf svg path[stroke="var(--normal)"] { stroke-dasharray: 1400; stroke-dashoffset: 1400; animation: pf-draw 1.6s var(--ease) .2s forwards; }
+@keyframes pf-draw { to { stroke-dashoffset: 0; } }
+@media (prefers-reduced-motion: reduce) { .hero-pf svg path[stroke="var(--normal)"] { stroke-dashoffset: 0; animation: none; } }
+@media (min-width: 1024px) { .hero { grid-template-columns: 1.05fr 1fr; padding: 28px; } }
+.nowrap { white-space: nowrap; }
+@media (max-width: 420px) { .nowrap { white-space: normal; } }
+.todo { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.todo li { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; font-size: var(--fs-sm); }
+.attn { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.attn li { display: flex; gap: 8px; align-items: center; justify-content: space-between; padding: 8px 10px; border: 1px solid var(--line); border-radius: var(--r-sm); background: var(--panel-2); }
+.attn a { display: grid; text-decoration: none; color: var(--ink); min-width: 0; }
+.attn .a-id { font-weight: 600; }
+.attn .a-why { font-size: var(--fs-xs); color: var(--ink-3); overflow: hidden; text-overflow: ellipsis; }
+.steps8 { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (min-width: 720px) { .steps8 { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+@media (min-width: 1280px) { .steps8 { grid-template-columns: repeat(8, minmax(0, 1fr)); } }
+.step-card { display: grid; gap: 4px; align-content: start; height: 100%; padding: 10px; border-radius: var(--r-md); border: 1px solid var(--line); background: var(--panel); color: var(--ink); text-decoration: none; }
+.step-card:hover { border-color: var(--ink-3); }
+.step-card.done { border-color: var(--ok-fill); }
+.step-card .small { color: var(--ink-2); }
+.path h3 { margin: 4px 0 10px; }
+.ticks { margin: 0; padding-left: 18px; display: grid; gap: 4px; }
+.scen-cards .scen { display: grid; gap: 6px; text-align: left; cursor: pointer; align-content: start; }
+.scen-cards .scen.current { border-color: var(--ok-fill); }
+.scen-cards .scen:hover { border-color: var(--ink-3); }
+
+/* v1.1: four role paths */
+.paths .path { display: flex; flex-direction: column; gap: 8px; }
+.paths .path .row { margin-top: auto; flex-wrap: wrap; }
+@media (max-width: 640px) { .paths { grid-template-columns: 1fr; } }

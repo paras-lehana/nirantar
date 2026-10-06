@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "edbd168b-96bc-4fab-a68a-8b678d992237",
+  "status": "current",
+  "command": "deliver",
+  "type": "architecture",
+  "input": "/root/ideas/coco-cli/docs/diagrams/archify/architecture-nirantar-20261006-2030/candidate.json",
+  "output": "/root/ideas/coco-cli/docs/diagrams/archify/architecture-nirantar-20261006-2030/nirantar-architecture.html",
+  "specification": {
+    "sha256": "04fbd1a311c1cc14417f206d71200fde93d00883e16f9bfdfa9bf5090b7d4582",
+    "bytes": 6503
+  },
+  "artifact": {
+    "sha256": "3a6971f632c14ae4e6c2841f31182a443e25b95e0b8573fa1f3e888469cfdf66",
+    "bytes": 786622
+  }
+}

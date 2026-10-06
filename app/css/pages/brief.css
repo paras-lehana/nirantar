@@ -1,0 +1,69 @@
+/* Tool · Shift brief. Scoped to .briefpage (every page stylesheet is loaded globally). */
+.briefpage .bf-actions { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center; }
+.briefpage .bf-grp { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.briefpage .bf-grp .btn.sm { min-height: 40px; }
+
+.briefpage .brief-doc { display: grid; gap: 14px; padding: 16px; box-shadow: var(--shadow); }
+.briefpage .bd-head { display: grid; gap: 8px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+.briefpage .bd-top { align-items: flex-start; gap: 8px 14px; }
+.briefpage .bd-top .marker { margin-bottom: 4px; }
+.briefpage .bd-title { font-size: var(--fs-xl); }
+.briefpage .bd-sum { font-size: var(--fs-md); color: var(--ink); }
+.briefpage .bd-grid { display: grid; gap: 14px; grid-template-columns: 1fr; }
+@media (min-width: 1100px) { .briefpage .bd-grid { display: block; columns: 2; column-gap: 28px; } .briefpage .bd-grid > .bd-sec { break-inside: avoid; margin-bottom: 18px; }
+  .briefpage .bd-grid > .bd-oee { column-span: all; }
+  .briefpage .bd-oee .bd-list { display: block; columns: 2; column-gap: 40px; }
+  .briefpage .bd-oee .bd-list li { break-inside: avoid; margin-bottom: 7px; } }
+.briefpage .bd-sec { min-width: 0; display: grid; gap: 6px; align-content: start; }
+.briefpage .bd-sec h3 { display: flex; align-items: center; gap: 7px; font-size: var(--fs-lg); padding-bottom: 6px; border-bottom: 1px solid var(--line); }
+.briefpage .bd-sec h3 svg { width: 18px; height: 18px; color: var(--ink-2); flex: none; }
+.briefpage .bd-n { display: inline-grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; border: 1.5px solid var(--line-2); font: 600 12px var(--mono); color: var(--ink-2); flex: none; }
+.briefpage .bd-count { margin-left: auto; font: 600 var(--fs-xs) var(--mono); padding: 1px 8px; border-radius: 999px; background: var(--panel-2); border: 1px solid var(--line); color: var(--ink-2); }
+.briefpage .bd-list { margin: 0; padding-left: 18px; display: grid; gap: 7px; font-size: var(--fs-sm); line-height: 1.5; }
+.briefpage .bd-list li::marker { color: var(--ink-3); }
+.briefpage .bd-list .state { vertical-align: 1px; margin-right: 2px; }
+.briefpage .bd-list.empty-l { color: var(--ink-2); }
+.briefpage .bd-list.empty-l li::marker { content: "✓ "; color: var(--ok); }
+.briefpage .bd-foot { padding-top: 8px; border-top: 1px solid var(--line); }
+
+/* OEE mini bars: fill = OEE, tick = 85 % benchmark */
+.briefpage .oee-line { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; margin-bottom: 2px; }
+.briefpage .oee-name { min-width: 0; }
+.briefpage .oee-bar { position: relative; flex: 1 1 120px; max-width: 220px; height: 8px; border-radius: 4px; background: var(--line); }
+.briefpage .oee-bar > span { position: absolute; inset: 0 auto 0 0; border-radius: 4px; background: var(--normal); }
+.briefpage .oee-bar > span.below { background: var(--watch-fill); }
+.briefpage .oee-bar > i { position: absolute; top: -3px; bottom: -3px; width: 2px; background: var(--ink); }
+
+.briefpage .bf-note p { max-width: 80ch; }
+.briefpage .bf-note p + p { margin-top: 8px; }
+
+/* ---------- print: only the brief ---------- */
+@media print {
+  /* :not(#_) lifts specificity above the dark-theme token rules, so a dark-mode user still prints dark ink on white */
+  :root:not(#_):has(.briefpage) {
+    color-scheme: light;
+    --paper: #ffffff; --panel: #ffffff; --panel-2: #f7f8fa; --line: #c3cad2; --line-2: #a9b2bc;
+    --ink: #16202b; --ink-2: #3f4b58; --ink-3: #56626f; --normal: #7a8592;
+    --watch: #9a5200; --watch-fill: #f0a63a; --watch-bg: #fbebd3; --act: #a8221b; --act-fill: #c4342a; --act-bg: #f8dedc;
+    --ai: #1f52b8; --ai-fill: #2b5ecb; --ai-bg: #dce7fa; --ok: #1b6a40; --ok-fill: #1f7a49; --ok-bg: #d8efe2;
+  }
+  body:has(.briefpage) { background: #ffffff; }
+  body:has(.briefpage) .topbar, body:has(.briefpage) .rail, body:has(.briefpage) .tabbar, body:has(.briefpage) .toasts,
+  body:has(.briefpage) .skip, body:has(.briefpage) dialog { display: none !important; }
+  body:has(.briefpage) .shell { display: block; min-height: 0; }
+  body:has(.briefpage) .main { padding: 0; max-width: none; }
+  .briefpage > :not(.brief-doc) { display: none !important; }
+  .briefpage { display: block; }
+  .briefpage .brief-doc { border: 0; box-shadow: none; padding: 0; }
+  .briefpage .bd-top .marker { display: none; }
+  .briefpage .bd-grid { display: grid; columns: auto; grid-template-columns: 1fr; }
+  .briefpage .bd-oee .bd-list { display: grid; columns: auto; }
+  .briefpage .bd-sec { break-inside: avoid; page-break-inside: avoid; }
+  .briefpage a { color: inherit; text-decoration: none; }
+  .briefpage .state, .briefpage .chip, .briefpage .oee-bar { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  @page { margin: 14mm 12mm; }
+}
+@media print { .briefpage .bd-open { display: none; } }
+
+/* "Slack message (MCP preview)" opens the shared MCP dialog (js/ui/mcp.js). Its styles are global (.mcp-dlg in
+   orders.css) because the dialog sits on <body>; the print rule above already hides every dialog. */

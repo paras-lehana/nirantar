@@ -1,0 +1,122 @@
+/* 6 · Ask Copilot. Blue = made by the AI (answers, tools); red only for a guardrail refusal; the user's own words are ink. */
+.copilot .cp-honest { display: flex; gap: 8px; align-items: flex-start; font-size: var(--fs-sm); color: var(--ink-2); }
+.copilot .cp-honest svg { width: 16px; height: 16px; flex: none; margin-top: 2px; color: var(--ai); }
+
+/* capability cards */
+.cp-caps .card-head { flex-wrap: nowrap; align-items: flex-start; margin-bottom: 6px; }
+.cp-caps .card-head svg { width: 20px; height: 20px; flex: none; color: var(--ink-2); margin-top: 1px; }
+.cp-caps .card.ai .card-head svg { color: var(--ai); }
+.cp-caps h2 { font-size: var(--fs-md); }
+.cp-caps p { color: var(--ink-2); }
+
+/* layout: phone = one column (suggestions, input, conversation); wide = ask column left (sticky), conversation right */
+.cp-layout { display: grid; gap: var(--gap); align-items: start; }
+@media (min-width: 1100px) {
+  .cp-layout { grid-template-columns: minmax(320px, 390px) minmax(0, 1fr); }
+  .cp-askcard { position: sticky; top: calc(var(--top-h) + 16px); max-height: calc(100dvh - var(--top-h) - 32px); overflow-y: auto; }
+}
+
+/* suggested questions */
+.cp-sugs { display: grid; gap: 8px; }
+@media (min-width: 720px) and (max-width: 1099px) { .cp-sugs { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.cp-sug { display: grid; gap: 3px; align-content: start; text-align: left; min-height: 44px; padding: 9px 12px; border-radius: var(--r-sm); border: 1px solid var(--line-2); background: var(--panel-2); color: var(--ink); transition: border-color var(--t-fast), background var(--t-fast); }
+.cp-sug:hover { border-color: var(--ai-fill); background: var(--panel); }
+.cp-sug-q { display: flex; gap: 8px; align-items: flex-start; font-weight: 600; font-size: var(--fs-md); line-height: 1.35; }
+.cp-sug-why { display: flex; gap: 5px; align-items: center; font-size: var(--fs-xs); color: var(--ink-3); }
+.cp-sug-why svg { width: 13px; height: 13px; flex: none; }
+.cp-sug.guard { border-style: dashed; border-color: var(--act-fill); }
+.cp-sug.guard:hover { background: var(--act-bg); }
+.cp-sug.guard .cp-sug-why { color: var(--act); font-weight: 600; }
+
+/* the ask box */
+.cp-form { display: grid; gap: 6px; margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--line); }
+.cp-label { font-size: var(--fs-sm); font-weight: 600; color: var(--ink-2); }
+.cp-inrow { display: flex; gap: 8px; }
+.cp-inrow .input { flex: 1; min-width: 0; min-height: 44px; font-size: 16px; }   /* 16 px: no zoom-on-focus on iPhone */
+.cp-inrow .btn { min-height: 44px; flex: none; }
+.cp-hint { font-size: var(--fs-sm); color: var(--watch); min-height: 0; }
+.cp-hint:empty { display: none; }
+.cp-more { margin-top: 12px; }
+.cp-more .cp-choices { margin-top: 8px; }
+
+/* follow-up / choice buttons inside answers */
+.cp-choices { display: flex; flex-wrap: wrap; gap: 6px; }
+.cp-choices .btn { text-align: left; white-space: normal; min-height: 40px; }
+.copilot [hidden] { display: none !important; }
+
+/* conversation */
+.cp-statline { font-size: var(--fs-sm); color: var(--ink-3); margin: -4px 0 12px; }
+.cp-log { display: grid; gap: 22px; }
+.cp-ex { display: grid; gap: 8px; min-width: 0; }
+.cp-ex + .cp-ex { padding-top: 18px; border-top: 1px solid var(--line); }
+.cp-example-label { display: flex; gap: 6px; align-items: flex-start; font-size: var(--fs-sm); font-weight: 600; color: var(--ai); }
+.cp-example-label svg { width: 16px; height: 16px; flex: none; margin-top: 2px; }
+.cp-user { display: grid; justify-items: end; gap: 3px; }
+.cp-meta { font-size: var(--fs-xs); color: var(--ink-3); }
+.cp-bubble { min-width: 0; overflow-wrap: anywhere; }
+.cp-bubble.user { max-width: min(92%, 560px); padding: 9px 14px; border-radius: 14px 14px 4px 14px; background: var(--ink); color: var(--panel); font-weight: 500; text-align: left; border: 0; }
+button.cp-replay { display: grid; gap: 4px; cursor: pointer; font: inherit; font-weight: 500; }
+button.cp-replay:hover { background: var(--ink-2); }
+.cp-replay-hint { display: inline-flex; align-items: center; gap: 4px; font-size: var(--fs-xs); font-weight: 600; }
+.cp-replay-hint svg { width: 12px; height: 12px; }
+.cp-bubble.bot { display: grid; gap: 12px; padding: 12px 14px; border-radius: 4px 14px 14px 14px; background: var(--panel-2); border: 1px solid var(--line); border-left: 4px solid var(--ai-fill); }
+.cp-ex.example .cp-bubble.bot { border-style: dashed; border-left-style: solid; }
+.cp-bot.blocked .cp-bubble.bot { border-left-color: var(--act-fill); }
+.cp-who { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.cp-text { display: grid; gap: 8px; line-height: 1.55; }
+.cp-text ul { margin: 0; padding-left: 20px; display: grid; gap: 4px; }
+.cp-text b { font-weight: 600; }
+.cp-rule { font-size: var(--fs-sm); padding: 8px 10px; border-radius: var(--r-sm); background: var(--act-bg); color: var(--ink); }
+.cp-html { min-width: 0; }
+.cp-table .table { font-size: var(--fs-sm); }
+.cp-table td:first-child { white-space: normal; }
+.cp-table tr.cp-hl td { font-weight: 600; background: var(--ai-bg); }
+
+/* evidence bars (HTML, so labels stay readable at any width) */
+.cp-bars { display: grid; gap: 6px; }
+.cp-bars ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.cp-bars li { display: grid; grid-template-columns: minmax(110px, 38%) 1fr 48px; gap: 8px; align-items: center; font-size: var(--fs-sm); }
+.cp-bar-t { height: 10px; border-radius: 5px; background: var(--line); overflow: hidden; }
+.cp-bar-t > span { display: block; height: 100%; border-radius: 5px; background: var(--normal); }
+.cp-bar-t > span.act { background: var(--act-fill); }
+.cp-bar-t > span.watch { background: var(--watch-fill); }
+.cp-bar-v { text-align: right; }
+
+/* provenance: sources + tools */
+.cp-prov { display: grid; gap: 12px; padding-top: 10px; border-top: 1px dashed var(--line-2); }
+@media (min-width: 720px) { .cp-prov { grid-template-columns: 1.3fr 1fr; } }
+.cp-prov h3 { font-size: var(--fs-sm); font-weight: 600; color: var(--ink-2); margin-bottom: 6px; }
+.cp-srcs { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; font-size: var(--fs-sm); }
+.cp-srcs li { display: flex; gap: 6px; align-items: flex-start; }
+.cp-srcs svg { width: 14px; height: 14px; flex: none; margin-top: 3px; color: var(--ink-3); }
+.cp-tools { display: flex; flex-wrap: wrap; gap: 6px; }
+.cp-src-id { font-size: var(--fs-xs); color: var(--ink-3); white-space: nowrap; }
+.cp-tool { display: inline-flex; align-items: center; padding: 2px 8px; border-radius: var(--r-sm); background: var(--ai-bg); color: var(--ai); font-size: var(--fs-xs); font-weight: 500; white-space: nowrap; }
+.cp-stats { display: flex; gap: 6px; align-items: center; font-size: var(--fs-xs); color: var(--ink-3); }
+.cp-stats svg { width: 14px; height: 14px; flex: none; }
+
+/* waiting state */
+.cp-working { display: flex; flex-wrap: wrap; gap: 4px 8px; align-items: center; font-size: var(--fs-sm); color: var(--ink-2); }
+.cp-dots { display: inline-flex; gap: 4px; }
+.cp-dots span { width: 7px; height: 7px; border-radius: 50%; background: var(--ai-fill); animation: cp-dot 1s ease-in-out infinite; }
+.cp-dots span:nth-child(2) { animation-delay: .15s; }
+.cp-dots span:nth-child(3) { animation-delay: .3s; }
+@keyframes cp-dot { 0%, 100% { opacity: .25; transform: translateY(0); } 50% { opacity: 1; transform: translateY(-3px); } }
+
+/* how it works */
+.cp-how h3 { font-size: var(--fs-md); }
+.cp-toollist { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 8px; }
+.cp-toollist li { display: grid; gap: 2px; justify-items: start; }
+.cp-toollist .small { color: var(--ink-2); }
+.cp-doclist { margin: 8px 0 0; padding-left: 18px; display: grid; gap: 3px; font-size: var(--fs-sm); }
+.cp-how-foot { margin-top: 12px; }
+.cp-how .stack { align-content: start; }
+.copilot details.more > summary { min-height: 40px; display: flex; align-items: center; gap: 6px; list-style: none; }
+.copilot details.more > summary::-webkit-details-marker { display: none; }
+.copilot details.more > summary::before { content: "▸"; font-size: .8em; color: var(--ink-3); transition: transform var(--t-fast); }
+.copilot details.more[open] > summary::before { transform: rotate(90deg); }
+.copilot .cp-convo .card-head .btn { min-height: 40px; }
+.cp-id { white-space: nowrap; }
+.cp-table th { white-space: normal; vertical-align: bottom; }
+.cp-table td:first-child { min-width: 96px; }
+.cp-table th, .cp-table td { overflow-wrap: normal; word-break: normal; }

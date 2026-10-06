@@ -1,0 +1,104 @@
+/* Nirantar demo tokens. Idea: ISA-101 control room: grey means normal, colour means act.
+   Re-skin = edit this file only. Every text/background pair is checked with contrast.py (see docs/DESIGN-app.md). */
+:root {
+  color-scheme: light;
+  /* surfaces (cool HMI greys) */
+  --paper:   #dde1e6;
+  --panel:   #eef0f3;
+  --panel-2: #f7f8fa;
+  --line:    #c3cad2;
+  --line-2:  #a9b2bc;
+  /* ink */
+  --ink:     #16202b;
+  --ink-2:   #3f4b58;
+  --ink-3:   #56626f;
+  /* equipment in normal state is grey (ISA-101) */
+  --normal:   #7a8592;
+  --normal-2: #a7b0ba;
+  /* abnormal states: text-safe tone, fill tone, tinted background */
+  --watch:      #9a5200;
+  --watch-fill: #f0a63a;
+  --watch-bg:   #fbebd3;
+  --act:        #a8221b;
+  --act-fill:   #c4342a;
+  --act-bg:     #f8dedc;
+  /* made by the AI (predictions, drafts, recorded answers) */
+  --ai:      #1f52b8;
+  --ai-fill: #2b5ecb;
+  --ai-bg:   #dce7fa;
+  /* a human decision that is done (approved, completed) */
+  --ok:      #1b6a40;
+  --ok-fill: #1f7a49;
+  --ok-bg:   #d8efe2;
+  --focus:   #1f52b8;
+  --on-fill: #ffffff;
+  --on-watch: #16202b;
+  --shadow:  0 1px 2px rgba(22,32,43,.08), 0 4px 14px rgba(22,32,43,.06);
+  --scrim:   rgba(14,20,27,.55);
+
+  /* type */
+  --sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --deva: "IBM Plex Sans Devanagari", "Noto Sans Devanagari", var(--sans);
+  --fs-xs: .75rem;
+  --fs-sm: .8125rem;
+  --fs-md: .9375rem;
+  --fs-lg: 1.0625rem;
+  --fs-xl: clamp(1.15rem, 1rem + .6vw, 1.4rem);
+  --fs-2xl: clamp(1.4rem, 1.15rem + 1.1vw, 1.95rem);
+  --fs-3xl: clamp(1.75rem, 1.35rem + 1.8vw, 2.6rem);
+
+  /* shape and motion */
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 14px;
+  --ease: cubic-bezier(.2,.7,.2,1);
+  --t-fast: 150ms;
+  --t-med: 220ms;
+
+  /* layout */
+  --rail-w: 248px;
+  --top-h: 56px;
+  --tab-h: 62px;
+  --gap: 16px;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --paper:   #12161b;
+  --panel:   #1a2027;
+  --panel-2: #222a33;
+  --line:    #2e3842;
+  --line-2:  #44505c;
+  --ink:     #e7ebef;
+  --ink-2:   #b9c2cc;
+  --ink-3:   #9aa5b1;
+  --normal:   #7c8794;
+  --normal-2: #56616d;
+  --watch:      #f2b24c;
+  --watch-fill: #e39a2a;
+  --watch-bg:   #3a2c14;
+  --act:        #ff8f85;
+  --act-fill:   #e5534b;
+  --act-bg:     #3d1f1d;
+  --ai:      #93b8ff;
+  --ai-fill: #4c82f0;
+  --ai-bg:   #1d2a44;
+  --ok:      #7fd6a6;
+  --ok-fill: #36a868;
+  --ok-bg:   #16302a;
+  --focus:   #93b8ff;
+  --on-fill: #0d1116;
+  --shadow:  0 1px 2px rgba(0,0,0,.35), 0 6px 18px rgba(0,0,0,.25);
+  --scrim:   rgba(0,0,0,.6);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]):not([data-theme="dark"]) {
+    color-scheme: dark;
+    --paper:#12161b; --panel:#1a2027; --panel-2:#222a33; --line:#2e3842; --line-2:#44505c;
+    --ink:#e7ebef; --ink-2:#b9c2cc; --ink-3:#9aa5b1; --normal:#7c8794; --normal-2:#56616d;
+    --watch:#f2b24c; --watch-fill:#e39a2a; --watch-bg:#3a2c14; --act:#ff8f85; --act-fill:#e5534b; --act-bg:#3d1f1d;
+    --ai:#93b8ff; --ai-fill:#4c82f0; --ai-bg:#1d2a44; --ok:#7fd6a6; --ok-fill:#36a868; --ok-bg:#16302a;
+    --focus:#93b8ff; --on-fill:#0d1116; --shadow:0 1px 2px rgba(0,0,0,.35),0 6px 18px rgba(0,0,0,.25); --scrim:rgba(0,0,0,.6);
+  }
+}

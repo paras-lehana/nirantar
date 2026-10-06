@@ -1,0 +1,266 @@
+{
+  "schema_version": 1,
+  "diagram_type": "sequence",
+  "meta": {
+    "title": "The closed loop for VMC-204: from a vibration spike to a verified repair",
+    "output": "docs/diagrams/archify/sequence-closed-loop-20261006-2040/closed-loop.html",
+    "locale": "en",
+    "viewBox": [
+      1060,
+      683
+    ],
+    "column_fit": "spread",
+    "quality_profile": "showcase"
+  },
+  "participants": [
+    {
+      "id": "machine",
+      "type": "external",
+      "label": "VMC-204",
+      "sublabel": "spindle sensors"
+    },
+    {
+      "id": "score",
+      "type": "backend",
+      "label": "Scoring",
+      "sublabel": "ML.SCORE_LATEST"
+    },
+    {
+      "id": "drafter",
+      "type": "backend",
+      "label": "Auto-draft",
+      "sublabel": "procedure + tools"
+    },
+    {
+      "id": "erp",
+      "type": "database",
+      "label": "ERP + CMMS",
+      "sublabel": "stock · orders"
+    },
+    {
+      "id": "planner",
+      "type": "external",
+      "icon": "person",
+      "label": "Planner",
+      "sublabel": "a named person"
+    },
+    {
+      "id": "copilot",
+      "type": "backend",
+      "label": "Copilot",
+      "sublabel": "NIRANTAR_COPILOT"
+    },
+    {
+      "id": "approve",
+      "type": "security",
+      "label": "Approval",
+      "sublabel": "APPROVE_WORK_ORDER"
+    },
+    {
+      "id": "tech",
+      "type": "external",
+      "icon": "person",
+      "label": "Technician",
+      "sublabel": "job card"
+    },
+    {
+      "id": "audit",
+      "type": "database",
+      "label": "Audit log",
+      "sublabel": "APP.ACTION_LOG"
+    }
+  ],
+  "messages": [
+    {
+      "id": "spike",
+      "from": "machine",
+      "to": "score",
+      "y": 172,
+      "label": "vibration 4×",
+      "variant": "emphasis"
+    },
+    {
+      "id": "raise",
+      "from": "score",
+      "to": "drafter",
+      "y": 200,
+      "label": "99 % · ≈ 66 h",
+      "variant": "emphasis"
+    },
+    {
+      "id": "check-spares",
+      "from": "drafter",
+      "to": "erp",
+      "y": 228,
+      "label": "spares? window?",
+      "variant": "default"
+    },
+    {
+      "id": "stock",
+      "from": "erp",
+      "to": "drafter",
+      "y": 256,
+      "label": "Chennai 2 · slot",
+      "variant": "return"
+    },
+    {
+      "id": "draft",
+      "from": "drafter",
+      "to": "planner",
+      "y": 284,
+      "label": "draft WO, pending approval",
+      "variant": "emphasis"
+    },
+    {
+      "id": "skip",
+      "from": "planner",
+      "to": "copilot",
+      "y": 312,
+      "label": "skip approval?",
+      "variant": "default"
+    },
+    {
+      "id": "refuse",
+      "from": "copilot",
+      "to": "planner",
+      "y": 340,
+      "label": "refused: POL-G8",
+      "variant": "security"
+    },
+    {
+      "id": "approve-name",
+      "from": "planner",
+      "to": "approve",
+      "y": 368,
+      "label": "approve with name",
+      "variant": "security"
+    },
+    {
+      "id": "transfer",
+      "from": "approve",
+      "to": "erp",
+      "y": 396,
+      "label": "release part transfer",
+      "variant": "default"
+    },
+    {
+      "id": "log-approval",
+      "from": "approve",
+      "to": "audit",
+      "y": 424,
+      "label": "logged with name",
+      "variant": "dashed"
+    },
+    {
+      "id": "book",
+      "from": "approve",
+      "to": "tech",
+      "y": 452,
+      "label": "book the window",
+      "variant": "emphasis"
+    },
+    {
+      "id": "repair",
+      "from": "tech",
+      "to": "machine",
+      "y": 480,
+      "label": "LOTO · steps · 1.9 mm/s",
+      "variant": "emphasis"
+    },
+    {
+      "id": "done",
+      "from": "tech",
+      "to": "audit",
+      "y": 508,
+      "label": "job done, signed",
+      "variant": "default"
+    },
+    {
+      "id": "savings",
+      "from": "audit",
+      "to": "planner",
+      "y": 536,
+      "label": "46 h + Rs 16.2 L saved",
+      "variant": "return"
+    }
+  ],
+  "activations": [
+    {
+      "participant": "score",
+      "from": 168,
+      "to": 206,
+      "type": "backend"
+    },
+    {
+      "participant": "drafter",
+      "from": 196,
+      "to": 290,
+      "type": "backend"
+    },
+    {
+      "participant": "planner",
+      "from": 280,
+      "to": 378,
+      "type": "external"
+    },
+    {
+      "participant": "copilot",
+      "from": 312,
+      "to": 346,
+      "type": "backend"
+    },
+    {
+      "participant": "approve",
+      "from": 368,
+      "to": 462,
+      "type": "security"
+    },
+    {
+      "participant": "tech",
+      "from": 452,
+      "to": 514,
+      "type": "external"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Phases, top to bottom",
+      "items": [
+        "Detect + rank: vibration 4× → 99 %, about 66 h, top alert",
+        "Draft the plan: spares and a window before the failure",
+        "Guardrail: \"skip approval?\" is refused (POL-G8)",
+        "Approve + repair: named approval, part transfer, job booked, LOTO and steps",
+        "Measure: job signed off, 46 h and Rs 16.2 L saved"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Who decides",
+      "items": [
+        "The AI detects, ranks and drafts; it cannot approve",
+        "Auto-draft = AUTO_DRAFT_WORK_ORDER with CHECK_SPARES and PROPOSE_WINDOW",
+        "A named planner approves through APPROVE_WORK_ORDER (POL-G8)",
+        "The technician signs every step on the job card"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Hero case (synthetic data)",
+      "items": [
+        "Health 32 · 99 % failure confidence · about 66 h left",
+        "Rs 16.8 L at stake if it breaks vs a Rs 61,000 planned repair",
+        "Bearing set: none in Pune, 2 in Chennai → moves in 48 h; slot before the predicted failure"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "Guardrails on the way",
+      "items": [
+        "Requests to skip the approval are refused and written to the guardrail log",
+        "A frozen sensor gets an inspection task, never a crew (SOP-50)",
+        "Release only at 2.3 mm/s or below (ISO 10816 zone A, SOP-17)"
+      ]
+    }
+  ]
+}

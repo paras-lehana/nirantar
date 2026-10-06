@@ -1,0 +1,67 @@
+/* 7 · OEE (Measure) */
+.oee .sec-title { font-size: var(--fs-lg); margin-bottom: 8px; }
+.oee-controls { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center; }
+.oee-controls .ctl { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.oee-controls .ctl-label { font-size: var(--fs-sm); font-weight: 600; color: var(--ink-2); }
+.oee .seg button { min-height: 36px; }
+
+/* the equation: OEE = A × P × Q */
+.oee-eq { display: grid; gap: 8px; grid-template-columns: 1fr; }
+.eq-total { display: flex; align-items: center; gap: 14px; padding: 6px 4px; }
+.eq-total .ring { width: 84px; height: 84px; flex: none; }
+.eq-name { font-size: var(--fs-sm); font-weight: 600; color: var(--ink-2); display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.eq-v { font-family: var(--mono); font-variant-numeric: tabular-nums; font-size: clamp(1.4rem, 1.1rem + 1vw, 1.85rem); font-weight: 500; line-height: 1.15; }
+.eq-q { font-size: var(--fs-sm); color: var(--ink-3); }
+.eq-term { display: grid; grid-template-columns: 26px 1fr; gap: 6px; align-items: start; padding: 10px 12px 10px 6px; border: 1px solid var(--line); border-radius: var(--r-md); background: var(--panel-2); }
+.eq-term.worst { border-color: var(--watch-fill); box-shadow: inset 3px 0 0 var(--watch-fill); }
+.eq-term.worst .eq-v { color: var(--watch); }
+.eq-op { font: 600 1.35rem/1 var(--mono); color: var(--ink-3); text-align: center; padding-top: 18px; }
+.eq-body { display: grid; gap: 2px; min-width: 0; }
+.eq-bar { position: relative; height: 8px; margin-top: 6px; border-radius: 4px; background: var(--line); }
+.eq-bar > span { display: block; height: 100%; border-radius: 4px; background: var(--normal); }
+.eq-bar.watch > span { background: var(--watch-fill); }
+.eq-bar > i { position: absolute; top: -4px; bottom: -4px; width: 2px; margin-left: -1px; background: var(--ink); border-radius: 1px; }
+.eq-wc { font-size: var(--fs-xs); color: var(--ink-3); text-align: right; }
+@media (min-width: 900px) {
+  .oee-eq { grid-template-columns: minmax(200px, 1.1fr) repeat(3, minmax(0, 1fr)); align-items: stretch; }
+  .eq-total { padding-right: 8px; }
+}
+
+/* trend legend (HTML so it never shrinks with the chart) */
+.oee-legend { display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: var(--fs-sm); color: var(--ink-2); margin-bottom: 4px; }
+.oee-legend span { display: inline-flex; align-items: center; gap: 6px; }
+.oee-legend span.on { color: var(--ink); font-weight: 600; }
+.oee-legend svg { width: 22px; height: 6px; display: inline-block; }
+.oee .chart .halo { paint-order: stroke; stroke: var(--panel); stroke-width: 3px; stroke-linejoin: round; }
+
+/* shift heatmap: keep cells a sensible size on wide screens */
+.oee .heat { max-width: 520px; }
+.oee .heat .chart { width: 100%; }
+
+/* what Nirantar changes */
+.compare { display: grid; gap: 10px; margin-bottom: 14px; }
+.cmp-row { display: grid; grid-template-columns: 1fr auto; grid-template-areas: "label v" "bar bar"; gap: 4px 10px; align-items: end; }
+.cmp-label { grid-area: label; display: grid; gap: 1px; font-size: var(--fs-sm); }
+.cmp-label span { color: var(--ink-3); }
+.cmp-v { grid-area: v; font: 500 var(--fs-lg) var(--mono); font-variant-numeric: tabular-nums; }
+.cmp-bar { grid-area: bar; height: 14px; border-radius: 4px; background: var(--line); overflow: hidden; }
+.cmp-bar > span { display: block; height: 100%; border-radius: 4px; background: var(--normal); }
+.cmp-bar.act > span { background: var(--act-fill); }
+.cmp-bar.ai > span { background: var(--ai-fill); }
+@media (min-width: 900px) {
+  .cmp-row { grid-template-columns: 280px 1fr 64px; grid-template-areas: "label bar v"; align-items: center; }
+  .cmp-v { text-align: right; }
+}
+.gains { margin-bottom: 10px; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px; }
+.gains .kpi { padding: 10px 12px; }
+.gains .kpi { background: var(--panel-2); }
+.saved { margin-top: 10px; padding: 10px 12px; border-radius: var(--r-sm); background: var(--panel-2); border: 1px dashed var(--line-2); font-size: var(--fs-sm); display: grid; gap: 6px; justify-items: start; }
+.saved.done { border: 1px solid var(--ok-fill); background: var(--ok-bg); }
+
+/* line table */
+.oee .gap { color: var(--ink-2); }
+.oee .gap.ok { color: var(--ok); }
+.oee .nowrap { white-space: nowrap; }
+
+/* tooltip terms used as labels: at least 24 px tall so they are easy to tap (WCAG 2.5.8) */
+.oee .k-label .term, .oee .eq-name .term { display: inline-block; line-height: 24px; }

@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Nirantar on Snowflake: from a sensor reading to an approved repair",
+    "output": "docs/diagrams/archify/architecture-nirantar-20261006-2030/nirantar-architecture.html",
+    "quality_profile": "showcase",
+    "locale": "en"
+  },
+  "components": [
+    { "id": "coco", "type": "cloud", "label": "Snowflake CoCo", "sublabel": "Snowsight panel · 20+ chats", "pos": [280, 40], "size": [170, 64] },
+    { "id": "skills", "type": "backend", "label": "8 nirantar-* skills", "sublabel": "triage → rca → work-order", "pos": [530, 40], "size": [170, 64] },
+    { "id": "automation", "type": "cloud", "icon": "clock", "label": "CoCo Automation", "sublabel": "morning brief 07:00 IST", "pos": [1030, 40], "size": [180, 64] },
+
+    { "id": "ot", "type": "external", "label": "OT telemetry", "sublabel": "315 tags · SIM.EMIT_TICK", "pos": [30, 200], "size": [170, 64] },
+    { "id": "raw", "type": "database", "label": "RAW", "sublabel": "landed as-is", "pos": [280, 200], "size": [170, 64] },
+    { "id": "core", "type": "database", "label": "CORE", "sublabel": "Dynamic Tables · ISA-95", "pos": [530, 200], "size": [170, 64] },
+    { "id": "ml", "type": "backend", "label": "ML.SCORE_LATEST", "sublabel": "rules-v1 · risk · RUL", "tag": "sensor-fault veto", "pos": [780, 200], "size": [170, 64] },
+    { "id": "alerts", "type": "backend", "label": "Ranked alerts", "sublabel": "V_PRIORITY: risk × ₹ × orders", "pos": [1030, 200], "size": [180, 64] },
+
+    { "id": "erp", "type": "external", "label": "ERP + CMMS", "sublabel": "spares · orders · work orders", "pos": [30, 370], "size": [170, 64] },
+    { "id": "sv", "type": "database", "label": "SV_PLANT_OPS", "sublabel": "Semantic View · Analyst", "pos": [530, 370], "size": [170, 64] },
+    { "id": "agent", "type": "backend", "label": "NIRANTAR_COPILOT", "sublabel": "Cortex Agent · 5 tools", "pos": [780, 370], "size": [170, 64] },
+    { "id": "draft", "type": "backend", "label": "Draft work order", "sublabel": "AUTO_DRAFT_WORK_ORDER", "pos": [1030, 370], "size": [180, 64] },
+    { "id": "approve", "type": "security", "label": "APPROVE_WORK_ORDER", "sublabel": "a named person only", "tag": "POL-G8", "pos": [1290, 370], "size": [180, 64] },
+    { "id": "audit", "type": "database", "label": "APP.ACTION_LOG", "sublabel": "every AI + human action", "pos": [1550, 370], "size": [170, 64] },
+
+    { "id": "docs", "type": "external", "label": "Documents", "sublabel": "manuals · SOPs · notes", "pos": [30, 540], "size": [170, 64] },
+    { "id": "search", "type": "database", "label": "CSS_MAINT_KNOWLEDGE", "sublabel": "Cortex Search", "pos": [280, 540], "size": [170, 64] },
+    { "id": "app", "type": "frontend", "label": "Command Center", "sublabel": "Streamlit · 8-step tour", "pos": [1290, 540], "size": [180, 64] },
+
+    { "id": "planner", "type": "external", "icon": "person", "label": "Planner / plant head", "sublabel": "decides with a name", "pos": [1290, 710], "size": [180, 64] }
+  ],
+  "boundaries": [
+    { "kind": "region", "label": "Snowflake CoCo in Snowsight: built and runs it", "wraps": ["coco", "skills", "automation"] },
+    { "kind": "region", "label": "Snowflake account · database NIRANTAR", "wraps": ["raw", "core", "ml", "alerts", "sv", "agent", "draft", "approve", "audit", "search", "app"] },
+    { "kind": "security-group", "label": "Human approval gate", "wraps": ["approve"] }
+  ],
+  "connections": [
+    { "id": "ot-raw", "from": "ot", "to": "raw", "label": "ticks", "variant": "emphasis" },
+    { "id": "raw-core", "from": "raw", "to": "core", "label": "conform", "variant": "emphasis" },
+    { "id": "core-ml", "from": "core", "to": "ml", "label": "features", "variant": "emphasis" },
+    { "id": "ml-alerts", "from": "ml", "to": "alerts", "label": "risk ≥ 0.6", "variant": "emphasis" },
+    { "id": "alerts-draft", "from": "alerts", "to": "draft", "label": "auto-draft", "variant": "emphasis" },
+    { "id": "draft-approve", "from": "draft", "to": "approve", "label": "pending", "variant": "emphasis" },
+    { "id": "approve-audit", "from": "approve", "to": "audit", "label": "logged", "variant": "emphasis" },
+    { "id": "erp-raw", "from": "erp", "to": "raw", "label": "load", "fromSide": "right", "toSide": "bottom" },
+    { "id": "docs-search", "from": "docs", "to": "search", "label": "chunks" },
+    { "id": "core-sv", "from": "core", "to": "sv", "label": "metrics" },
+    { "id": "sv-agent", "from": "sv", "to": "agent", "label": "Analyst" },
+    { "id": "search-agent", "from": "search", "to": "agent", "label": "citations", "fromSide": "right", "toSide": "bottom" },
+    { "id": "agent-draft", "from": "agent", "to": "draft", "label": "tool" },
+    { "id": "app-agent", "from": "app", "to": "agent", "label": "Ask Copilot", "fromSide": "left", "toSide": "bottom" },
+    { "id": "app-approve", "from": "app", "to": "approve", "label": "approve", "variant": "security" },
+    { "id": "planner-app", "from": "planner", "to": "app", "label": "decides" },
+    { "id": "skills-coco", "from": "skills", "to": "coco", "label": "loaded" },
+    { "id": "coco-raw", "from": "coco", "to": "raw", "label": "builds", "variant": "dashed" },
+    { "id": "automation-alerts", "from": "automation", "to": "alerts", "label": "reads", "variant": "dashed" }
+  ],
+  "cards": [
+    { "dot": "rose", "title": "Guardrails", "items": ["Only APPROVE_WORK_ORDER, called with a person's name, releases work (POL-G8)", "Sensor-fault veto: a frozen sensor gets an inspection task, never a crew (SOP-50)", "Every AI and human action lands in APP.ACTION_LOG", "Resource monitor, CoCo credit caps, least-privilege role NIRANTAR_BUILDER"] },
+    { "dot": "cyan", "title": "Cortex Agent tools", "items": ["ASSET_360 · CHECK_SPARES · PROPOSE_WINDOW", "DRAFT_WORK_ORDER · WHAT_IF_DEFER", "Answers cite the semantic view and the documents"] },
+    { "dot": "violet", "title": "Built with CoCo", "items": ["Planning: framing, ontology ER, workflow, build plan", "Development: synthetic plant, Dynamic Tables, scoring, semantic view, search, agent, app", "Execution: serverless tasks + alert, hero run, morning brief", "Testing: data, physics, guardrail and edge-case tests, agent golden set"] },
+    { "dot": "emerald", "title": "Other surfaces", "items": ["Snowflake CoWork: the same agent for business users", "Public interactive demo on GitHub Pages: same model and numbers, no login", "All data synthetic (fictional Indus Group)"] }
+  ]
+}

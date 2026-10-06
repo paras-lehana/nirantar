@@ -1,0 +1,109 @@
+/* 3 · Alert Triage. Everything scoped under .tri (all page CSS files load globally). */
+.tri .tri-formula { color: var(--ink-2); margin: -2px 0 12px; line-height: 1.7; }
+.tri .tri-bands { display: block; margin: -6px 0 12px; }
+.tri .tri-bands summary { display: inline; cursor: pointer; color: var(--ai); text-decoration: underline; text-underline-offset: 2px; }
+.tri .tri-bands[open] p { margin-top: 6px; padding: 8px 10px; border-radius: var(--r-sm); background: var(--panel-2); border: 1px solid var(--line); color: var(--ink-2); }
+
+/* alarm health */
+.tri .tri-ah { display: grid; gap: 12px; grid-template-columns: 1fr; margin-bottom: 10px; }
+@media (min-width: 720px) { .tri .tri-ah { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.tri .tri-ah > div { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 10px; align-items: baseline; padding: 8px 12px; border-radius: var(--r-sm); background: var(--panel-2); border: 1px solid var(--line); }
+.tri .tri-ah > div > :not(.tri-ah-k):not(.tri-ah-v) { grid-column: 1 / -1; }
+@media (min-width: 720px) { .tri .tri-ah > div { grid-template-columns: 1fr; align-content: start; padding: 10px 12px; } }
+.tri .tri-ah-k { font-size: var(--fs-sm); color: var(--ink-2); font-weight: 500; }
+.tri .tri-ah-v { font-size: clamp(1.3rem, 1.1rem + .8vw, 1.7rem); font-weight: 500; line-height: 1.1; }
+.tri .tri-ah-v small { font-size: .55em; color: var(--ink-2); margin-left: 3px; }
+.tri .tri-ah-v.over { color: var(--act); }
+.tri .tri-meter { position: relative; height: 10px; border-radius: 5px; background: var(--line); overflow: visible; margin: 4px 0 2px; }
+.tri .tri-meter .fill { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 5px; background: var(--normal); }
+.tri .tri-meter.over .fill { background: var(--act-fill); }
+.tri .tri-meter .target { position: absolute; top: -4px; bottom: -4px; width: 2px; margin-left: -1px; background: var(--ink); }
+
+/* ranked list */
+.tri .tri-list { display: grid; gap: 12px; }
+.tri .tri-card { display: grid; gap: 10px; background: var(--panel); }
+.tri .tri-card.act { border-left-width: 5px; }
+.tri .tri-head { display: grid; gap: 2px; min-width: 0; }
+.tri .tri-head h3 { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; font-size: var(--fs-lg); }
+.tri .tri-head h3 a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--line-2); }
+.tri .tri-head h3 a:hover { border-bottom-color: var(--ink); }
+.tri .tri-rank { color: var(--ink-3); font-weight: 600; }
+.tri .tri-name { font-weight: 500; color: var(--ink-2); }
+.tri .tri-tags { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.tri .tri-tags .pill { min-height: 22px; }
+.tri .tri-tags .pill svg { width: 13px; height: 13px; }
+.tri .tri-tags .state[data-tip] { cursor: help; }
+.tri .tri-mode { line-height: 1.4; }
+
+.tri .tri-facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: 0; }
+@media (min-width: 720px) { .tri .tri-facts { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (min-width: 1200px) { .tri .tri-facts { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
+.tri .tri-fact:last-child:nth-child(odd) { grid-column: 1 / -1; }
+@media (min-width: 720px) { .tri .tri-fact:last-child:nth-child(odd) { grid-column: auto; } }
+.tri .tri-fact { display: grid; gap: 1px; align-content: start; padding: 8px 10px; border-radius: var(--r-sm); background: var(--panel-2); border: 1px solid var(--line); min-width: 0; }
+.tri .tri-fact dt { font-size: var(--fs-xs); color: var(--ink-2); font-weight: 500; }
+.tri .tri-fact dd { margin: 0; }
+.tri .tri-fact dd.mono { font-size: var(--fs-lg); font-weight: 500; line-height: 1.25; }
+.tri .tri-fact dd.mono small { font-size: .7em; color: var(--ink-3); }
+.tri .tri-fact.act dd.mono { color: var(--act); }
+.tri .tri-fact.watch dd.mono { color: var(--watch); }
+.tri .tri-fact .tri-mean { font-size: var(--fs-xs); color: var(--ink-3); line-height: 1.35; }
+.tri .tri-why { color: var(--ink-2); }
+.tri .tri-status { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; }
+.tri .tri-status .state { white-space: normal; }
+
+.tri .tri-alabel { display: flex; align-items: center; gap: 8px; padding-top: 10px; border-top: 1px solid var(--line); }
+.tri .tri-actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.tri .tri-actions .tri-nowo { grid-column: 1 / -1; }
+.tri .tri-more { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; align-items: center; }
+.tri .tri-actions .btn, .tri .tri-more .btn { padding-inline: 10px; white-space: nowrap; }
+.tri .tri-next { grid-column: 1 / -1; display: flex; align-items: center; gap: 8px; }
+.tri .tri-next .btn { flex: 1; justify-content: space-between; }
+@media (min-width: 720px) {
+  .tri .tri-actions { display: flex; flex-wrap: wrap; }
+  .tri .tri-more { display: flex; flex-wrap: wrap; }
+  .tri .tri-next { margin-left: auto; }
+  .tri .tri-next .btn { flex: none; }
+}
+.tri .tri-shelve { display: grid; gap: 10px; padding: 12px; border-radius: var(--r-sm); border: 1px dashed var(--line-2); background: var(--panel-2); }
+@media (min-width: 720px) { .tri .tri-shelve { grid-template-columns: 160px minmax(0, 1fr); align-items: end; } .tri .tri-shelve .row, .tri .tri-shelve p { grid-column: 1 / -1; } }
+
+.tri .tri-verify { display: grid; gap: 8px; padding: 12px; border-radius: var(--r-sm); border: 1px solid var(--ai-bg); background: var(--panel-2); }
+.tri .tri-verify ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.tri .tri-verify .check { font-size: var(--fs-sm); min-height: 28px; }
+.tri .tri-verify .check input { width: 20px; height: 20px; }
+
+.tri .tri-fb { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; padding-top: 8px; border-top: 1px solid var(--line); }
+.tri .tri-fb .btn.sm { min-height: 40px; }
+.tri .tri-fb .tri-fbq { flex-basis: 100%; }
+.tri .tri-fb .dim { flex-basis: 100%; }
+@media (min-width: 720px) { .tri .tri-fb .tri-fbq, .tri .tri-fb .dim { flex-basis: auto; } }
+.tri .tri-fb .btn.sm svg { width: 14px; height: 14px; }
+
+/* consequence group */
+.tri .tri-group { display: grid; gap: 8px; padding: 10px 12px; border-radius: var(--r-sm); background: var(--panel-2); border: 1px solid var(--line); }
+.tri .tri-toggle { display: inline-flex; flex-wrap: wrap; justify-content: flex-start; gap: 4px 8px; padding-left: 4px; text-align: left; min-height: 40px; }
+.tri .tri-toggle svg { transition: transform var(--t-fast); }
+.tri .tri-toggle[aria-expanded="true"] svg { transform: rotate(90deg); }
+.tri .tri-conseq { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.tri .tri-conseq li { display: grid; gap: 4px 12px; grid-template-columns: minmax(0, 1fr) auto; align-items: center; padding: 8px 10px; border-radius: var(--r-sm); background: var(--panel); border: 1px solid var(--line); }
+.tri .tri-conseq li > span:nth-child(2) { grid-column: 1; color: var(--ink-2); }
+.tri .tri-conseq li > span:nth-child(3) { grid-column: 2; grid-row: 1 / span 2; }
+@media (min-width: 900px) { .tri .tri-conseq li { grid-template-columns: 260px minmax(0, 1fr) auto; } .tri .tri-conseq li > span:nth-child(2) { grid-column: 2; } .tri .tri-conseq li > span:nth-child(3) { grid-column: 3; grid-row: auto; } }
+
+.tri .tri-empty { display: grid; gap: 8px; justify-items: start; padding: 16px; border: 1.5px dashed var(--line-2); border-radius: var(--r-md); }
+
+/* history */
+.tri .tri-hist { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.tri .tri-hist li { display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: center; padding: 8px 10px; border-radius: var(--r-sm); background: var(--panel-2); border: 1px solid var(--line); }
+.tri .tri-hist li > span:first-child { min-width: 200px; }
+.tri .table td:first-child a { white-space: nowrap; }
+.tri .table td:first-child { min-width: 120px; }
+.tri .tri-sig { min-width: 160px; }
+.tri .tri-hist .state { white-space: normal; }
+.tri .table td a { color: inherit; }
+
+/* tooltip terms: big enough to tap; selects at 16px so iOS does not zoom on focus */
+.tri .term { display: inline-block; min-height: 24px; line-height: 24px; }
+.tri .tri-fact dt .term { line-height: 20px; min-height: 24px; }
+@media (max-width: 719px) { .tri select.input { font-size: 16px; } }

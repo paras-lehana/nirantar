@@ -1,0 +1,26 @@
+/* Plant map: HMI lanes */
+.lanes { display: grid; gap: 10px; }
+.lane { border: 1px solid var(--line); border-radius: var(--r-md); background: var(--panel-2); padding: 10px 12px 12px; }
+.lane.utility { background: transparent; border-style: dashed; }
+.lane-head { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; margin-bottom: 8px; font-size: var(--fs-sm); }
+.machines { position: relative; display: grid; grid-template-columns: repeat(auto-fill, minmax(92px, 1fr)); gap: 6px; }
+.machines .conveyor { position: absolute; left: 12px; right: 12px; top: 26px; height: 2px; background: repeating-linear-gradient(90deg, var(--line-2) 0 8px, transparent 8px 14px); z-index: 0; }
+.mnode { position: relative; z-index: 1; display: grid; justify-items: center; gap: 2px; padding: 6px 2px 8px; border-radius: var(--r-sm); border: 1px solid transparent; background: transparent; color: var(--ink); }
+.mnode:hover { background: var(--panel); border-color: var(--line); }
+.mnode.sel { background: var(--panel); border-color: var(--ink); box-shadow: var(--shadow); }
+.mnode.dimmed { opacity: .35; }
+.mnode .dotwrap { position: relative; display: grid; place-items: center; width: 42px; height: 42px; }
+.mnode .dot { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--normal); border: 3px solid var(--panel-2); color: var(--on-fill); }
+.mnode.crit-A .dot { width: 36px; height: 36px; }
+.mnode.crit-C .dot { width: 24px; height: 24px; }
+.mnode .dot svg { width: 15px; height: 15px; }
+.mnode.s-watch .dot { background: var(--watch-fill); color: var(--on-watch); }
+.mnode.s-sensor .dot { background: var(--panel); border: 3px dashed var(--watch-fill); color: var(--watch); }
+.mnode.s-act .dot { background: var(--act-fill); }
+.mnode .ring { position: absolute; inset: 0; border-radius: 50%; border: 3px solid var(--act-fill); animation: ring 1.8s ease-out infinite; }
+.mnode.s-sensor .ring, .mnode.s-watch .ring { border-color: var(--watch-fill); }
+.mnode .m-id { font-size: var(--fs-xs); font-weight: 600; }
+.mnode .m-name { font-size: 11px; color: var(--ink-3); text-align: center; line-height: 1.2; max-width: 92px; }
+.sel-grid { display: grid; gap: 12px; margin-bottom: 10px; }
+.sel-pf { display: grid; gap: 2px; justify-items: start; }
+@media (min-width: 1100px) { .sel-grid { grid-template-columns: 1fr 240px; align-items: center; } }

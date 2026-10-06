@@ -1,0 +1,24 @@
+{
+  "name": "Nirantar · predictive maintenance and OEE command center",
+  "short_name": "Nirantar",
+  "description": "Spot failing machines, understand why, prioritise by money at stake, approve AI-drafted repairs and measure OEE. Interactive demo on synthetic data.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#dde1e6",
+  "theme_color": "#16202b",
+  "lang": "en-IN",
+  "categories": ["business", "productivity", "utilities"],
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "icons/icon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ],
+  "shortcuts": [
+    { "name": "Plant map", "url": "./#/map" },
+    { "name": "Alert triage", "url": "./#/triage" },
+    { "name": "Technician view", "url": "./#/tech" },
+    { "name": "Shift brief", "url": "./#/brief" }
+  ]
+}

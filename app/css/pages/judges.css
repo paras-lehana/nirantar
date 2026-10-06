@@ -1,0 +1,153 @@
+/* For judges: brief coverage (#/judges). Page classes start with jd-. Tokens only (contrast checked in tokens.css).
+   Colour rule: neutral outline chips = it exists (Snowflake / demo / repo); amber = partly, preview or not built. */
+
+.judges .jd-sec { display: grid; gap: 10px; scroll-margin-top: calc(var(--top-h) + 12px); min-width: 0; }
+.jd-sec-head { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; padding-top: 6px; }
+.jd-sec-head h2 { font-size: var(--fs-xl); }
+.jd-sec-head h2:focus { outline: none; }
+.jd-sec-head h2:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+.jd-sec-head .sub { color: var(--ink-3); font-size: var(--fs-sm); }
+.judges .nw { white-space: nowrap; }
+.jd-lbl { font-size: var(--fs-xs); font-weight: 600; color: var(--ink-3); margin-right: 2px; }
+.jd-code, .jd-skill { font-family: var(--mono); font-size: max(12px, .9em); padding: 0 4px; border-radius: 4px; background: var(--panel-2); border: 1px solid var(--line); overflow-wrap: anywhere; color: var(--ink); }
+
+/* status chips + legend */
+.jd-chip { display: inline-flex; align-items: center; gap: 5px; padding: 2px 9px; border-radius: 999px; font-size: var(--fs-xs); font-weight: 600; line-height: 1.5; white-space: nowrap; border: 1px solid var(--line-2); color: var(--ink-2); background: transparent; }
+.jd-chip svg { width: 13px; height: 13px; flex: none; }
+.jd-chip.warn { background: var(--watch-bg); color: var(--watch); border-color: var(--watch-fill); }
+.jd-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.jd-legend { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 6px 10px; padding: 10px 14px; border: 1px solid var(--line); border-radius: var(--r-md); background: var(--panel); font-size: var(--fs-sm); color: var(--ink-2); }
+.jd-legend > b { grid-column: 1 / -1; color: var(--ink); font-weight: 600; }
+.jd-lg { display: contents; }
+.jd-lg > .jd-chip { justify-self: start; }
+@media (min-width: 720px) {
+  .jd-legend { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+  .jd-lg { display: inline-flex; align-items: center; gap: 8px; }
+}
+
+/* note when the sample data is missing or another scenario is loaded */
+.jd-note { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 12px; padding: 12px 14px; border: 1px solid var(--line-2); border-radius: var(--r-md); background: var(--panel); }
+.jd-note > svg { width: 20px; height: 20px; flex: none; color: var(--ink-2); }
+.jd-note p { flex: 1 1 260px; min-width: 0; color: var(--ink-2); }
+
+/* the brief, point by point: a card per row (phone), three columns on wide screens */
+.jd-quote { margin: 0; padding: 14px 16px; border-left: 4px solid var(--ink-3); border-radius: 0 var(--r-md) var(--r-md) 0; background: var(--panel); }
+.jd-quote p { font-size: var(--fs-lg); line-height: 1.5; max-width: 85ch; }
+.jd-quote footer { margin-top: 6px; font-size: var(--fs-sm); color: var(--ink-3); }
+.jd-intro { max-width: 90ch; }
+.jd-cols { display: none; }
+.jd-points { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.jd-pt { display: grid; gap: 10px 20px; padding: 14px; background: var(--panel); border: 1px solid var(--line); border-radius: var(--r-md); min-width: 0; }
+.jd-pt-q { display: flex; gap: 10px; align-items: flex-start; min-width: 0; }
+.jd-pt-q > div { display: grid; gap: 6px; min-width: 0; }
+.jd-pt-q h3 { font-size: var(--fs-md); line-height: 1.35; }
+.jd-num { display: inline-grid; place-items: center; width: 24px; height: 24px; flex: none; border-radius: 50%; border: 1.5px solid var(--line-2); font: 600 12px/1 var(--mono); color: var(--ink-2); }
+.jd-pt-a { line-height: 1.55; min-width: 0; }
+.jd-see { display: grid; gap: 4px; align-content: start; min-width: 0; }
+.jd-show { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.jd-show .jd-lbl { flex-basis: 100%; }
+.jd-go { justify-content: flex-start; text-align: left; font-size: var(--fs-sm); padding: 6px 12px; max-width: 100%; }
+.jd-go > span { min-width: 0; }
+.jd-go-f { color: var(--ink-2); font-weight: 400; }
+.jd-evs { display: flex; flex-wrap: wrap; align-items: center; column-gap: 14px; font-size: var(--fs-sm); min-width: 0; }
+.jd-evs .jd-lbl { flex-basis: 100%; margin-top: 4px; }
+.jd-ev { display: inline-flex; align-items: center; gap: 5px; min-height: 40px; color: var(--ai); text-decoration: underline; text-underline-offset: 2px; text-decoration-thickness: 1px; }
+.jd-ev svg { width: 14px; height: 14px; flex: none; }
+button.jd-ev { border: 0; background: transparent; padding: 0; font: inherit; cursor: pointer; }
+.jd-none { color: var(--ink-3); min-height: 40px; display: inline-flex; align-items: center; }
+@media (min-width: 1024px) { .jd-ev, .jd-none { min-height: 30px; } }
+
+@media (min-width: 720px) {
+  .jd-pt { grid-template-columns: minmax(0, 1fr) minmax(0, 1.45fr); }
+  .jd-see { grid-column: 1 / -1; }
+  .jd-show .jd-lbl, .jd-evs .jd-lbl { flex-basis: auto; margin-top: 0; }
+}
+@media (min-width: 1280px) {
+  .jd-cols { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr) minmax(0, 1fr); gap: 20px; padding: 0 15px; font-size: var(--fs-xs); font-weight: 600; color: var(--ink-3); }
+  .jd-cols span:first-child { padding-left: 34px; }
+  .jd-pt { grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr) minmax(0, 1fr); }
+  .jd-pt .jd-see { grid-column: auto; }
+  .jd-pt .jd-show .jd-lbl, .jd-pt .jd-evs .jd-lbl { flex-basis: 100%; }
+  .jd-pt .jd-go { width: 100%; }
+}
+
+/* CoCo across the lifecycle: cards with a real screenshot each */
+.jd-phases { display: grid; gap: 12px; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 640px) { .jd-phases { grid-template-columns: repeat(2, minmax(0, 1fr)); } .jd-phase.share { grid-column: 1 / -1; } }
+@media (min-width: 1280px) { .jd-phases { grid-template-columns: repeat(3, minmax(0, 1fr)); } .jd-phase.share { grid-column: span 2; } }
+.jd-phase { display: flex; flex-direction: column; gap: 10px; padding: 12px; background: var(--panel); border: 1px solid var(--line); border-radius: var(--r-md); min-width: 0; }
+.jd-phase h3 { display: flex; align-items: center; gap: 8px; font-size: var(--fs-lg); }
+.jd-phase h3 .stepnum svg { width: 13px; height: 13px; }
+.jd-did { font-size: var(--fs-sm); color: var(--ink-2); line-height: 1.55; }
+.jd-skills { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font-size: var(--fs-xs); }
+.jd-skill { font-size: var(--fs-xs); padding: 1px 6px; color: var(--ink-2); }
+.jd-shots { display: grid; gap: 10px; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 520px) { .jd-shots { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.jd-fig { margin: 0; display: grid; gap: 4px; min-width: 0; }
+.jd-fig figcaption { font-size: var(--fs-xs); color: var(--ink-3); }
+.jd-shot { position: relative; display: block; width: 100%; aspect-ratio: 16 / 9; padding: 0; overflow: hidden; border: 1px solid var(--line-2); border-radius: var(--r-sm); background: var(--panel-2); cursor: zoom-in; color: var(--ink-2); }
+.jd-shot img { display: block; width: 100%; height: 100%; max-width: none; object-fit: cover; object-position: var(--fx, 50%) var(--fy, 50%); transform: scale(var(--z, 1)); transform-origin: var(--fx, 50%) var(--fy, 50%); transition: transform var(--t-med) var(--ease); }
+.jd-shot:hover img { transform: scale(calc(var(--z, 1) * 1.05)); }
+.jd-shot:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+.jd-shot-cta { position: absolute; right: 8px; bottom: 8px; display: inline-flex; align-items: center; gap: 5px; padding: 4px 10px; border-radius: 999px; background: var(--ink); color: var(--panel); font-size: var(--fs-xs); font-weight: 600; box-shadow: var(--shadow); }
+.jd-shot-cta svg { width: 13px; height: 13px; }
+.jd-shot-off { display: none; }
+.jd-shot.broken { cursor: pointer; }
+.jd-shot.broken img, .jd-shot.broken .jd-shot-cta { display: none; }
+.jd-shot.broken .jd-shot-off { display: flex; position: absolute; inset: 0; gap: 6px; align-items: center; justify-content: center; padding: 12px; font-size: var(--fs-sm); text-align: center; }
+.jd-shot-off svg { width: 16px; height: 16px; flex: none; }
+
+/* the guidelines: two checklists */
+.jd-guides { display: grid; gap: 12px; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 1280px) { .jd-guides { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; } }
+.jd-guide .card-head { margin-bottom: 4px; }
+.jd-list { list-style: none; margin: 0; padding: 0; display: grid; }
+.jd-ck { display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: 10px; padding: 12px 0; border-top: 1px solid var(--line); }
+.jd-ck:first-child { border-top: 0; padding-top: 4px; }
+.jd-ck:last-child { padding-bottom: 0; }
+.jd-ck-ic { display: grid; place-items: center; width: 26px; height: 26px; margin-top: 1px; border-radius: 50%; border: 1.5px solid var(--line-2); color: var(--ink-2); }
+.jd-ck-ic.warn { background: var(--watch-bg); color: var(--watch); border-color: var(--watch-fill); }
+.jd-ck-ic svg { width: 15px; height: 15px; }
+.jd-ck-body { display: grid; gap: 6px; min-width: 0; }
+.jd-ck-head { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; }
+.jd-ck-head h4 { font-size: var(--fs-md); font-weight: 600; margin: 0; line-height: 1.3; }
+.jd-ck-body > p { font-size: var(--fs-sm); color: var(--ink-2); line-height: 1.55; }
+
+/* rubric */
+.jd-rubric { display: grid; gap: 12px; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 1280px) { .jd-rubric { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.jd-rb-head { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.jd-rb-w { font: 600 var(--fs-2xl)/1 var(--mono); color: var(--ink); }
+.jd-rb-w small { font-size: .55em; color: var(--ink-2); }
+.jd-rb ul { list-style: none; margin: 12px 0 0; padding: 0; display: grid; gap: 10px; }
+.jd-rb li { display: grid; gap: 2px; padding-left: 14px; position: relative; font-size: var(--fs-sm); color: var(--ink-2); line-height: 1.5; }
+.jd-rb li::before { content: ""; position: absolute; left: 0; top: .6em; width: 6px; height: 6px; border-radius: 50%; background: var(--normal); }
+.jd-rb-links { display: flex; flex-wrap: wrap; column-gap: 14px; }
+.jd-rb-go { display: inline-flex; align-items: center; gap: 4px; min-height: 40px; color: var(--ai); font-weight: 500; text-decoration: none; }
+.jd-rb-go:hover { text-decoration: underline; }
+.jd-rb-go svg { width: 14px; height: 14px; flex: none; }
+button.jd-rb-go { border: 0; background: transparent; padding: 0; font: inherit; font-weight: 500; cursor: pointer; }
+
+/* measured vs simulated */
+.jd-honest { display: grid; gap: 12px; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 720px) { .jd-honest { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.jd-honest h3 { display: flex; align-items: center; gap: 8px; font-size: var(--fs-md); }
+.jd-honest h3 svg { width: 18px; height: 18px; flex: none; color: var(--ink-2); }
+.jd-honest ul { margin: 8px 0 0; padding-left: 18px; display: grid; gap: 6px; font-size: var(--fs-sm); color: var(--ink-2); line-height: 1.5; }
+
+.jd-links .row .btn { flex: 0 1 auto; }
+
+/* full-size screenshot */
+dialog.jd-lightbox { width: min(1480px, calc(100vw - 24px)); max-width: none; max-height: calc(100dvh - 24px); overflow: hidden; }
+.jd-lb { display: grid; grid-template-rows: auto minmax(0, 1fr) auto; max-height: calc(100dvh - 26px); }
+.jd-lb-head { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "title close" "tools tools"; align-items: center; gap: 8px 10px; padding: 10px 10px 10px 16px; border-bottom: 1px solid var(--line); }
+.jd-lb-head h2 { grid-area: title; min-width: 0; font-size: var(--fs-lg); }
+.jd-lb-x { grid-area: close; }
+.jd-lb-tools { grid-area: tools; display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+@media (min-width: 900px) { .jd-lb-head { grid-template-columns: minmax(0, 1fr) auto auto; grid-template-areas: "title tools close"; } }
+.jd-lb-tools .btn { font-size: var(--fs-sm); padding: 6px 12px; }
+.jd-lb-img { min-height: 0; overflow: auto; background: var(--panel-2); overscroll-behavior: contain; }
+.jd-lb-img img { display: block; width: 100%; height: auto; max-height: calc(100dvh - 190px); object-fit: contain; margin: 0 auto; }
+.jd-lb-img.zoomed img { width: auto; max-width: none; max-height: none; margin: 0; }   /* the image's own pixel size: sharp and readable */
+.jd-lb-foot { padding: 10px 16px 12px; font-size: var(--fs-sm); color: var(--ink-2); border-top: 1px solid var(--line); }
+@media (prefers-reduced-motion: reduce) { .jd-shot img { transition: none; } }

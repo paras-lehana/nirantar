@@ -1,0 +1,27 @@
+GUIDED JOURNEY v2 - ROUND G5 (browser review of pages 4-8 on the live app + story consistency). Same rules: Python 3.8, pyflakes, read before edit, all numbers from queries, real-data smoke test of every helper you touch (print the values), then deploy the whole folder keeping RUNTIME_NAME, the 1.46.1 pin, the owner role, ACCOUNTADMIN usage and a live version. Reply with a short list.
+
+A judge will cross-check numbers between pages. These are the contradictions I found; fix the data or the query, never hide them.
+
+5 · WORK ORDERS
+1. The repair window is "04 Oct 15:08 IST - 04 Oct 19:08 IST IST": it is before the bearing can arrive (Chennai -> Pune 48 h) and even before the draft was created (05 Oct 00:26). The window must start after the part ETA and end before the predicted failure (sensor time + 67 h), on a low-impact slot (shift changeover or planned stop). Recompute it with the existing propose_window logic constrained by part ETA (update the draft WO row in APP if needed; this is demo data) and show "{Tue 06 Oct 18:00}-{22:00} IST: after the bearing arrives ({ETA}) and about {h} h before the predicted failure". Remove the duplicated "IST".
+2. Make "Approve" the green primary button (Do-this says press it); Reject secondary.
+3. Plain place names in text: "PUNE-MACH" -> "Pune plant", "CHENNAI-FORGE" -> "Chennai Forge plant".
+
+6 · ASK COPILOT
+4. The "Example" answer is invented and contradicts the data ("10 breakdowns in the last 90 days ... leading sensor BEARING_TEMP"; Machine Detail says 2 previous failures and vibration leads). Replace it with the REAL answer the agent gave to "Why does VMC-204 keep failing?" in your test run today: store it (question, answer text, tools used, sources, timestamp) in an APP table such as APP.COPILOT_RECORDED_ANSWERS and show it labelled "Recorded answer from {time}; press the question to ask again live". Same for the guardrail question (show the refusal) as a second recorded example.
+5. Machine Detail "Why Nirantar thinks this" and the Copilot answer must tell the same story: count previous BEARING failures of VMC-204 (failure mode for bearing wear, not tool-insert wear) and the supplier lot of the installed bearings (L-2391) from the CMMS/ERP tables, and use those exact numbers on Machine Detail ("Previous spindle-bearing failures: {n}, last on {date}; bearings from supplier lot L-2391"). If the data has no prior bearing failures for VMC-204, say so and drop the lot claim everywhere instead.
+6. The chat input must be visible right under the suggested questions (not only pinned at the page bottom); keep the chat history above it.
+
+7 · OEE DASHBOARD
+7. "The Gear Cutting Line line" and "(Gear Cutting Line line)": strip the duplicate "line". "planned pm" -> "planned maintenance".
+8. Tie it to the case: keep the plant headline, then add: "VMC-204 runs on the Cylinder Head line ({x} % OEE)". The equation row defaults to the Cylinder Head line (a select lets you switch).
+9. "What Nirantar changes" says "about 2 hours of stoppage, about +0.0 OEE points": wrong model. An unplanned spindle-bearing failure on VMC-204 = waiting for the part (Chennai -> Pune {48} h, none in Pune) + mean repair hours for bearing failures from CMMS history; the planned repair = the {4} h window. Saved hours = unplanned - planned. OEE points = saved hours / planned production hours of the Cylinder Head line this month x 100. Show the formula in a tip and the inputs in one line.
+10. Chart labels overlap at the right end ("Crankshaft low 54%", "Gear 55%", "68% 64%") and "85% World" is clipped. Label only the single lowest day per line, offset vertically so labels never overlap, put end values in the legend, reserve right padding for "85 % world-class".
+11. "Six Big Losses" shows 3 bars and includes planned maintenance (not one of the six losses). Title it "Where the hours went (last 30 days)", show planned maintenance in grey as "planned (not a loss)" and the real losses in colour.
+
+8 · TRUST AUDIT
+12. False alarms show "0.00 (0 over 48 machine-months)" while the deck and README use 0.28 per machine-month from the backtest. Read the false-alarm rate from the same backtest table/procedure the deck number came from (OPS backtest results); show the formula in a tip. Detection 36/43 and 36 h median are fine.
+13. Action log: "AI drafted a work order for VMC-204" has a red BLOCKED chip, and "Spares checked for" has no asset. Map result chips correctly: drafted -> amber "Waiting for approval", approved -> green "Approved", refused by guardrail -> red "Blocked by guardrail", sensor fault vetoed -> grey "Crew not sent: sensor fault". Fill the asset/part in every row ("Spares checked: Chennai Forge has 2 x SKF-7014 bearings"). Remove "IST IST". Show the newest 8 rows, newest first.
+
+GLOBAL
+14. Every page that shows a "{x} is not available yet" box: that box must never appear in normal operation; if a helper fails, log the exception to the browser console and show "Live data is loading; press Refresh data" instead.

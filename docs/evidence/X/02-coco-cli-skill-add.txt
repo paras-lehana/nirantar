@@ -1,0 +1,21 @@
+$ cortex --version
+Cortex Code v1.1.104
+
+$ cortex skill add https://github.com/paras-lehana/nirantar
+Cloning github:paras-lehana/nirantar#main...
+Added remote skill source: github:paras-lehana/nirantar#main
+Skills found: nirantar-alert-triage, nirantar-coco-evidence, nirantar-command-center, nirantar-ontology-semantic-view, nirantar-rca, nirantar-reliability-brief, nirantar-synthetic-plant, nirantar-work-order
+
+$ cortex skill list   (remote section)
+Remote skills:
+  - github:paras-lehana/nirantar [main]: nirantar-alert-triage, nirantar-coco-evidence, nirantar-command-center, nirantar-ontology-semantic-view, nirantar-rca, nirantar-reliability-brief, nirantar-synthetic-plant, nirantar-work-order
+
+  [REMOTE] discovered:
+    - nirantar-alert-triage: <remote cache>/skills/nirantar-alert-triage
+    - nirantar-coco-evidence: <remote cache>/skills/nirantar-coco-evidence
+    - nirantar-command-center: <remote cache>/skills/nirantar-command-center
+    - nirantar-ontology-semantic-view: <remote cache>/skills/nirantar-ontology-semantic-view
+    - nirantar-rca: <remote cache>/skills/nirantar-rca
+    - nirantar-reliability-brief: <remote cache>/skills/nirantar-reliability-brief
+    - nirantar-synthetic-plant: <remote cache>/skills/nirantar-synthetic-plant
+    - nirantar-work-order: <remote cache>/skills/nirantar-work-order

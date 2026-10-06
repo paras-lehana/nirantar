@@ -1,0 +1,1 @@
+{ "name": "nirantar-demo", "private": true, "type": "module", "description": "Static demo app; no build step. package.json only marks the JS as ES modules for Node-based tests." }

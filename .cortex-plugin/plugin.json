@@ -1,0 +1,8 @@
+{
+  "name": "nirantar-reliability",
+  "description": "Nirantar: reusable Snowflake CoCo skills for predictive maintenance and OEE. Synthetic plant data, ontology semantic view, alert triage, RCA, guarded work orders, reliability briefs, command center and CoCo usage evidence.",
+  "version": "1.0.0",
+  "author": "Aidhunik India (Snowflake CoCo CLI Hackathon 2026, GCC Edition)",
+  "skills": "./skills",
+  "requiresSandbox": false
+}

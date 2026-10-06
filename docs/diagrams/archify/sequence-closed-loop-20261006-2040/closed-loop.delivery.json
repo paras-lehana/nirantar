@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "b36a68da-a1fe-4763-b587-a71a05d84d80",
+  "status": "current",
+  "command": "deliver",
+  "type": "sequence",
+  "input": "/root/ideas/coco-cli/docs/diagrams/archify/sequence-closed-loop-20261006-2040/candidate.json",
+  "output": "/root/ideas/coco-cli/docs/diagrams/archify/sequence-closed-loop-20261006-2040/closed-loop.html",
+  "specification": {
+    "sha256": "8835a599a4597385e55c4ba2e01744946069053c34149d3879302dec1192acc5",
+    "bytes": 6004
+  },
+  "artifact": {
+    "sha256": "efbbbd6269b5b369ba45ce28bf8911fc6141e3a03aaa0daf49f8ae6b864896b0",
+    "bytes": 763583
+  }
+}

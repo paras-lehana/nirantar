@@ -1,0 +1,47 @@
+/* Tool · Energy */
+.energy .sec-title { font-size: var(--fs-lg); margin-bottom: 8px; }
+.en-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.en-controls .ctl-label { font-size: var(--fs-sm); font-weight: 600; color: var(--ink-2); }
+.energy .seg button { min-height: 36px; }
+.energy .chart .halo { paint-order: stroke; stroke: var(--panel); stroke-width: 3px; stroke-linejoin: round; }
+.en-empty { padding: 12px 14px; border: 1.5px dashed var(--line-2); border-radius: var(--r-md); background: var(--panel-2); font-size: var(--fs-sm); }
+
+/* chart legend in HTML so it stays readable on a phone */
+.en-legend { display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: var(--fs-sm); color: var(--ink-2); margin-bottom: 4px; }
+.en-legend span { display: inline-flex; align-items: center; gap: 6px; }
+.sw-line { display: inline-block; width: 22px; height: 0; border-top: 3px solid var(--ink); }
+.sw-line.raw { border-top: 2px solid var(--normal-2); }
+.sw-line.act { border-top-color: var(--act-fill); }
+.sw-line.watch { border-top-color: var(--watch-fill); }
+.sw-line.base { border-top: 2px dashed var(--ink-2); }
+
+/* energy per part */
+.en-perpart { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 10px; }
+.en-big { font-size: clamp(1.4rem, 1.1rem + 1vw, 1.85rem); font-weight: 500; line-height: 1.15; font-variant-numeric: tabular-nums; }
+.en-big.watch { color: var(--watch); }
+.en-rate { gap: 6px 10px; }
+
+/* source quote */
+.en-quote { margin: 0 0 10px; padding: 10px 12px; border-left: 4px solid var(--line-2); background: var(--panel-2); border-radius: 0 var(--r-sm) var(--r-sm) 0; display: grid; gap: 8px; }
+.en-quote p { font-size: var(--fs-md); }
+.en-quote footer { display: flex; }
+.en-how { margin: 8px 0 0; padding-left: 18px; display: grid; gap: 4px; color: var(--ink-2); }
+
+/* top wasters: cards on a phone, the table from 720 px */
+.en-cards { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.en-cards a { display: grid; gap: 3px; padding: 10px 12px; border: 1px solid var(--line); border-radius: var(--r-md); background: var(--panel-2); color: var(--ink); text-decoration: none; }
+.en-cards a:hover { border-color: var(--ink-3); }
+.en-c-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.en-c-big { font-size: var(--fs-lg); font-weight: 600; }
+.en-c-big small { font-size: var(--fs-sm); font-weight: 400; color: var(--ink-3); font-family: var(--sans); }
+@media (max-width: 719px) { .energy .en-cards + .table-wrap { display: none; } }
+@media (min-width: 720px) { .energy .en-cards { display: none; } }
+.energy .nowrap { white-space: nowrap; }
+.en-quote footer { align-items: center; gap: 6px; }
+.en-quote footer svg { width: 14px; height: 14px; flex: none; }
+.energy details.more { margin-top: 10px; }
+.energy details.more summary { padding: 6px 0; }
+.en-empty { display: grid; gap: 10px; justify-items: start; }
+
+/* tooltip terms used as labels: at least 24 px tall so they are easy to tap (WCAG 2.5.8) */
+.energy .k-label .term, .energy .en-rate .term { display: inline-block; line-height: 24px; }

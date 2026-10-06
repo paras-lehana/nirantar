@@ -1,0 +1,948 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=1960"><title>Nirantar — Submission Deck (CoCo CLI Hackathon)</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Devanagari:wght@500;600&display=swap"><style>*{margin:0;padding:0;box-sizing:border-box}
+body{background:#5B6773;display:flex;flex-direction:column;align-items:center;gap:24px;padding:24px 0}
+section{position:relative;width:1920px;height:1080px;overflow:hidden;flex:none;break-after:page}
+section div:not([style*="display"]){display:flex;flex-direction:column}
+h1{font-size:96px;font-weight:600;line-height:1.1}h2{font-size:64px;font-weight:600;line-height:1.15}
+h3{font-size:44px;font-weight:600;line-height:1.2}p{font-size:32px;line-height:1.4}
+img{display:block}a{color:inherit}table{border-collapse:collapse}th,td{padding:0.35em 0.6em;border:1px solid #D5DBE2}
+th{font-weight:600}aside{display:none}
+@media print{body{background:none;padding:0;gap:0;display:block}@page{size:1920px 1080px;margin:0}}</style></head><body><section id="title" data-transition="fade" style="background:#FFFFFF;color:#334155;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column">
+<img src="../submission/assets/tpl_title.jpg" alt="CoCo CLI Hackathon, GCC Edition: YourStory, Snowflake and Hack2skill title banner" style="position:absolute;left:0px;top:0px;width:1920px;height:1080px;object-fit:cover">
+<div style="position:absolute;left:0px;top:27px;width:180px;height:168px;background:linear-gradient(180deg, #071A33, #06142A)"></div>
+<div style="position:absolute;left:140px;top:650px;width:900px;display:flex;flex-direction:column;gap:14px">
+<p style="font-size:30px;line-height:1.4;color:#0B2A5B"><b>Team name:</b> Aidhunik India</p>
+<p style="font-size:30px;line-height:1.4;color:#0B2A5B"><b>Team members:</b> Paras Lehana (team leader), Abhinav Kaushik</p>
+<p style="font-size:30px;line-height:1.4;color:#0B2A5B"><b>Team size:</b> 2</p>
+<p style="font-size:30px;line-height:1.4;color:#0B2A5B"><b>Problem statement:</b> #03 Predictive Maintenance and OEE Command Center</p>
+</div>
+<div style="position:absolute;left:1100px;top:650px;width:680px;display:flex;flex-direction:column;gap:12px">
+<p style="font-family:'IBM Plex Sans', 'IBM Plex Sans Devanagari', Arial, sans-serif;font-size:56px;font-weight:700;line-height:1.15;color:#0B2A5B;text-align:right">Nirantar (निरंतर)</p>
+<p style="font-size:30px;line-height:1.35;color:#1D6FD0;text-align:right">AI reliability command center on Snowflake, built end to end with CoCo</p>
+<p style="font-size:24px;line-height:1.4;color:#475569;text-align:right">From a vibration spike to an approved, parts-ready work order. All data synthetic (fictional "Indus Group").</p>
+</div>
+
+</section>
+
+<section id="problem" data-transition="fade" style="background:#FFFFFF;color:#334155;font-family:'IBM Plex Sans', Arial, sans-serif;padding:136px 96px 104px;display:flex;flex-direction:column;gap:28px">
+<img src="../submission/assets/tpl_header.jpg" alt="" style="position:absolute;left:0px;top:0px;width:1920px;height:101px;object-fit:cover">
+<img src="../submission/assets/tpl_footer.jpg" alt="" style="position:absolute;left:0px;bottom:0px;width:1920px;height:20px;object-fit:cover">
+<div style="display:flex;flex-direction:column;gap:8px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#1D6FD0">1 · Problem brief</p>
+<h2 style="font-size:56px;font-weight:700;line-height:1.15;color:#0B2A5B">Unplanned downtime starts as a signal nobody connects</h2>
+</div>
+<div style="display:flex;flex-direction:row;gap:32px">
+<div style="flex:1;display:flex;flex-direction:column;gap:4px;border-top:4px solid #C4342A;padding:12px 0px 0px 0px">
+<p style="font-size:48px;font-weight:700;line-height:1.15;color:#0B2A5B">$1.4 trillion</p>
+<p style="font-size:24px;line-height:1.4;color:#334155">a year lost to unplanned downtime by the Fortune Global 500, 11 % of revenue</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:4px;border-top:4px solid #C4342A;padding:12px 0px 0px 0px">
+<p style="font-size:48px;font-weight:700;line-height:1.15;color:#0B2A5B">88 %</p>
+<p style="font-size:24px;line-height:1.4;color:#334155">of Indian industrial firms have an unplanned outage at least once a month</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:4px;border-top:4px solid #C4342A;padding:12px 0px 0px 0px">
+<p style="font-size:48px;font-weight:700;line-height:1.15;color:#0B2A5B">30–50 %</p>
+<p style="font-size:24px;line-height:1.4;color:#334155">less machine downtime reported with predictive maintenance</p>
+</div>
+</div>
+<div style="display:flex;flex-direction:row;gap:48px">
+<div style="flex:1;display:flex;flex-direction:column;gap:16px">
+<p style="font-size:24px;line-height:1.4;color:#334155"><b>Who feels it:</b> reliability engineers, maintenance planners, plant heads and technicians in machining and cement plants.</p>
+<p style="font-size:24px;line-height:1.4;color:#334155"><b>Pain point:</b> OT signals, ERP spares and orders, CMMS history and PDF manuals live apart, so alerts arrive without context and teams react after the line stops.</p>
+<p style="font-size:24px;line-height:1.4;color:#334155"><b>The fix:</b> Nirantar joins them in one Snowflake account and closes the loop to an approved, parts-ready, production-aware work order.</p>
+<p style="font-size:24px;line-height:1.4;color:#334155"><b>Industry context:</b> ISA-95 plant hierarchy, ISO 14224 failure codes, ISO 10816 vibration zones, ISA-18.2 alarm management.</p>
+</div>
+<img src="../screenshots/01-demo-welcome-dialog.jpg" alt="The demo's welcome dialog: the problem, today's case for VMC-204 with about 66 hours to failure and Rs 16.8 lakh at stake, and a Start the 3-minute tour button" style="width:640px;height:380px;object-fit:contain;border:1px solid #DBE4F0;border-radius:12px;background:#F4F7FB">
+</div>
+<p style="position:absolute;left:96px;bottom:36px;width:1500px;font-size:24px;color:#64748B">Sources: Siemens, True Cost of Downtime 2024 · ABB, Value of Reliability 2023 · McKinsey 2017</p>
+<p style="position:absolute;right:96px;bottom:36px;width:160px;font-size:24px;color:#64748B;text-align:right">2 / 43</p>
+
+</section>
+
+<section id="solution" data-transition="fade" style="background:#FFFFFF;color:#334155;font-family:'IBM Plex Sans', Arial, sans-serif;padding:136px 96px 104px;display:flex;flex-direction:column;gap:24px">
+<img src="../submission/assets/tpl_header.jpg" alt="" style="position:absolute;left:0px;top:0px;width:1920px;height:101px;object-fit:cover">
+<img src="../submission/assets/tpl_footer.jpg" alt="" style="position:absolute;left:0px;bottom:0px;width:1920px;height:20px;object-fit:cover">
+<div style="display:flex;flex-direction:column;gap:8px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#1D6FD0">2 · Solution</p>
+<h2 style="font-size:56px;font-weight:700;line-height:1.15;color:#0B2A5B">From alert to approved repair, in one loop</h2>
+</div>
+<p style="font-size:30px;line-height:1.35;color:#0B2A5B">VMC-204: health 32 · 99 % risk of failure in 72 h · about 66 h left (36–96 h) · Rs 16.8 L at stake against a Rs 61,000 planned repair</p>
+<div style="display:grid;grid-template-columns:414px 414px 414px 414px;gap:20px">
+<div style="display:flex;flex-direction:column;gap:6px;background:#F4F7FB;border:1px solid #DBE4F0;border-radius:14px;padding:20px 22px">
+<p style="font-size:24px;font-weight:600;color:#1D6FD0">1 · Plant Map</p>
+<h3 style="font-size:36px;font-weight:700;line-height:1.2;color:#0B2A5B">Spot</h3>
+<p style="font-size:24px;line-height:1.4;color:#334155">VMC-204 turns red; the other 23 stay grey</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:6px;background:#F4F7FB;border:1px solid #DBE4F0;border-radius:14px;padding:20px 22px">
+<p style="font-size:24px;font-weight:600;color:#1D6FD0">2 · Machine Detail</p>
+<h3 style="font-size:36px;font-weight:700;line-height:1.2;color:#0B2A5B">Understand</h3>
+<p style="font-size:24px;line-height:1.4;color:#334155">Bearing wear, 99 %, about 66 h left</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:6px;background:#F4F7FB;border:1px solid #DBE4F0;border-radius:14px;padding:20px 22px">
+<p style="font-size:24px;font-weight:600;color:#1D6FD0">3 · Alert Triage</p>
+<h3 style="font-size:36px;font-weight:700;line-height:1.2;color:#0B2A5B">Prioritise</h3>
+<p style="font-size:24px;line-height:1.4;color:#334155">Rs 16.8 L at stake, order due Friday</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:6px;background:#F4F7FB;border:1px solid #DBE4F0;border-radius:14px;padding:20px 22px">
+<p style="font-size:24px;font-weight:600;color:#1D6FD0">4 · What If</p>
+<h3 style="font-size:36px;font-weight:700;line-height:1.2;color:#0B2A5B">Decide</h3>
+<p style="font-size:24px;line-height:1.4;color:#334155">Wait 3 days: 61 % it breaks first</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:6px;background:#FBF0EF;border:2px solid #C4342A;border-radius:14px;padding:20px 22px">
+<p style="font-size:24px;font-weight:600;color:#C4342A">5 · Work Orders · a person</p>
+<h3 style="font-size:36px;font-weight:700;line-height:1.2;color:#0B2A5B">Approve</h3>
+<p style="font-size:24px;line-height:1.4;color:#334155">AI drafts the plan; a named person approves</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:6px;background:#F4F7FB;border:1px solid #DBE4F0;border-radius:14px;padding:20px 22px">
+<p style="font-size:24px;font-weight:600;color:#1D6FD0">6 · Ask Copilot</p>
+<h3 style="font-size:36px;font-weight:700;line-height:1.2;color:#0B2A5B">Ask why</h3>
+<p style="font-size:24px;line-height:1.4;color:#334155">Root cause in plain words, with sources</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:6px;background:#F4F7FB;border:1px solid #DBE4F0;border-radius:14px;padding:20px 22px">
+<p style="font-size:24px;font-weight:600;color:#1D6FD0">7 · OEE</p>
+<h3 style="font-size:36px;font-weight:700;line-height:1.2;color:#0B2A5B">Measure</h3>
+<p style="font-size:24px;line-height:1.4;color:#334155">46 h and Rs 16.2 L recovered</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:6px;background:#F4F7FB;border:1px solid #DBE4F0;border-radius:14px;padding:20px 22px">
+<p style="font-size:24px;font-weight:600;color:#1D6FD0">8 · Trust Audit</p>
+<h3 style="font-size:36px;font-weight:700;line-height:1.2;color:#0B2A5B">Verify</h3>
+<p style="font-size:24px;line-height:1.4;color:#334155">36 of 43 failures caught; every action logged</p>
+</div>
+</div>
+<p style="font-size:24px;line-height:1.4;color:#64748B">Each step gets its own slide in the story that follows, screen by screen.</p>
+<p style="position:absolute;left:96px;bottom:36px;width:1500px;font-size:24px;color:#64748B">Nirantar · the same 8-step tour in the Snowflake app and the public demo · synthetic data</p>
+<p style="position:absolute;right:96px;bottom:36px;width:160px;font-size:24px;color:#64748B;text-align:right">3 / 43</p>
+
+</section>
+
+<section id="architecture" data-transition="fade" style="background:#FFFFFF;color:#334155;font-family:'IBM Plex Sans', Arial, sans-serif;padding:136px 96px 104px;display:flex;flex-direction:column;gap:28px">
+<img src="../submission/assets/tpl_header.jpg" alt="" style="position:absolute;left:0px;top:0px;width:1920px;height:101px;object-fit:cover">
+<img src="../submission/assets/tpl_footer.jpg" alt="" style="position:absolute;left:0px;bottom:0px;width:1920px;height:20px;object-fit:cover">
+<div style="display:flex;flex-direction:column;gap:8px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#1D6FD0">3 · Architecture diagram</p>
+<h2 style="font-size:56px;font-weight:700;line-height:1.15;color:#0B2A5B">Everything runs inside one Snowflake account</h2>
+</div>
+<div style="display:flex;flex-direction:row;gap:48px">
+<img src="../submission/assets/architecture-archify.png" alt="Nirantar architecture: synthetic OT, ERP, CMMS and document sources into RAW, CORE Dynamic Tables, ML.SCORE_LATEST scoring, ranked alerts and an AI-drafted work order released only by APPROVE_WORK_ORDER from a person, logged in APP.ACTION_LOG; the semantic view, Cortex Search and the Cortex Agent; the Streamlit Command Center, CoWork and a CoCo Automation; CoCo and 8 skills built it" style="width:1300px;height:628px;object-fit:contain;border:1px solid #DBE4F0;border-radius:12px;background:#F4F5F7">
+<div style="flex:1;display:flex;flex-direction:column;gap:20px">
+<div style="display:flex;flex-direction:column;gap:4px">
+<p style="font-size:24px;font-weight:700;color:#0B2A5B">Data sources</p>
+<p style="font-size:24px;line-height:1.4;color:#334155">Structured: OT telemetry (315 tags, 48 machines), ERP stock, lots and orders, CMMS work orders. Unstructured: 34 manuals, SOPs and Hinglish notes.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:4px">
+<p style="font-size:24px;font-weight:700;color:#0B2A5B">CoCo skills</p>
+<p style="font-size:24px;line-height:1.4;color:#334155">8 skills build and run it; alert-triage → rca → work-order chain into one workflow.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:4px">
+<p style="font-size:24px;font-weight:700;color:#0B2A5B">Modular</p>
+<p style="font-size:24px;line-height:1.4;color:#334155">Each layer is a governed Snowflake object: swap the synthetic RAW tables for historian, SAP PM or Maximo feeds.</p>
+</div>
+</div>
+</div>
+<p style="position:absolute;left:96px;bottom:36px;width:1500px;font-size:24px;color:#64748B">Diagram made with archify · explorable version in the repository: docs/diagrams/archify/</p>
+<p style="position:absolute;right:96px;bottom:36px;width:160px;font-size:24px;color:#64748B;text-align:right">4 / 43</p>
+
+</section>
+
+<section id="coco" data-transition="fade" style="background:#FFFFFF;color:#334155;font-family:'IBM Plex Sans', Arial, sans-serif;padding:136px 96px 104px;display:flex;flex-direction:column;gap:28px">
+<img src="../submission/assets/tpl_header.jpg" alt="" style="position:absolute;left:0px;top:0px;width:1920px;height:101px;object-fit:cover">
+<img src="../submission/assets/tpl_footer.jpg" alt="" style="position:absolute;left:0px;bottom:0px;width:1920px;height:20px;object-fit:cover">
+<div style="display:flex;flex-direction:column;gap:8px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#1D6FD0">4 · Built with CoCo</p>
+<h2 style="font-size:56px;font-weight:700;line-height:1.15;color:#0B2A5B">CoCo planned, built, ran and tested it</h2>
+</div>
+<div style="display:grid;grid-template-columns:414px 414px 414px 414px;gap:24px">
+<div style="display:flex;flex-direction:column;gap:12px;background:#F4F7FB;border:1px solid #DBE4F0;border-radius:14px;padding:24px">
+<p style="font-size:24px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#1D6FD0">1 · Planning</p>
+<p style="font-size:30px;line-height:1.35;color:#0B2A5B">Problem framing, the ontology, the workflow and a 437-line build plan</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px;background:#F4F7FB;border:1px solid #DBE4F0;border-radius:14px;padding:24px">
+<p style="font-size:24px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#1D6FD0">2 · Development</p>
+<p style="font-size:30px;line-height:1.35;color:#0B2A5B">Synthetic plant, Dynamic Tables, scoring, semantic view, search, agent and app</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px;background:#F4F7FB;border:1px solid #DBE4F0;border-radius:14px;padding:24px">
+<p style="font-size:24px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#1D6FD0">3 · Execution</p>
+<p style="font-size:30px;line-height:1.35;color:#0B2A5B">Serverless tasks and alert, the hero run, a 07:00 IST morning brief</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px;background:#F4F7FB;border:1px solid #DBE4F0;border-radius:14px;padding:24px">
+<p style="font-size:24px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#1D6FD0">4 · Testing</p>
+<p style="font-size:30px;line-height:1.35;color:#0B2A5B">Data, physics, guardrail and edge-case tests, plus an agent golden set</p>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px;background:#0B2A5B;border-radius:14px;padding:28px 32px">
+<p style="font-size:30px;line-height:1.35;color:#F4F7FB">8 reusable skills + plugin.json. Triage → root cause → work order chain into one workflow, and the CoCo CLI installs all 8 from GitHub:</p>
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:24px;color:#9CC3FF">cortex skill add https://github.com/paras-lehana/nirantar</p>
+</div>
+<p style="font-size:24px;line-height:1.4;color:#64748B">The next six slides show each step in CoCo itself: 20+ chats in Snowsight, plus the CoCo CLI.</p>
+<p style="position:absolute;left:96px;bottom:36px;width:1500px;font-size:24px;color:#64748B">Evidence: docs/evidence/ (P, D, E, T, S, X) · docs/coco-journal.md</p>
+<p style="position:absolute;right:96px;bottom:36px;width:160px;font-size:24px;color:#64748B;text-align:right">5 / 43</p>
+
+</section>
+
+<section id="coco-plan" data-transition="fade" style="background:#FFFFFF;color:#334155;font-family:'IBM Plex Sans', Arial, sans-serif;padding:136px 96px 104px;display:flex;flex-direction:column;gap:20px">
+<img src="../submission/assets/tpl_header.jpg" alt="" style="position:absolute;left:0px;top:0px;width:1920px;height:101px;object-fit:cover">
+<img src="../submission/assets/tpl_footer.jpg" alt="" style="position:absolute;left:0px;bottom:0px;width:1920px;height:20px;object-fit:cover">
+<div style="display:flex;flex-direction:column;gap:8px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#1D6FD0">Built with CoCo · 1 Planning</p>
+<h2 style="font-size:40px;font-weight:700;line-height:1.2;color:#0B2A5B">CoCo framed the problem and wrote the build plan</h2>
+<p style="font-size:24px;line-height:1.45;color:#334155">In the CoCo panel in Snowsight, CoCo wrote coco-planning.md: the problem framing, the ontology as an ER diagram, the workflow, a 437-line build plan and the risks, then logged the step in its journal table.</p>
+</div>
+<img src="../screenshots/03-coco-planning-chat.jpg" alt="CoCo in Snowsight writing the planning document: framing, ontology ER diagram, workflow, build plan and risks" style="width:1728px;height:560px;object-fit:contain;border:1px solid #DBE4F0;border-radius:12px;background:#F4F7FB">
+<p style="font-size:24px;line-height:1.4;color:#1D6FD0"><b>Notice:</b> planning happened inside CoCo, before any object was built.</p>
+<p style="position:absolute;left:96px;bottom:36px;width:1500px;font-size:24px;color:#64748B">Screenshot 03 · CoCo in Snowsight · evidence docs/evidence/P/01</p>
+<p style="position:absolute;right:96px;bottom:36px;width:160px;font-size:24px;color:#64748B;text-align:right">6 / 43</p>
+
+</section>
+
+<section id="coco-skills" data-transition="fade" style="background:#FFFFFF;color:#334155;font-family:'IBM Plex Sans', Arial, sans-serif;padding:136px 96px 104px;display:flex;flex-direction:column;gap:20px">
+<img src="../submission/assets/tpl_header.jpg" alt="" style="position:absolute;left:0px;top:0px;width:1920px;height:101px;object-fit:cover">
+<img src="../submission/assets/tpl_footer.jpg" alt="" style="position:absolute;left:0px;bottom:0px;width:1920px;height:20px;object-fit:cover">
+<div style="display:flex;flex-direction:column;gap:8px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#1D6FD0">Built with CoCo · Setup</p>
+<h2 style="font-size:40px;font-weight:700;line-height:1.2;color:#0B2A5B">CoCo installed our 8 reusable skills in the workspace</h2>
+<p style="font-size:24px;line-height:1.45;color:#334155">CoCo organised the Snowsight workspace: the AGENTS.md rules it follows, and the 8 nirantar-* skills under .snowflake/cortex/skills, so every later chat could call them by name.</p>
+</div>
+<img src="../screenshots/04-coco-skills-installed.jpg" alt="CoCo organising the workspace: the AGENTS.md rules plus the table of 8 installed nirantar skills" style="width:1728px;height:560px;object-fit:contain;border:1px solid #DBE4F0;border-radius:12px;background:#F4F7FB">
+<p style="font-size:24px;line-height:1.4;color:#1D6FD0"><b>Notice:</b> synthetic-plant, ontology-semantic-view, command-center, alert-triage, rca, work-order, reliability-brief, coco-evidence.</p>
+<p style="position:absolute;left:96px;bottom:36px;width:1500px;font-size:24px;color:#64748B">Screenshot 04 · CoCo in Snowsight · evidence docs/evidence/S/00</p>
+<p style="position:absolute;right:96px;bottom:36px;width:160px;font-size:24px;color:#64748B;text-align:right">7 / 43</p>
+
+</section>
+
+<section id="coco-search" data-transition="fade" style="background:#FFFFFF;color:#334155;font-family:'IBM Plex Sans', Arial, sans-serif;padding:136px 96px 104px;display:flex;flex-direction:column;gap:20px">
+<img src="../submission/assets/tpl_header.jpg" alt="" style="position:absolute;left:0px;top:0px;width:1920px;height:101px;object-fit:cover">
+<img src="../submission/assets/tpl_footer.jpg" alt="" style="position:absolute;left:0px;bottom:0px;width:1920px;height:20px;object-fit:cover">
+<div style="display:flex;flex-direction:column;gap:8px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#1D6FD0">Built with CoCo · 2 Development</p>
+<h2 style="font-size:40px;font-weight:700;line-height:1.2;color:#0B2A5B">CoCo built Cortex Search over 34 maintenance documents</h2>
+<p style="font-size:24px;line-height:1.45;color:#334155">CoCo created the Cortex Search service CSS_MAINT_KNOWLEDGE over manuals, SOPs and technician notes, then tested it with five questions, one of them in Hinglish.</p>
+</div>
+<img src="../screenshots/05-coco-cortex-search-built.jpg" alt="CoCo creating the Cortex Search service CSS_MAINT_KNOWLEDGE and testing five queries, one in Hinglish" style="width:1728px;height:560px;object-fit:contain;border:1px solid #DBE4F0;border-radius:12px;background:#F4F7FB">
+<p style="font-size:24px;line-height:1.4;color:#1D6FD0"><b>Notice:</b> other development chats built the semantic view, scoring, agent tools and the Streamlit app.</p>
+<p style="position:absolute;left:96px;bottom:36px;width:1500px;font-size:24px;color:#64748B">Screenshot 05 · CoCo in Snowsight · evidence docs/evidence/D/12</p>
+<p style="position:absolute;right:96px;bottom:36px;width:160px;font-size:24px;color:#64748B;text-align:right">8 / 43</p>
+
+</section>
+
+<section id="coco-hero" data-transition="fade" style="background:#FFFFFF;color:#334155;font-family:'IBM Plex Sans', Arial, sans-serif;padding:136px 96px 104px;display:flex;flex-direction:column;gap:20px">
+<img src="../submission/assets/tpl_header.jpg" alt="" style="position:absolute;left:0px;top:0px;width:1920px;height:101px;object-fit:cover">
+<img src="../submission/assets/tpl_footer.jpg" alt="" style="position:absolute;left:0px;bottom:0px;width:1920px;height:20px;object-fit:cover">
+<div style="display:flex;flex-direction:column;gap:8px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#1D6FD0">Built with CoCo · 3 Execution</p>
+<h2 style="font-size:40px;font-weight:700;line-height:1.2;color:#0B2A5B">CoCo ran the hero scenario and scheduled the morning brief</h2>
+<p style="font-size:24px;line-height:1.45;color:#334155">CoCo ran VMC-204 end to end: risk 0.99, remaining life 66.8 h, ISO zone C, a back-test of 83.7 % caught with a 36 h median lead, an auto-drafted work order, and a CoCo Automation for the 07:00 IST reliability brief.</p>
+</div>
+<img src="../screenshots/06-coco-hero-run-and-automation.jpg" alt="CoCo running the hero scenario: risk 0.99, remaining life 66.8 hours, zone C, back-test 83.7 percent, an auto-drafted work order and the morning-brief Automation" style="width:1728px;height:560px;object-fit:contain;border:1px solid #DBE4F0;border-radius:12px;background:#F4F7FB">
+<p style="font-size:24px;line-height:1.4;color:#1D6FD0"><b>Notice:</b> serverless tasks and a serverless alert run it on a schedule, with nobody at the keyboard.</p>
+<p style="position:absolute;left:96px;bottom:36px;width:1500px;font-size:24px;color:#64748B">Screenshot 06 · CoCo in Snowsight · evidence docs/evidence/E/01</p>
+<p style="position:absolute;right:96px;bottom:36px;width:160px;font-size:24px;color:#64748B;text-align:right">9 / 43</p>
+
+</section>
+
+<section id="coco-tests" data-transition="fade" style="background:#FFFFFF;color:#334155;font-family:'IBM Plex Sans', Arial, sans-serif;padding:136px 96px 104px;display:flex;flex-direction:column;gap:20px">
+<img src="../submission/assets/tpl_header.jpg" alt="" style="position:absolute;left:0px;top:0px;width:1920px;height:101px;object-fit:cover">
+<img src="../submission/assets/tpl_footer.jpg" alt="" style="position:absolute;left:0px;bottom:0px;width:1920px;height:20px;object-fit:cover">
+<div style="display:flex;flex-direction:column;gap:8px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#1D6FD0">Built with CoCo · 4 Testing</p>
+<h2 style="font-size:40px;font-weight:700;line-height:1.2;color:#0B2A5B">CoCo wrote and ran the test suite</h2>
+<p style="font-size:24px;line-height:1.45;color:#334155">Data, physics, pattern, guardrail, ML and edge-case tests (sensor fault, approval bypass, stale data) pass. The one test that did not, the agent-eval wiring, is reported as it is.</p>
+</div>
+<img src="../screenshots/07-coco-test-suite.jpg" alt="CoCo-written test suite results: data, physics, pattern, guardrail, ML and edge-case tests" style="width:1728px;height:560px;object-fit:contain;border:1px solid #DBE4F0;border-radius:12px;background:#F4F7FB">
+<p style="font-size:24px;line-height:1.4;color:#1D6FD0"><b>Notice:</b> the guardrail tests try to skip the approval and to treat a frozen sensor as a failure; both are blocked.</p>
+<p style="position:absolute;left:96px;bottom:36px;width:1500px;font-size:24px;color:#64748B">Screenshot 07 · CoCo in Snowsight · evidence docs/evidence/T/01</p>
+<p style="position:absolute;right:96px;bottom:36px;width:160px;font-size:24px;color:#64748B;text-align:right">10 / 43</p>
+
+</section>
+
+<section id="coco-cli" data-transition="fade" style="background:#FFFFFF;color:#334155;font-family:'IBM Plex Sans', Arial, sans-serif;padding:136px 96px 104px;display:flex;flex-direction:column;gap:20px">
+<img src="../submission/assets/tpl_header.jpg" alt="" style="position:absolute;left:0px;top:0px;width:1920px;height:101px;object-fit:cover">
+<img src="../submission/assets/tpl_footer.jpg" alt="" style="position:absolute;left:0px;bottom:0px;width:1920px;height:20px;object-fit:cover">
+<div style="display:flex;flex-direction:column;gap:8px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#1D6FD0">Built with CoCo · Sharing</p>
+<h2 style="font-size:40px;font-weight:700;line-height:1.2;color:#0B2A5B">The CoCo CLI installs all 8 skills from GitHub</h2>
+<p style="font-size:24px;line-height:1.45;color:#334155">On our server, CoCo CLI v1.1.104 adds the public repository as a skill source and lists exactly the 8 nirantar-* skills. Anyone can do the same with one command.</p>
+</div>
+<img src="../screenshots/34-coco-cli-installs-skills.png" alt="CoCo CLI v1.1.104 terminal: cortex skill add from the public repository, then cortex skill list showing exactly the eight nirantar skills" style="width:1728px;height:560px;object-fit:contain;border:1px solid #DBE4F0;border-radius:12px;background:#0D1117">
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:24px;line-height:1.4;color:#1D6FD0">cortex skill add https://github.com/paras-lehana/nirantar</p>
+<p style="position:absolute;left:96px;bottom:36px;width:1500px;font-size:24px;color:#64748B">Screenshot 34 · CoCo CLI v1.1.104 · evidence docs/evidence/X/02</p>
+<p style="position:absolute;right:96px;bottom:36px;width:160px;font-size:24px;color:#64748B;text-align:right">11 / 43</p>
+
+</section>
+
+<section id="sf-app" data-transition="fade" style="background:#FFFFFF;color:#334155;font-family:'IBM Plex Sans', Arial, sans-serif;padding:136px 96px 104px;display:flex;flex-direction:row;gap:48px;align-items:start">
+<img src="../submission/assets/tpl_header.jpg" alt="" style="position:absolute;left:0px;top:0px;width:1920px;height:101px;object-fit:cover">
+<img src="../submission/assets/tpl_footer.jpg" alt="" style="position:absolute;left:0px;bottom:0px;width:1920px;height:20px;object-fit:cover">
+<img src="../screenshots/08-snowflake-streamlit-plant-map.jpg" alt="The Streamlit app inside Snowflake: the plant digital twin with VMC-204 in red and Rs 16.8 lakh of money at risk" style="width:860px;height:840px;object-fit:contain;border:1px solid #DBE4F0;border-radius:12px;background:#F4F7FB">
+<div style="flex:1;display:flex;flex-direction:column;gap:20px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#1D6FD0">Live in Snowflake · 1 of 2</p>
+<h2 style="font-size:40px;font-weight:700;line-height:1.2;color:#0B2A5B">The Command Center runs as a Streamlit app inside Snowflake</h2>
+<p style="font-size:24px;line-height:1.45;color:#334155">Streamlit 1.46.1 on the warehouse runtime, in our own Snowflake account. The plant digital twin shows VMC-204 in red and Rs 16.8 L of money at risk.</p>
+<div style="display:flex;flex-direction:column;gap:10px;border-left:4px solid #1D6FD0;padding:0px 0px 0px 16px">
+<p style="font-size:24px;font-weight:700;color:#0B2A5B">Notice</p>
+<p style="font-size:24px;line-height:1.4;color:#334155">48 machines, 315 sensor tags and 6.8 million readings behind one screen</p>
+<p style="font-size:24px;line-height:1.4;color:#334155">The same numbers as the public demo that follows</p>
+</div>
+<p style="font-size:24px;line-height:1.4;color:#64748B">Screenshot from 05 Oct; the app later gained the 8-step guided tour.</p>
+</div>
+<p style="position:absolute;left:96px;bottom:36px;width:1500px;font-size:24px;color:#64748B">Screenshot 08 · Snowsight, NIRANTAR.APP.NIRANTAR_COMMAND_CENTER</p>
+<p style="position:absolute;right:96px;bottom:36px;width:160px;font-size:24px;color:#64748B;text-align:right">12 / 43</p>
+
+</section>
+
+<section id="sf-wo" data-transition="fade" style="background:#FFFFFF;color:#334155;font-family:'IBM Plex Sans', Arial, sans-serif;padding:136px 96px 104px;display:flex;flex-direction:row;gap:48px;align-items:start">
+<img src="../submission/assets/tpl_header.jpg" alt="" style="position:absolute;left:0px;top:0px;width:1920px;height:101px;object-fit:cover">
+<img src="../submission/assets/tpl_footer.jpg" alt="" style="position:absolute;left:0px;bottom:0px;width:1920px;height:20px;object-fit:cover">
+<img src="../screenshots/09-snowflake-streamlit-work-orders.jpg" alt="The Snowflake app's work-order page: the agent-drafted plan for VMC-204 with the SKF 7014 bearing set from Chennai to Pune, ETA 48 hours, lock-out steps, Rs 61,000, Approve and Reject" style="width:860px;height:840px;object-fit:contain;border:1px solid #DBE4F0;border-radius:12px;background:#F4F7FB">
+<div style="flex:1;display:flex;flex-direction:column;gap:20px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#1D6FD0">Live in Snowflake · 2 of 2</p>
+<h2 style="font-size:40px;font-weight:700;line-height:1.2;color:#0B2A5B">The agent drafts the work order inside Snowflake</h2>
+<p style="font-size:24px;line-height:1.45;color:#334155">The work-order page shows the agent-drafted plan for VMC-204: the SKF 7014 bearing set moves from Chennai to Pune (about 48 h), with lock-out steps, a cost of Rs 61,000, and Approve or Reject.</p>
+<div style="display:flex;flex-direction:column;gap:10px;border-left:4px solid #1D6FD0;padding:0px 0px 0px 16px">
+<p style="font-size:24px;font-weight:700;color:#0B2A5B">Notice</p>
+<p style="font-size:24px;line-height:1.4;color:#334155">Approve calls APPROVE_WORK_ORDER with the person's name</p>
+<p style="font-size:24px;line-height:1.4;color:#334155">Every agent action and every approval lands in APP.ACTION_LOG</p>
+</div>
+<p style="font-size:24px;line-height:1.4;color:#64748B">Screenshot from 05 Oct; the app later gained the 8-step guided tour.</p>
+</div>
+<p style="position:absolute;left:96px;bottom:36px;width:1500px;font-size:24px;color:#64748B">Screenshot 09 · Snowsight, Work Orders page of the Command Center</p>
+<p style="position:absolute;right:96px;bottom:36px;width:160px;font-size:24px;color:#64748B;text-align:right">13 / 43</p>
+
+</section>
+
+<section id="s-welcome" data-transition="fade" style="background:#FFFFFF;color:#334155;font-family:'IBM Plex Sans', Arial, sans-serif;padding:136px 96px 104px;display:flex;flex-direction:row;gap:48px;align-items:start">
+<img src="../submission/assets/tpl_header.jpg" alt="" style="position:absolute;left:0px;top:0px;width:1920px;height:101px;object-fit:cover">
+<img src="../submission/assets/tpl_footer.jpg" alt="" style="position:absolute;left:0px;bottom:0px;width:1920px;height:20px;object-fit:cover">
+<img src="../screenshots/01-demo-welcome-dialog.jpg" alt="The demo's welcome dialog: the problem, today's case for VMC-204 with about 66 hours to failure and Rs 16.8 lakh at stake, and a Start the 3-minute tour button" style="width:1185px;height:840px;object-fit:contain;border:1px solid #DBE4F0;border-radius:12px;background:#F4F7FB">
+<div style="flex:1;display:flex;flex-direction:column;gap:20px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#1D6FD0">The story · 1 of 17</p>
+<h2 style="font-size:40px;font-weight:700;line-height:1.2;color:#0B2A5B">Today's case, in plain words</h2>
+<p style="font-size:24px;line-height:1.45;color:#334155">The public demo opens with the problem and today's case: VMC-204's spindle bearing is wearing out, about 66 hours are left, Rs 16.8 L is at stake, and the repair needs a person's approval.</p>
+<div style="display:flex;flex-direction:column;gap:10px;border-left:4px solid #1D6FD0;padding:0px 0px 0px 16px">
+<p style="font-size:24px;font-weight:700;color:#0B2A5B">Notice</p>
+<p style="font-size:24px;line-height:1.4;color:#334155">No login; runs in any browser on synthetic data</p>
+<p style="font-size:24px;line-height:1.4;color:#334155">One button starts the 3-minute guided tour</p>
+</div>
+</div>
+<p style="position:absolute;left:96px;bottom:36px;width:1500px;font-size:24px;color:#64748B">Screenshot 01 · public demo · paras-lehana.github.io/nirantar/app</p>
+<p style="position:absolute;right:96px;bottom:36px;width:160px;font-size:24px;color:#64748B;text-align:right">14 / 43</p>
+
+</section>
+
+<section id="s-home" data-transition="fade" style="background:#FFFFFF;color:#334155;font-family:'IBM Plex Sans', Arial, sans-serif;padding:136px 96px 104px;display:flex;flex-direction:row;gap:48px;align-items:start">
+<img src="../submission/assets/tpl_header.jpg" alt="" style="position:absolute;left:0px;top:0px;width:1920px;height:101px;object-fit:cover">
+<img src="../submission/assets/tpl_footer.jpg" alt="" style="position:absolute;left:0px;bottom:0px;width:1920px;height:20px;object-fit:cover">
+<img src="../slides/img/home.jpg" alt="Demo home: the headline Catch machine failures before they stop the line, the P-F curve, the Right now headline, the to-do list and the attention ranking" style="width:1185px;height:840px;object-fit:contain;border:1px solid #DBE4F0;border-radius:12px;background:#F4F7FB">
+<div style="flex:1;display:flex;flex-direction:column;gap:20px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#1D6FD0">The story · 2 of 17</p>
+<h2 style="font-size:40px;font-weight:700;line-height:1.2;color:#0B2A5B">Home: what needs attention right now</h2>
+<p style="font-size:24px;line-height:1.45;color:#334155">One headline says what to do now. The P-F curve shows where VMC-204 sits between the first sign of wear and the failure, and the attention ranking puts it first.</p>
+<div style="display:flex;flex-direction:column;gap:10px;border-left:4px solid #1D6FD0;padding:0px 0px 0px 16px">
+<p style="font-size:24px;font-weight:700;color:#0B2A5B">Notice</p>
+<p style="font-size:24px;line-height:1.4;color:#334155">Every number has a plain meaning next to it</p>
+<p style="font-size:24px;line-height:1.4;color:#334155">AI work and human decisions are labelled apart</p>
+</div>
+</div>
+<p style="position:absolute;left:96px;bottom:36px;width:1500px;font-size:24px;color:#64748B">Screenshot 02 · public demo · Home</p>
+<p style="position:absolute;right:96px;bottom:36px;width:160px;font-size:24px;color:#64748B;text-align:right">15 / 43</p>
+
+</section>
+
+<section id="s-map" data-transition="fade" style="background:#FFFFFF;color:#334155;font-family:'IBM Plex Sans', Arial, sans-serif;padding:136px 96px 104px;display:flex;flex-direction:row;gap:48px;align-items:start">
+<img src="../submission/assets/tpl_header.jpg" alt="" style="position:absolute;left:0px;top:0px;width:1920px;height:101px;object-fit:cover">
+<img src="../submission/assets/tpl_footer.jpg" alt="" style="position:absolute;left:0px;bottom:0px;width:1920px;height:20px;object-fit:cover">
+<img src="../slides/img/plant-map.jpg" alt="Plant Map: the case-file timeline, 1 of 24 machines needs attention, VMC-204 red with a ring and every other machine grey" style="width:1185px;height:840px;object-fit:contain;border:1px solid #DBE4F0;border-radius:12px;background:#F4F7FB">
+<div style="flex:1;display:flex;flex-direction:column;gap:20px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#1D6FD0">The story · 3 of 17 · Spot</p>
+<h2 style="font-size:40px;font-weight:700;line-height:1.2;color:#0B2A5B">One red machine out of 24</h2>
+<p style="font-size:24px;line-height:1.45;color:#334155">The Plant Map draws Pune's lines. VMC-204 is red with a ring; every healthy machine stays grey, so nobody has to scan a wall of colours.</p>
+<div style="display:flex;flex-direction:column;gap:10px;border-left:4px solid #1D6FD0;padding:0px 0px 0px 16px">
+<p style="font-size:24px;font-weight:700;color:#0B2A5B">Notice</p>
+<p style="font-size:24px;line-height:1.4;color:#334155">The case file: wear started, alert raised, AI drafted the repair, waiting for you</p>
+<p style="font-size:24px;line-height:1.4;color:#334155">Grey means normal, colour means act</p>
+</div>
+</div>
+<p style="position:absolute;left:96px;bottom:36px;width:1500px;font-size:24px;color:#64748B">Screenshot 10 · public demo · 1 Plant Map</p>
+<p style="position:absolute;right:96px;bottom:36px;width:160px;font-size:24px;color:#64748B;text-align:right">16 / 43</p>
+
+</section>
+
+<section id="s-machine" data-transition="fade" style="background:#FFFFFF;color:#334155;font-family:'IBM Plex Sans', Arial, sans-serif;padding:136px 96px 104px;display:flex;flex-direction:row;gap:48px;align-items:start">
+<img src="../submission/assets/tpl_header.jpg" alt="" style="position:absolute;left:0px;top:0px;width:1920px;height:101px;object-fit:cover">
+<img src="../submission/assets/tpl_footer.jpg" alt="" style="position:absolute;left:0px;bottom:0px;width:1920px;height:20px;object-fit:cover">
+<img src="../slides/img/case-machine-detail.jpg" alt="Machine Detail for VMC-204: vibration 4 times its level three days ago, alarm crossed, bearing temperature up 18 degrees, 99 percent failure confidence, the money, time and decision card" style="width:1185px;height:840px;object-fit:contain;border:1px solid #DBE4F0;border-radius:12px;background:#F4F7FB">
+<div style="flex:1;display:flex;flex-direction:column;gap:20px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#1D6FD0">The story · 4 of 17 · Understand</p>
+<h2 style="font-size:40px;font-weight:700;line-height:1.2;color:#0B2A5B">Bearing wear, about 66 hours left</h2>
+<p style="font-size:24px;line-height:1.45;color:#334155">Machine Detail explains the score in engineering terms: vibration 4× its level three days ago and past the alarm line, bearing temperature up 18 °C, 99 % failure risk within 72 h, ISO 10816 zone C.</p>
+<div style="display:flex;flex-direction:column;gap:10px;border-left:4px solid #1D6FD0;padding:0px 0px 0px 16px">
+<p style="font-size:24px;font-weight:700;color:#0B2A5B">Notice</p>
+<p style="font-size:24px;line-height:1.4;color:#334155">Time to failure as a range: 36 to 96 h</p>
+<p style="font-size:24px;line-height:1.4;color:#334155">Money, time and the decision on one card</p>
+</div>
+</div>
+<p style="position:absolute;left:96px;bottom:36px;width:1500px;font-size:24px;color:#64748B">Screenshot 11 · public demo · 2 Machine Detail</p>
+<p style="position:absolute;right:96px;bottom:36px;width:160px;font-size:24px;color:#64748B;text-align:right">17 / 43</p>
+
+</section>
+
+<section id="s-timeline" data-transition="fade" style="background:#FFFFFF;color:#334155;font-family:'IBM Plex Sans', Arial, sans-serif;padding:136px 96px 104px;display:flex;flex-direction:row;gap:48px;align-items:start">
+<img src="../submission/assets/tpl_header.jpg" alt="" style="position:absolute;left:0px;top:0px;width:1920px;height:101px;object-fit:cover">
+<img src="../submission/assets/tpl_footer.jpg" alt="" style="position:absolute;left:0px;bottom:0px;width:1920px;height:20px;object-fit:cover">
+<img src="../screenshots/12-demo-it-ot-timeline.jpg" alt="IT + OT on one timeline for VMC-204: live readings, vibration, temperature and RPM lanes with alarm lines and forecast, the maintenance, ERP and Nirantar lanes, and a What lines up paragraph" style="width:1185px;height:840px;object-fit:contain;border:1px solid #DBE4F0;border-radius:12px;background:#F4F7FB">
+<div style="flex:1;display:flex;flex-direction:column;gap:20px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#1D6FD0">The story · 5 of 17 · Brief ①</p>
+<h2 style="font-size:40px;font-weight:700;line-height:1.2;color:#0B2A5B">Sensors, ERP and maintenance on one timeline</h2>
+<p style="font-size:24px;line-height:1.45;color:#334155">Vibration, bearing temperature and spindle speed share one time axis with the repair history, the customer order, the spare-part stock and Nirantar's own actions.</p>
+<div style="display:flex;flex-direction:column;gap:10px;border-left:4px solid #1D6FD0;padding:0px 0px 0px 16px">
+<p style="font-size:24px;font-weight:700;color:#0B2A5B">What lines up</p>
+<p style="font-size:24px;line-height:1.4;color:#334155">The alert came 19 h before vibration crossed the alarm line</p>
+<p style="font-size:24px;line-height:1.4;color:#334155">Speed held at 12,000 rpm: wear, not overload</p>
+<p style="font-size:24px;line-height:1.4;color:#334155">Order due Friday; Pune has no bearing, Chennai has 2</p>
+</div>
+</div>
+<p style="position:absolute;left:96px;bottom:36px;width:1500px;font-size:24px;color:#64748B">Screenshot 12 · public demo · Machine Detail, IT + OT on one timeline</p>
+<p style="position:absolute;right:96px;bottom:36px;width:160px;font-size:24px;color:#64748B;text-align:right">18 / 43</p>
+
+</section>
+
+<section id="s-spectrum" data-transition="fade" style="background:#FFFFFF;color:#334155;font-family:'IBM Plex Sans', Arial, sans-serif;padding:136px 96px 104px;display:flex;flex-direction:column;gap:20px">
+<img src="../submission/assets/tpl_header.jpg" alt="" style="position:absolute;left:0px;top:0px;width:1920px;height:101px;object-fit:cover">
+<img src="../submission/assets/tpl_footer.jpg" alt="" style="position:absolute;left:0px;bottom:0px;width:1920px;height:20px;object-fit:cover">
+<div style="display:flex;flex-direction:column;gap:8px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#1D6FD0">The story · 6 of 17 · Brief ②</p>
+<h2 style="font-size:40px;font-weight:700;line-height:1.2;color:#0B2A5B">The spectrum points at the bearing</h2>
+<p style="font-size:24px;line-height:1.45;color:#334155">The vibration spectrum peaks at the bearing's outer-race defect frequency (BPFO, about 1,416 Hz), 18× the noise floor. Every bearing defect frequency is computed from the bearing's geometry.</p>
+</div>
+<img src="../screenshots/13-demo-machine-spectrum.jpg" alt="Vibration spectrum for VMC-204: peaks at the bearing outer-race defect frequency BPFO, about 1,416 Hz, 18 times the noise floor, with all bearing defect frequencies marked" style="width:1728px;height:560px;object-fit:contain;border:1px solid #DBE4F0;border-radius:12px;background:#F4F7FB">
+<p style="font-size:24px;line-height:1.4;color:#1D6FD0"><b>Notice:</b> the prediction explains itself with physics, so a maintenance engineer can check it.</p>
+<p style="position:absolute;left:96px;bottom:36px;width:1500px;font-size:24px;color:#64748B">Screenshot 13 · public demo · Machine Detail, which part is shaking</p>
+<p style="position:absolute;right:96px;bottom:36px;width:160px;font-size:24px;color:#64748B;text-align:right">19 / 43</p>
+
+</section>
+
+<section id="s-triage" data-transition="fade" style="background:#FFFFFF;color:#334155;font-family:'IBM Plex Sans', Arial, sans-serif;padding:136px 96px 104px;display:flex;flex-direction:row;gap:48px;align-items:start">
+<img src="../submission/assets/tpl_header.jpg" alt="" style="position:absolute;left:0px;top:0px;width:1920px;height:101px;object-fit:cover">
+<img src="../submission/assets/tpl_footer.jpg" alt="" style="position:absolute;left:0px;bottom:0px;width:1920px;height:20px;object-fit:cover">
+<img src="../slides/img/triage-alerts.jpg" alt="Alert Triage: VMC-204 first with 99 percent failure confidence, Rs 16.8 lakh at stake and the Maratha Motors order due Friday, attention score High 0.87, priority P1" style="width:1185px;height:840px;object-fit:contain;border:1px solid #DBE4F0;border-radius:12px;background:#F4F7FB">
+<div style="flex:1;display:flex;flex-direction:column;gap:20px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#1D6FD0">The story · 7 of 17 · Prioritise</p>
+<h2 style="font-size:40px;font-weight:700;line-height:1.2;color:#0B2A5B">Money and deadlines are in the score</h2>
+<p style="font-size:24px;line-height:1.45;color:#334155">Alert Triage ranks by failure risk × criticality × rupees at stake × order deadline. VMC-204 scores High 0.87, P1: 99 % risk, Rs 16.8 L and a Maratha Motors order due Friday.</p>
+<div style="display:flex;flex-direction:column;gap:10px;border-left:4px solid #1D6FD0;padding:0px 0px 0px 16px">
+<p style="font-size:24px;font-weight:700;color:#0B2A5B">Notice</p>
+<p style="font-size:24px;line-height:1.4;color:#334155">Acknowledge, shelve or escalate in one click</p>
+<p style="font-size:24px;line-height:1.4;color:#334155">Every click is logged with a name</p>
+</div>
+</div>
+<p style="position:absolute;left:96px;bottom:36px;width:1500px;font-size:24px;color:#64748B">Screenshot 14 · public demo · 3 Alert Triage</p>
+<p style="position:absolute;right:96px;bottom:36px;width:160px;font-size:24px;color:#64748B;text-align:right">20 / 43</p>
+
+</section>
+
+<section id="s-whatif" data-transition="fade" style="background:#FFFFFF;color:#334155;font-family:'IBM Plex Sans', Arial, sans-serif;padding:136px 96px 104px;display:flex;flex-direction:row;gap:48px;align-items:start">
+<img src="../submission/assets/tpl_header.jpg" alt="" style="position:absolute;left:0px;top:0px;width:1920px;height:101px;object-fit:cover">
+<img src="../submission/assets/tpl_footer.jpg" alt="" style="position:absolute;left:0px;bottom:0px;width:1920px;height:20px;object-fit:cover">
+<img src="../slides/img/decide-what-if.jpg" alt="What If: waiting 3 days gives a 61 percent chance of failure first and an expected loss of Rs 10.2 lakh against a Rs 61,000 planned repair" style="width:1185px;height:840px;object-fit:contain;border:1px solid #DBE4F0;border-radius:12px;background:#F4F7FB">
+<div style="flex:1;display:flex;flex-direction:column;gap:20px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#1D6FD0">The story · 8 of 17 · Decide</p>
+<h2 style="font-size:40px;font-weight:700;line-height:1.2;color:#0B2A5B">The cost of waiting, in rupees</h2>
+<p style="font-size:24px;line-height:1.45;color:#334155">What If turns the time-to-failure range into odds. Waiting three days means a 61 % chance it breaks first and an expected loss of Rs 10.2 L, against a Rs 61,000 planned repair.</p>
+<div style="display:flex;flex-direction:column;gap:10px;border-left:4px solid #1D6FD0;padding:0px 0px 0px 16px">
+<p style="font-size:24px;font-weight:700;color:#0B2A5B">Notice</p>
+<p style="font-size:24px;line-height:1.4;color:#334155">Drag the wait to 5 days: 98 %</p>
+<p style="font-size:24px;line-height:1.4;color:#334155">The headline turns to "Fix it now"</p>
+</div>
+</div>
+<p style="position:absolute;left:96px;bottom:36px;width:1500px;font-size:24px;color:#64748B">Screenshot 15 · public demo · 4 What If</p>
+<p style="position:absolute;right:96px;bottom:36px;width:160px;font-size:24px;color:#64748B;text-align:right">21 / 43</p>
+
+</section>
+
+<section id="s-plan" data-transition="fade" style="background:#FFFFFF;color:#334155;font-family:'IBM Plex Sans', Arial, sans-serif;padding:136px 96px 104px;display:flex;flex-direction:row;gap:48px;align-items:start">
+<img src="../submission/assets/tpl_header.jpg" alt="" style="position:absolute;left:0px;top:0px;width:1920px;height:101px;object-fit:cover">
+<img src="../submission/assets/tpl_footer.jpg" alt="" style="position:absolute;left:0px;bottom:0px;width:1920px;height:20px;object-fit:cover">
+<img src="../slides/img/wo-plan.jpg" alt="Work Orders before approval: the AI-drafted plan for VMC-204, the spindle bearing set from Chennai in 48 hours, technician Ravi Kulkarni free in the window, SOP-17 steps, waiting for approval" style="width:1185px;height:840px;object-fit:contain;border:1px solid #DBE4F0;border-radius:12px;background:#F4F7FB">
+<div style="flex:1;display:flex;flex-direction:column;gap:20px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#1D6FD0">The story · 9 of 17 · Automate</p>
+<h2 style="font-size:40px;font-weight:700;line-height:1.2;color:#0B2A5B">The AI drafts a parts-ready repair</h2>
+<p style="font-size:24px;line-height:1.45;color:#334155">Pune has no bearing, so the plan moves the 7014 ACD/P4A set from Chennai in 48 h, books a certified technician who is free, picks a quiet window before the predicted failure and lists the SOP-17 steps.</p>
+<div style="display:flex;flex-direction:column;gap:10px;border-left:4px solid #C4342A;padding:0px 0px 0px 16px">
+<p style="font-size:24px;font-weight:700;color:#0B2A5B">Notice</p>
+<p style="font-size:24px;line-height:1.4;color:#334155">Status: needs your approval</p>
+<p style="font-size:24px;line-height:1.4;color:#334155">Nothing moves until a person approves</p>
+</div>
+</div>
+<p style="position:absolute;left:96px;bottom:36px;width:1500px;font-size:24px;color:#64748B">Screenshot 16 · public demo · 5 Work Orders</p>
+<p style="position:absolute;right:96px;bottom:36px;width:160px;font-size:24px;color:#64748B;text-align:right">22 / 43</p>
+
+</section>
+
+<section id="s-approved" data-transition="fade" style="background:#FFFFFF;color:#334155;font-family:'IBM Plex Sans', Arial, sans-serif;padding:136px 96px 104px;display:flex;flex-direction:row;gap:48px;align-items:start">
+<img src="../submission/assets/tpl_header.jpg" alt="" style="position:absolute;left:0px;top:0px;width:1920px;height:101px;object-fit:cover">
+<img src="../submission/assets/tpl_footer.jpg" alt="" style="position:absolute;left:0px;bottom:0px;width:1920px;height:20px;object-fit:cover">
+<img src="../slides/img/wo-approved.jpg" alt="Work Orders after approval: approved by a named person, the part arrival time and the repair window before the predicted failure" style="width:1185px;height:840px;object-fit:contain;border:1px solid #DBE4F0;border-radius:12px;background:#F4F7FB">
+<div style="flex:1;display:flex;flex-direction:column;gap:20px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#C4342A">The story · 10 of 17 · Approve</p>
+<h2 style="font-size:40px;font-weight:700;line-height:1.2;color:#0B2A5B">A named person approves</h2>
+<p style="font-size:24px;line-height:1.45;color:#334155">After approval the part transfer starts, the repair window is booked before the predicted failure, and the audit log records who approved it and when.</p>
+<div style="display:flex;flex-direction:column;gap:10px;border-left:4px solid #C4342A;padding:0px 0px 0px 16px">
+<p style="font-size:24px;font-weight:700;color:#0B2A5B">Notice</p>
+<p style="font-size:24px;line-height:1.4;color:#334155">Rule POL-G8: the AI can draft, never release</p>
+<p style="font-size:24px;line-height:1.4;color:#334155">The approver's name is on the plan and in the log</p>
+</div>
+</div>
+<p style="position:absolute;left:96px;bottom:36px;width:1500px;font-size:24px;color:#64748B">Screenshot 17 · public demo · 5 Work Orders, after approval</p>
+<p style="position:absolute;right:96px;bottom:36px;width:160px;font-size:24px;color:#64748B;text-align:right">23 / 43</p>
+
+</section>
+
+<section id="s-copilot" data-transition="fade" style="background:#FFFFFF;color:#334155;font-family:'IBM Plex Sans', Arial, sans-serif;padding:136px 96px 104px;display:flex;flex-direction:row;gap:48px;align-items:start">
+<img src="../submission/assets/tpl_header.jpg" alt="" style="position:absolute;left:0px;top:0px;width:1920px;height:101px;object-fit:cover">
+<img src="../submission/assets/tpl_footer.jpg" alt="" style="position:absolute;left:0px;bottom:0px;width:1920px;height:20px;object-fit:cover">
+<img src="../slides/img/copilot-answer.jpg" alt="Copilot answer to Why does VMC-204 keep failing: bearing wear, an evidence list with vibration, ISO zone, temperature, four sensors moving together, the BPFO peak and a technician note, earlier breakdowns a different fault, and what to do" style="width:1000px;height:840px;object-fit:contain;border:1px solid #DBE4F0;border-radius:12px;background:#F4F7FB">
+<div style="flex:1;display:flex;flex-direction:column;gap:20px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#1D6FD0">The story · 11 of 17 · Ask why · Brief ②</p>
+<h2 style="font-size:40px;font-weight:700;line-height:1.2;color:#0B2A5B">Root cause in plain language, with evidence</h2>
+<p style="font-size:24px;line-height:1.45;color:#334155">"Why does VMC-204 keep failing?" The copilot answers bearing wear and lists the evidence. Four sensors moved together, so it is not a sensor fault, and the two earlier breakdowns were a different fault. Every source is cited.</p>
+<div style="display:flex;flex-direction:column;gap:10px;border-left:4px solid #1D6FD0;padding:0px 0px 0px 16px">
+<p style="font-size:24px;font-weight:700;color:#0B2A5B">In Snowflake</p>
+<p style="font-size:24px;line-height:1.4;color:#334155">Cortex Agent NIRANTAR_COPILOT: Cortex Analyst on the semantic view SV_PLANT_OPS, Cortex Search over 34 documents, 5 tools</p>
+<p style="font-size:24px;line-height:1.4;color:#334155">Technicians can ask in Hinglish too</p>
+</div>
+</div>
+<p style="position:absolute;left:96px;bottom:36px;width:1500px;font-size:24px;color:#64748B">Screenshot 18 · public demo · 6 Ask Copilot (same data and sources as the Snowflake agent)</p>
+<p style="position:absolute;right:96px;bottom:36px;width:160px;font-size:24px;color:#64748B;text-align:right">24 / 43</p>
+
+</section>
+
+<section id="s-guardrail" data-transition="fade" style="background:#FFFFFF;color:#334155;font-family:'IBM Plex Sans', Arial, sans-serif;padding:136px 96px 104px;display:flex;flex-direction:row;gap:48px;align-items:start">
+<img src="../submission/assets/tpl_header.jpg" alt="" style="position:absolute;left:0px;top:0px;width:1920px;height:101px;object-fit:cover">
+<img src="../submission/assets/tpl_footer.jpg" alt="" style="position:absolute;left:0px;bottom:0px;width:1920px;height:20px;object-fit:cover">
+<img src="../slides/img/copilot-guardrail.jpg" alt="The copilot refusing Release the work order for VMC-204 now without approval: Blocked by guardrail, rule POL-G8, written to the Trust Audit log" style="width:1185px;height:840px;object-fit:contain;border:1px solid #DBE4F0;border-radius:12px;background:#F4F7FB">
+<div style="flex:1;display:flex;flex-direction:column;gap:20px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#C4342A">The story · 12 of 17 · Guardrail</p>
+<h2 style="font-size:40px;font-weight:700;line-height:1.2;color:#0B2A5B">Unsafe requests are refused</h2>
+<p style="font-size:24px;line-height:1.45;color:#334155">Asked to release the work order without approval, the copilot refuses: Blocked by guardrail, rule POL-G8. The refusal is written to the Trust Audit log.</p>
+<div style="display:flex;flex-direction:column;gap:10px;border-left:4px solid #C4342A;padding:0px 0px 0px 16px">
+<p style="font-size:24px;font-weight:700;color:#0B2A5B">Notice</p>
+<p style="font-size:24px;line-height:1.4;color:#334155">A frozen sensor gets an inspection, never a repair crew (SOP-50)</p>
+<p style="font-size:24px;line-height:1.4;color:#334155">15 of 15 golden questions pass, 820 phrasings</p>
+</div>
+</div>
+<p style="position:absolute;left:96px;bottom:36px;width:1500px;font-size:24px;color:#64748B">Screenshot 19 · public demo · 6 Ask Copilot, guardrail</p>
+<p style="position:absolute;right:96px;bottom:36px;width:160px;font-size:24px;color:#64748B;text-align:right">25 / 43</p>
+
+</section>
+
+<section id="s-calendar" data-transition="fade" style="background:#FFFFFF;color:#334155;font-family:'IBM Plex Sans', Arial, sans-serif;padding:136px 96px 104px;display:flex;flex-direction:row;gap:48px;align-items:start">
+<img src="../submission/assets/tpl_header.jpg" alt="" style="position:absolute;left:0px;top:0px;width:1920px;height:101px;object-fit:cover">
+<img src="../submission/assets/tpl_footer.jpg" alt="" style="position:absolute;left:0px;bottom:0px;width:1920px;height:20px;object-fit:cover">
+<img src="../slides/img/calendar.jpg" alt="Maintenance calendar: the approved VMC-204 repair and the bundled VMC-202 service in the same stop, the predicted failure marker and Rs 67,200 saved" style="width:1185px;height:840px;object-fit:contain;border:1px solid #DBE4F0;border-radius:12px;background:#F4F7FB">
+<div style="flex:1;display:flex;flex-direction:column;gap:20px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#1D6FD0">The story · 13 of 17 · Plan</p>
+<h2 style="font-size:40px;font-weight:700;line-height:1.2;color:#0B2A5B">Fit more into the same stop</h2>
+<p style="font-size:24px;line-height:1.45;color:#334155">The maintenance calendar shows the approved repair, the predicted failure and the orders at risk. An overdue service on VMC-202 joins the same stop: no extra downtime, Rs 67,200 saved.</p>
+<div style="display:flex;flex-direction:column;gap:10px;border-left:4px solid #1D6FD0;padding:0px 0px 0px 16px">
+<p style="font-size:24px;font-weight:700;color:#0B2A5B">Notice</p>
+<p style="font-size:24px;line-height:1.4;color:#334155">The bundled job goes to a technician who is free</p>
+<p style="font-size:24px;line-height:1.4;color:#334155">On a phone the calendar becomes a day agenda</p>
+</div>
+</div>
+<p style="position:absolute;left:96px;bottom:36px;width:1500px;font-size:24px;color:#64748B">Screenshot 20 · public demo · Maintenance calendar</p>
+<p style="position:absolute;right:96px;bottom:36px;width:160px;font-size:24px;color:#64748B;text-align:right">26 / 43</p>
+
+</section>
+
+<section id="s-tech" data-transition="fade" style="background:#FFFFFF;color:#334155;font-family:'IBM Plex Sans', Arial, sans-serif;padding:136px 96px 104px;display:flex;flex-direction:row;gap:48px;align-items:start">
+<img src="../submission/assets/tpl_header.jpg" alt="" style="position:absolute;left:0px;top:0px;width:1920px;height:101px;object-fit:cover">
+<img src="../submission/assets/tpl_footer.jpg" alt="" style="position:absolute;left:0px;bottom:0px;width:1920px;height:20px;object-fit:cover">
+<img src="../slides/img/technician.jpg" alt="Technician view: the job card in a phone frame and what is enforced: approval, part on site, lock-out, signed steps and the release limit" style="width:1185px;height:840px;object-fit:contain;border:1px solid #DBE4F0;border-radius:12px;background:#F4F7FB">
+<div style="flex:1;display:flex;flex-direction:column;gap:20px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#1D6FD0">The story · 14 of 17 · Repair</p>
+<h2 style="font-size:40px;font-weight:700;line-height:1.2;color:#0B2A5B">The job card enforces safety</h2>
+<p style="font-size:24px;line-height:1.45;color:#334155">The job stays locked until it is approved and the part is on site. Lock-out comes first, every step is signed, and the machine is released only below 2.3 mm/s.</p>
+<div style="display:flex;flex-direction:column;gap:10px;border-left:4px solid #1D6FD0;padding:0px 0px 0px 16px">
+<p style="font-size:24px;font-weight:700;color:#0B2A5B">What is enforced</p>
+<p style="font-size:24px;line-height:1.4;color:#334155">Approval, part on site, LOTO, signed steps, release limit</p>
+<p style="font-size:24px;line-height:1.4;color:#334155">Each tick lands in the audit log with a name</p>
+</div>
+</div>
+<p style="position:absolute;left:96px;bottom:36px;width:1500px;font-size:24px;color:#64748B">Screenshot 21 · public demo · Technician view</p>
+<p style="position:absolute;right:96px;bottom:36px;width:160px;font-size:24px;color:#64748B;text-align:right">27 / 43</p>
+
+</section>
+
+<section id="s-hindi" data-transition="fade" style="background:#FFFFFF;color:#334155;font-family:'IBM Plex Sans', Arial, sans-serif;padding:136px 96px 104px;display:flex;flex-direction:row;gap:64px;align-items:start">
+<img src="../submission/assets/tpl_header.jpg" alt="" style="position:absolute;left:0px;top:0px;width:1920px;height:101px;object-fit:cover">
+<img src="../submission/assets/tpl_footer.jpg" alt="" style="position:absolute;left:0px;bottom:0px;width:1920px;height:20px;object-fit:cover">
+<img src="../screenshots/22-demo-technician-hindi-phone.jpg" alt="The technician's job card on a phone in Hindi: all five steps signed by Ravi Kulkarni, release reading 1.9 mm/s, release allowed" style="width:400px;height:840px;object-fit:contain;border-radius:28px;border:4px solid #0B2A5B;background:#F4F7FB">
+<div style="flex:1;display:flex;flex-direction:column;gap:24px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#1D6FD0">The story · 15 of 17 · Repair</p>
+<h2 style="font-size:56px;font-weight:700;line-height:1.15;color:#0B2A5B">On the technician's phone, in Hindi</h2>
+<p style="font-family:'IBM Plex Sans', 'IBM Plex Sans Devanagari', Arial, sans-serif;font-size:30px;line-height:1.45;color:#334155">The same job card in हिन्दी on a phone: all five steps signed by Ravi Kulkarni, a release reading of 1.9 mm/s, and a green "release allowed".</p>
+<div style="display:flex;flex-direction:column;gap:12px;border-left:4px solid #1D6FD0;padding:0px 0px 0px 20px">
+<p style="font-size:30px;font-weight:700;color:#0B2A5B">Notice</p>
+<p style="font-size:30px;line-height:1.4;color:#334155">Machine IDs stay in Latin script, so nothing gets lost in translation</p>
+<p style="font-size:30px;line-height:1.4;color:#334155">The language choice survives a reload</p>
+<p style="font-size:30px;line-height:1.4;color:#334155">A sensor check gets its own safe-work card, with no lock-out and no part</p>
+</div>
+</div>
+<p style="position:absolute;left:96px;bottom:36px;width:1500px;font-size:24px;color:#64748B">Screenshot 22 · public demo · Technician view at 390 px, हिन्दी</p>
+<p style="position:absolute;right:96px;bottom:36px;width:160px;font-size:24px;color:#64748B;text-align:right">28 / 43</p>
+
+</section>
+
+<section id="s-oee" data-transition="fade" style="background:#FFFFFF;color:#334155;font-family:'IBM Plex Sans', Arial, sans-serif;padding:136px 96px 104px;display:flex;flex-direction:row;gap:48px;align-items:start">
+<img src="../submission/assets/tpl_header.jpg" alt="" style="position:absolute;left:0px;top:0px;width:1920px;height:101px;object-fit:cover">
+<img src="../submission/assets/tpl_footer.jpg" alt="" style="position:absolute;left:0px;bottom:0px;width:1920px;height:20px;object-fit:cover">
+<img src="../slides/img/oee.jpg" alt="OEE after the repair: case file all green, the planned repair of VMC-204 saved 46 hours and Rs 16.2 lakh, and the OEE equation for the Cylinder Head line" style="width:1185px;height:840px;object-fit:contain;border:1px solid #DBE4F0;border-radius:12px;background:#F4F7FB">
+<div style="flex:1;display:flex;flex-direction:column;gap:20px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#1E7A46">The story · 16 of 17 · Measure</p>
+<h2 style="font-size:40px;font-weight:700;line-height:1.2;color:#0B2A5B">OEE shows the result: 46 h and Rs 16.2 L</h2>
+<p style="font-size:24px;line-height:1.45;color:#334155">After the repair the case file is green, and OEE shows the gain: the planned repair saved 46 h and Rs 16.2 L. A job of about 4 h replaced a breakdown of about 50 h.</p>
+<div style="display:flex;flex-direction:column;gap:10px;border-left:4px solid #1E7A46;padding:0px 0px 0px 16px">
+<p style="font-size:24px;font-weight:700;color:#0B2A5B">Notice</p>
+<p style="font-size:24px;line-height:1.4;color:#334155">OEE = Availability × Performance × Quality, by line and shift</p>
+<p style="font-size:24px;line-height:1.4;color:#334155">The biggest loss and the six big losses are named</p>
+</div>
+</div>
+<p style="position:absolute;left:96px;bottom:36px;width:1500px;font-size:24px;color:#64748B">Screenshot 23 · public demo · 7 OEE, after the repair</p>
+<p style="position:absolute;right:96px;bottom:36px;width:160px;font-size:24px;color:#64748B;text-align:right">29 / 43</p>
+
+</section>
+
+<section id="s-trust" data-transition="fade" style="background:#FFFFFF;color:#334155;font-family:'IBM Plex Sans', Arial, sans-serif;padding:136px 96px 104px;display:flex;flex-direction:row;gap:48px;align-items:start">
+<img src="../submission/assets/tpl_header.jpg" alt="" style="position:absolute;left:0px;top:0px;width:1920px;height:101px;object-fit:cover">
+<img src="../submission/assets/tpl_footer.jpg" alt="" style="position:absolute;left:0px;bottom:0px;width:1920px;height:20px;object-fit:cover">
+<img src="../slides/img/trust.jpg" alt="Trust Audit: 84 percent of past failures caught, a median 36 hours early, 0.28 false alarms per machine-month, copilot 15 of 15, the audit log" style="width:1185px;height:840px;object-fit:contain;border:1px solid #DBE4F0;border-radius:12px;background:#F4F7FB">
+<div style="flex:1;display:flex;flex-direction:column;gap:20px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#1E7A46">The story · 17 of 17 · Verify</p>
+<h2 style="font-size:40px;font-weight:700;line-height:1.2;color:#0B2A5B">Measured, not claimed</h2>
+<p style="font-size:24px;line-height:1.45;color:#334155">Trust Audit back-tests the model on 43 past failures: 36 caught (84 %), a median 36 h early, 0.28 false alarms per machine-month. The copilot passes 15 of 15 golden questions.</p>
+<div style="display:flex;flex-direction:column;gap:10px;border-left:4px solid #1E7A46;padding:0px 0px 0px 16px">
+<p style="font-size:24px;font-weight:700;color:#0B2A5B">Notice</p>
+<p style="font-size:24px;line-height:1.4;color:#334155">A threshold slider shows the trade-off between catches and false alarms</p>
+<p style="font-size:24px;line-height:1.4;color:#334155">Every approval, tick and refusal is in the audit log, with a name</p>
+</div>
+</div>
+<p style="position:absolute;left:96px;bottom:36px;width:1500px;font-size:24px;color:#64748B">Screenshot 24 · public demo · 8 Trust Audit · synthetic data, measured</p>
+<p style="position:absolute;right:96px;bottom:36px;width:160px;font-size:24px;color:#64748B;text-align:right">30 / 43</p>
+
+</section>
+
+<section id="b-fishbone" data-transition="fade" style="background:#FFFFFF;color:#334155;font-family:'IBM Plex Sans', Arial, sans-serif;padding:136px 96px 104px;display:flex;flex-direction:row;gap:48px;align-items:start">
+<img src="../submission/assets/tpl_header.jpg" alt="" style="position:absolute;left:0px;top:0px;width:1920px;height:101px;object-fit:cover">
+<img src="../submission/assets/tpl_footer.jpg" alt="" style="position:absolute;left:0px;bottom:0px;width:1920px;height:20px;object-fit:cover">
+<img src="../screenshots/25-demo-reliability-fishbone.jpg" alt="Fishbone for VMC-204: causes confirmed by data in blue, a hypothesis in amber that supplier lot L-2391 is a fleet finding not proven here, and causes ruled out in grey" style="width:1185px;height:840px;object-fit:contain;border:1px solid #DBE4F0;border-radius:12px;background:#F4F7FB">
+<div style="flex:1;display:flex;flex-direction:column;gap:20px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#1D6FD0">Beyond the brief · 1 of 8</p>
+<h2 style="font-size:40px;font-weight:700;line-height:1.2;color:#0B2A5B">Root cause, with honest evidence levels</h2>
+<p style="font-size:24px;line-height:1.45;color:#334155">The fishbone for VMC-204 separates causes confirmed by data, a hypothesis (supplier lot L-2391 is a fleet finding, not proven here) and causes ruled out.</p>
+<div style="display:flex;flex-direction:column;gap:10px;border-left:4px solid #1D6FD0;padding:0px 0px 0px 16px">
+<p style="font-size:24px;font-weight:700;color:#0B2A5B">Also on the page</p>
+<p style="font-size:24px;line-height:1.4;color:#334155">Pareto with the 80 % line, MTBF and MTTR by line, bad actors, five whys</p>
+<p style="font-size:24px;line-height:1.4;color:#334155">"Confirm at teardown" needs a name</p>
+</div>
+</div>
+<p style="position:absolute;left:96px;bottom:36px;width:1500px;font-size:24px;color:#64748B">Screenshot 25 · public demo · Reliability and root cause</p>
+<p style="position:absolute;right:96px;bottom:36px;width:160px;font-size:24px;color:#64748B;text-align:right">31 / 43</p>
+
+</section>
+
+<section id="b-compare" data-transition="fade" style="background:#FFFFFF;color:#334155;font-family:'IBM Plex Sans', Arial, sans-serif;padding:136px 96px 104px;display:flex;flex-direction:row;gap:48px;align-items:start">
+<img src="../submission/assets/tpl_header.jpg" alt="" style="position:absolute;left:0px;top:0px;width:1920px;height:101px;object-fit:cover">
+<img src="../submission/assets/tpl_footer.jpg" alt="" style="position:absolute;left:0px;bottom:0px;width:1920px;height:20px;object-fit:cover">
+<img src="../slides/img/compare.jpg" alt="Compare machines: VMC-204's vibration is 4.1 times the average of its three identical siblings and leaves their grey band" style="width:1185px;height:840px;object-fit:contain;border:1px solid #DBE4F0;border-radius:12px;background:#F4F7FB">
+<div style="flex:1;display:flex;flex-direction:column;gap:20px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#1D6FD0">Beyond the brief · 2 of 8</p>
+<h2 style="font-size:40px;font-weight:700;line-height:1.2;color:#0B2A5B">Compare identical machines</h2>
+<p style="font-size:24px;line-height:1.45;color:#334155">VMC-204's vibration is 4.1× the average of its three identical siblings and leaves their grey band. That separates a failing machine from a plant-wide drift.</p>
+<div style="display:flex;flex-direction:column;gap:10px;border-left:4px solid #1D6FD0;padding:0px 0px 0px 16px">
+<p style="font-size:24px;font-weight:700;color:#0B2A5B">Notice</p>
+<p style="font-size:24px;line-height:1.4;color:#334155">A flat line is labelled a sensor issue, never a repair</p>
+<p style="font-size:24px;line-height:1.4;color:#334155">Click a heatmap cell to switch machines</p>
+</div>
+</div>
+<p style="position:absolute;left:96px;bottom:36px;width:1500px;font-size:24px;color:#64748B">Screenshot 26 · public demo · Compare machines</p>
+<p style="position:absolute;right:96px;bottom:36px;width:160px;font-size:24px;color:#64748B;text-align:right">32 / 43</p>
+
+</section>
+
+<section id="b-mcp" data-transition="fade" style="background:#FFFFFF;color:#334155;font-family:'IBM Plex Sans', Arial, sans-serif;padding:136px 96px 104px;display:flex;flex-direction:row;gap:48px;align-items:start">
+<img src="../submission/assets/tpl_header.jpg" alt="" style="position:absolute;left:0px;top:0px;width:1920px;height:101px;object-fit:cover">
+<img src="../submission/assets/tpl_footer.jpg" alt="" style="position:absolute;left:0px;bottom:0px;width:1920px;height:20px;object-fit:cover">
+<img src="../slides/img/mcp-jira.jpg" alt="MCP preview dialog: the Jira create_issue call for WO-PDM-412 as a JSON-RPC 2.0 tools/call, labelled preview only, the demo sends nothing" style="width:900px;height:840px;object-fit:contain;border:1px solid #DBE4F0;border-radius:12px;background:#F4F7FB">
+<div style="flex:1;display:flex;flex-direction:column;gap:20px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#1D6FD0">Beyond the brief · 3 of 8</p>
+<h2 style="font-size:40px;font-weight:700;line-height:1.2;color:#0B2A5B">MCP preview: the exact call to Jira</h2>
+<p style="font-size:24px;line-height:1.45;color:#334155">From a work order, "Share across tools" shows the JSON-RPC tools/call that would open a Jira issue for WO-PDM-412, with the plan, the money at stake and the approval state. Slack messages and Drive work cards work the same way.</p>
+<div style="display:flex;flex-direction:column;gap:10px;border-left:4px solid #8A5300;padding:0px 0px 0px 16px">
+<p style="font-size:24px;font-weight:700;color:#8A5300">Preview, said plainly</p>
+<p style="font-size:24px;line-height:1.4;color:#334155">The demo sends nothing; the connectors are not wired in Snowflake yet</p>
+<p style="font-size:24px;line-height:1.4;color:#334155">Next: a Snowflake-managed MCP server plus cortex mcp add</p>
+</div>
+</div>
+<p style="position:absolute;left:96px;bottom:36px;width:1500px;font-size:24px;color:#64748B">Screenshot 27 · public demo · Work Orders, Share across tools (MCP preview)</p>
+<p style="position:absolute;right:96px;bottom:36px;width:160px;font-size:24px;color:#64748B;text-align:right">33 / 43</p>
+
+</section>
+
+<section id="b-business" data-transition="fade" style="background:#FFFFFF;color:#334155;font-family:'IBM Plex Sans', Arial, sans-serif;padding:136px 96px 104px;display:flex;flex-direction:row;gap:48px;align-items:start">
+<img src="../submission/assets/tpl_header.jpg" alt="" style="position:absolute;left:0px;top:0px;width:1920px;height:101px;object-fit:cover">
+<img src="../submission/assets/tpl_footer.jpg" alt="" style="position:absolute;left:0px;bottom:0px;width:1920px;height:20px;object-fit:cover">
+<img src="../slides/img/business-case.jpg" alt="Business case on cautious typical numbers: Rs 23.1 lakh a year, 8.2 months payback, 1.5 times return, with an honesty note" style="width:1185px;height:840px;object-fit:contain;border:1px solid #DBE4F0;border-radius:12px;background:#F4F7FB">
+<div style="flex:1;display:flex;flex-direction:column;gap:20px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#1D6FD0">Beyond the brief · 4 of 8</p>
+<h2 style="font-size:40px;font-weight:700;line-height:1.2;color:#0B2A5B">A business case on cautious numbers</h2>
+<p style="font-size:24px;line-height:1.45;color:#334155">Industry-typical inputs give about Rs 23.1 L a year, an 8.2-month payback and a 1.5× return, with an honesty note. One switch uses the sample plant's own numbers instead.</p>
+<div style="display:flex;flex-direction:column;gap:10px;border-left:4px solid #1D6FD0;padding:0px 0px 0px 16px">
+<p style="font-size:24px;font-weight:700;color:#0B2A5B">Notice</p>
+<p style="font-size:24px;line-height:1.4;color:#334155">Every input is editable and the results update as you type</p>
+<p style="font-size:24px;line-height:1.4;color:#334155">After the repair it shows the Rs 16.8 L avoided in the demo</p>
+</div>
+</div>
+<p style="position:absolute;left:96px;bottom:36px;width:1500px;font-size:24px;color:#64748B">Screenshot 28 · public demo · Business case</p>
+<p style="position:absolute;right:96px;bottom:36px;width:160px;font-size:24px;color:#64748B;text-align:right">34 / 43</p>
+
+</section>
+
+<section id="b-flood" data-transition="fade" style="background:#FFFFFF;color:#334155;font-family:'IBM Plex Sans', Arial, sans-serif;padding:136px 96px 104px;display:flex;flex-direction:column;gap:20px">
+<img src="../submission/assets/tpl_header.jpg" alt="" style="position:absolute;left:0px;top:0px;width:1920px;height:101px;object-fit:cover">
+<img src="../submission/assets/tpl_footer.jpg" alt="" style="position:absolute;left:0px;bottom:0px;width:1920px;height:20px;object-fit:cover">
+<div style="display:flex;flex-direction:column;gap:8px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#1D6FD0">Beyond the brief · 5 of 8</p>
+<h2 style="font-size:40px;font-weight:700;line-height:1.2;color:#0B2A5B">13 alarms, 1 decision</h2>
+<p style="font-size:24px;line-height:1.45;color:#334155">In the alarm-flood scenario, 13 coolant alarms arrive in the busiest 10 minutes (the ISA-18.2 target is 10). Nirantar groups them under one root cause, CLP-101, so the operator makes one decision instead of 13.</p>
+</div>
+<img src="../screenshots/29-demo-alarm-rules-flood.jpg" alt="Alarm health in the flood scenario: busiest 10 minutes 13 alarms against the ISA-18.2 target of 10, 13 alarms grouped into 1 decision under CLP-101" style="width:1728px;height:560px;object-fit:contain;border:1px solid #DBE4F0;border-radius:12px;background:#F4F7FB">
+<p style="font-size:24px;line-height:1.4;color:#1D6FD0"><b>Notice:</b> changing an alarm limit needs a name and goes to a management-of-change review; the live limits stay as they are.</p>
+<p style="position:absolute;left:96px;bottom:36px;width:1500px;font-size:24px;color:#64748B">Screenshot 29 · public demo · Alarm rules, flood scenario</p>
+<p style="position:absolute;right:96px;bottom:36px;width:160px;font-size:24px;color:#64748B;text-align:right">35 / 43</p>
+
+</section>
+
+<section id="b-judges" data-transition="fade" style="background:#FFFFFF;color:#334155;font-family:'IBM Plex Sans', Arial, sans-serif;padding:136px 96px 104px;display:flex;flex-direction:row;gap:48px;align-items:start">
+<img src="../submission/assets/tpl_header.jpg" alt="" style="position:absolute;left:0px;top:0px;width:1920px;height:101px;object-fit:cover">
+<img src="../submission/assets/tpl_footer.jpg" alt="" style="position:absolute;left:0px;bottom:0px;width:1920px;height:20px;object-fit:cover">
+<img src="../slides/img/judges.jpg" alt="For judges page: all 7 brief points live in Snowflake and in the demo, CoCo in all 4 phases, the status legend and the brief point by point" style="width:1185px;height:840px;object-fit:contain;border:1px solid #DBE4F0;border-radius:12px;background:#F4F7FB">
+<div style="flex:1;display:flex;flex-direction:column;gap:20px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#1D6FD0">Beyond the brief · 6 of 8</p>
+<h2 style="font-size:40px;font-weight:700;line-height:1.2;color:#0B2A5B">For judges: every point, one click away</h2>
+<p style="font-size:24px;line-height:1.45;color:#334155">One page maps all 7 points of the brief and 13 CoCo guideline items to the screen that shows them, with an honest status: live in Snowflake, in the demo, partly done or preview.</p>
+<div style="display:flex;flex-direction:column;gap:10px;border-left:4px solid #1D6FD0;padding:0px 0px 0px 16px">
+<p style="font-size:24px;font-weight:700;color:#0B2A5B">Open it</p>
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:24px;line-height:1.4;color:#1D6FD0">paras-lehana.github.io/nirantar/app/#/judges</p>
+<p style="font-size:24px;line-height:1.4;color:#334155">The CoCo evidence screenshots enlarge in place</p>
+</div>
+</div>
+<p style="position:absolute;left:96px;bottom:36px;width:1500px;font-size:24px;color:#64748B">Screenshot 30 · public demo · For judges: brief coverage</p>
+<p style="position:absolute;right:96px;bottom:36px;width:160px;font-size:24px;color:#64748B;text-align:right">36 / 43</p>
+
+</section>
+
+<section id="b-phone" data-transition="fade" style="background:#FFFFFF;color:#334155;font-family:'IBM Plex Sans', Arial, sans-serif;padding:136px 96px 104px;display:flex;flex-direction:row;gap:64px;align-items:start">
+<img src="../submission/assets/tpl_header.jpg" alt="" style="position:absolute;left:0px;top:0px;width:1920px;height:101px;object-fit:cover">
+<img src="../submission/assets/tpl_footer.jpg" alt="" style="position:absolute;left:0px;bottom:0px;width:1920px;height:20px;object-fit:cover">
+<img src="../screenshots/32-demo-phone-plant-map.jpg" alt="The demo on a phone at 390 px: the Cylinder Head line with VMC-204 ringed in red and every other machine grey" style="width:400px;height:840px;object-fit:contain;border-radius:28px;border:4px solid #0B2A5B;background:#F4F7FB">
+<div style="flex:1;display:flex;flex-direction:column;gap:24px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#1D6FD0">Beyond the brief · 7 of 8</p>
+<h2 style="font-size:56px;font-weight:700;line-height:1.15;color:#0B2A5B">Works on a phone, and offline</h2>
+<p style="font-size:30px;line-height:1.45;color:#334155">At 390 px the plant map keeps the same rule: VMC-204 ringed in red, every other machine grey. A bottom bar gives the five places a supervisor needs.</p>
+<div style="display:flex;flex-direction:column;gap:12px;border-left:4px solid #1D6FD0;padding:0px 0px 0px 20px">
+<p style="font-size:30px;font-weight:700;color:#0B2A5B">Notice</p>
+<p style="font-size:30px;line-height:1.4;color:#334155">The demo installs as an app and works offline after one visit</p>
+<p style="font-size:30px;line-height:1.4;color:#334155">Every page is checked at 390, 820 and 1440 px, in light and dark</p>
+</div>
+</div>
+<p style="position:absolute;left:96px;bottom:36px;width:1500px;font-size:24px;color:#64748B">Screenshot 32 · public demo · Plant Map at 390 px</p>
+<p style="position:absolute;right:96px;bottom:36px;width:160px;font-size:24px;color:#64748B;text-align:right">37 / 43</p>
+
+</section>
+
+<section id="b-presenter" data-transition="fade" style="background:#FFFFFF;color:#334155;font-family:'IBM Plex Sans', Arial, sans-serif;padding:136px 96px 104px;display:flex;flex-direction:row;gap:48px;align-items:start">
+<img src="../submission/assets/tpl_header.jpg" alt="" style="position:absolute;left:0px;top:0px;width:1920px;height:101px;object-fit:cover">
+<img src="../submission/assets/tpl_footer.jpg" alt="" style="position:absolute;left:0px;bottom:0px;width:1920px;height:20px;object-fit:cover">
+<img src="../slides/img/presenter.jpg" alt="Presenter page: scripted demo steps, fault injection and clock jumps for the live finale" style="width:1185px;height:840px;object-fit:contain;border:1px solid #DBE4F0;border-radius:12px;background:#F4F7FB">
+<div style="flex:1;display:flex;flex-direction:column;gap:20px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#1D6FD0">Beyond the brief · 8 of 8</p>
+<h2 style="font-size:40px;font-weight:700;line-height:1.2;color:#0B2A5B">Ready for a live finale</h2>
+<p style="font-size:24px;line-height:1.45;color:#334155">Presenter mode scripts the demo: inject a fault, jump the clock, reset. The numbers are deterministic, so a live run on stage gives the same result every time.</p>
+<div style="display:flex;flex-direction:column;gap:10px;border-left:4px solid #1D6FD0;padding:0px 0px 0px 16px">
+<p style="font-size:24px;font-weight:700;color:#0B2A5B">Notice</p>
+<p style="font-size:24px;line-height:1.4;color:#334155">Five scenarios: Pune, Chennai, Chittorgarh, an alarm flood and a quiet day</p>
+<p style="font-size:24px;line-height:1.4;color:#334155">Load sample data or clear it with one button</p>
+</div>
+</div>
+<p style="position:absolute;left:96px;bottom:36px;width:1500px;font-size:24px;color:#64748B">Screenshot 33 · public demo · Presenter</p>
+<p style="position:absolute;right:96px;bottom:36px;width:160px;font-size:24px;color:#64748B;text-align:right">38 / 43</p>
+
+</section>
+
+<section id="impact" data-transition="fade" style="background:#FFFFFF;color:#334155;font-family:'IBM Plex Sans', Arial, sans-serif;padding:136px 96px 104px;display:flex;flex-direction:column;gap:28px">
+<img src="../submission/assets/tpl_header.jpg" alt="" style="position:absolute;left:0px;top:0px;width:1920px;height:101px;object-fit:cover">
+<img src="../submission/assets/tpl_footer.jpg" alt="" style="position:absolute;left:0px;bottom:0px;width:1920px;height:20px;object-fit:cover">
+<div style="display:flex;flex-direction:column;gap:8px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#1D6FD0">5 · Impact statement</p>
+<h2 style="font-size:56px;font-weight:700;line-height:1.15;color:#0B2A5B">What Nirantar changes, in numbers</h2>
+</div>
+<p style="font-size:24px;font-weight:700;color:#1E7A46">Measured on our synthetic plant</p>
+<div style="display:grid;grid-template-columns:414px 414px 414px 414px;gap:24px">
+<div style="display:flex;flex-direction:column;gap:6px;background:#F1F8F4;border-top:6px solid #1E7A46;border-radius:12px;padding:24px">
+<p style="font-size:56px;font-weight:700;line-height:1.15;color:#0B2A5B">36 of 43</p>
+<p style="font-size:24px;line-height:1.4;color:#334155">past failures caught early (84 %), a median 36 h ahead</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:6px;background:#F1F8F4;border-top:6px solid #1E7A46;border-radius:12px;padding:24px">
+<p style="font-size:56px;font-weight:700;line-height:1.15;color:#0B2A5B">0.28</p>
+<p style="font-size:24px;line-height:1.4;color:#334155">false alarms per machine-month</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:6px;background:#F1F8F4;border-top:6px solid #1E7A46;border-radius:12px;padding:24px">
+<p style="font-size:56px;font-weight:700;line-height:1.15;color:#0B2A5B">Rs 16.2 L</p>
+<p style="font-size:24px;line-height:1.4;color:#334155">and 46 h of downtime avoided by one Rs 61,000 planned repair</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:6px;background:#F1F8F4;border-top:6px solid #1E7A46;border-radius:12px;padding:24px">
+<p style="font-size:56px;font-weight:700;line-height:1.15;color:#0B2A5B">13 → 1</p>
+<p style="font-size:24px;line-height:1.4;color:#334155">flood alarms grouped into one decision (ISA-18.2)</p>
+</div>
+</div>
+<div style="display:flex;flex-direction:row;gap:48px">
+<div style="flex:1;display:flex;flex-direction:column;gap:8px;border-left:4px solid #1D6FD0;padding:0px 0px 0px 20px">
+<p style="font-size:30px;font-weight:700;color:#0B2A5B">Cited industry outcomes</p>
+<p style="font-size:24px;line-height:1.45;color:#334155">Predictive maintenance cuts machine downtime 30–50 % (McKinsey 2017); predictive-led plants report 52.7 % less unplanned downtime (NIST 2021). A pilot on real plant data would validate these for Indus-like plants.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:8px;border-left:4px solid #1D6FD0;padding:0px 0px 0px 20px">
+<p style="font-size:30px;font-weight:700;color:#0B2A5B">Scales without a redesign</p>
+<p style="font-size:24px;line-height:1.45;color:#334155">The same ontology, semantic view, skills and approval gate work for any plant: 3 plants or 300. Copilot answers 15 of 15 golden questions, and every action is audited.</p>
+</div>
+</div>
+<p style="position:absolute;left:96px;bottom:36px;width:1500px;font-size:24px;color:#64748B">Measured numbers are on synthetic data (fictional Indus Group) · industry figures are cited, not ours</p>
+<p style="position:absolute;right:96px;bottom:36px;width:160px;font-size:24px;color:#64748B;text-align:right">39 / 43</p>
+
+</section>
+
+<section id="coverage" data-transition="fade" style="background:#FFFFFF;color:#334155;font-family:'IBM Plex Sans', Arial, sans-serif;padding:136px 96px 104px;display:flex;flex-direction:column;gap:28px">
+<img src="../submission/assets/tpl_header.jpg" alt="" style="position:absolute;left:0px;top:0px;width:1920px;height:101px;object-fit:cover">
+<img src="../submission/assets/tpl_footer.jpg" alt="" style="position:absolute;left:0px;bottom:0px;width:1920px;height:20px;object-fit:cover">
+<div style="display:flex;flex-direction:column;gap:8px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#1D6FD0">6 · Brief coverage</p>
+<h2 style="font-size:56px;font-weight:700;line-height:1.15;color:#0B2A5B">Every brief point and CoCo guideline, with proof</h2>
+</div>
+<div style="display:flex;flex-direction:row;gap:48px;align-items:start">
+<table style="width:840px;font-size:24px;color:#334155;border:1px solid #DBE4F0">
+<tr style="background:#E6ECF4"><th style="width:48%;text-align:left">The brief asks</th><th style="width:28%;text-align:left">Demo page</th><th style="width:24%;text-align:left">Status</th></tr>
+<tr style="background:#F8FAFD"><td>Converge IT and OT</td><td>How it is built</td><td style="color:#1E7A46">Live + demo</td></tr>
+<tr style="background:#F8FAFD"><td>Correlate sensors, ERP, CMMS</td><td>IT + OT timeline</td><td style="color:#1E7A46">Live + demo</td></tr>
+<tr style="background:#F8FAFD"><td>Predict failures early</td><td>Trust Audit</td><td style="color:#1E7A46">Live + demo</td></tr>
+<tr style="background:#F8FAFD"><td>Root cause in plain words</td><td>Ask Copilot</td><td style="color:#1E7A46">Live + demo</td></tr>
+<tr style="background:#F8FAFD"><td>Triage and action</td><td>Alert Triage</td><td style="color:#1E7A46">Live + demo</td></tr>
+<tr style="background:#F8FAFD"><td>Automate work orders</td><td>Work Orders</td><td style="color:#1E7A46">Live + demo</td></tr>
+<tr style="background:#F8FAFD"><td>Lift OEE</td><td>7 · OEE</td><td style="color:#1E7A46">Live + demo</td></tr>
+</table>
+<table style="width:840px;font-size:24px;color:#334155;border:1px solid #DBE4F0">
+<tr style="background:#E6ECF4"><th style="width:48%;text-align:left">CoCo guideline</th><th style="width:30%;text-align:left">Evidence</th><th style="width:22%;text-align:left">Status</th></tr>
+<tr style="background:#F8FAFD"><td>Planning, development</td><td>P/01 · D chats</td><td style="color:#1E7A46">Live</td></tr>
+<tr style="background:#F8FAFD"><td>Execution, testing</td><td>E/01 · T/01</td><td style="color:#1E7A46">Live</td></tr>
+<tr style="background:#F8FAFD"><td>Synthetic data, pipelines</td><td>6.8 M rows · DTs</td><td style="color:#1E7A46">Live</td></tr>
+<tr style="background:#F8FAFD"><td>Verified-query semantic view</td><td>SV_PLANT_OPS</td><td style="color:#1E7A46">Live</td></tr>
+<tr style="background:#F8FAFD"><td>Streamlit, documents</td><td>App · 34 docs</td><td style="color:#1E7A46">Live</td></tr>
+<tr style="background:#F8FAFD"><td>Reusable skills (headline)</td><td>8 skills · CLI</td><td style="color:#1E7A46">Live + repo</td></tr>
+<tr style="background:#F8FAFD"><td>Automations, custom tools</td><td>Automation · tools</td><td style="color:#1E7A46">Live</td></tr>
+<tr style="background:#F8FAFD"><td>Guardrails, fallback</td><td>POL-G8 · SOP-50</td><td style="color:#1E7A46">Live</td></tr>
+<tr style="background:#F8FAFD"><td>Multi-agent, surfaces</td><td>Skill chain · CLI</td><td style="color:#8A5300">Partly</td></tr>
+<tr style="background:#F8FAFD"><td>MCP connectors</td><td>Work Orders</td><td style="color:#8A5300">Preview</td></tr>
+</table>
+</div>
+<p style="position:absolute;left:96px;bottom:36px;width:1500px;font-size:24px;color:#64748B">Every row is one click away in the demo: For judges · paras-lehana.github.io/nirantar/app/#/judges</p>
+<p style="position:absolute;right:96px;bottom:36px;width:160px;font-size:24px;color:#64748B;text-align:right">40 / 43</p>
+
+</section>
+
+<section id="roadmap" data-transition="fade" style="background:#FFFFFF;color:#334155;font-family:'IBM Plex Sans', Arial, sans-serif;padding:136px 96px 104px;display:flex;flex-direction:column;gap:28px">
+<img src="../submission/assets/tpl_header.jpg" alt="" style="position:absolute;left:0px;top:0px;width:1920px;height:101px;object-fit:cover">
+<img src="../submission/assets/tpl_footer.jpg" alt="" style="position:absolute;left:0px;bottom:0px;width:1920px;height:20px;object-fit:cover">
+<div style="display:flex;flex-direction:column;gap:8px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#1D6FD0">7 · Roadmap and how to try it</p>
+<h2 style="font-size:56px;font-weight:700;line-height:1.15;color:#0B2A5B">From the trial to a real plant</h2>
+</div>
+<div style="display:flex;flex-direction:row;gap:48px;align-items:start">
+<div style="width:900px;display:flex;flex-direction:column;gap:14px">
+<p style="font-size:24px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:#64748B">The production path (not built on the trial)</p>
+<div style="display:flex;flex-direction:column;gap:4px;border-left:4px solid #1D6FD0;padding:0px 0px 0px 20px">
+<p style="font-size:30px;font-weight:600;line-height:1.3;color:#0B2A5B">Historian / PLC → Openflow or Snowpipe Streaming</p>
+<p style="font-size:24px;line-height:1.4;color:#334155">Elastic Channels; vendor figure: queryable in about 5 s</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:4px;border-left:4px solid #1D6FD0;padding:0px 0px 0px 20px">
+<p style="font-size:30px;font-weight:600;line-height:1.3;color:#0B2A5B">RAW → Dynamic Tables, ADAPTIVE refresh</p>
+<p style="font-size:24px;line-height:1.4;color:#334155">incremental features, no full rebuilds</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:4px;border-left:4px solid #1D6FD0;padding:0px 0px 0px 20px">
+<p style="font-size:30px;font-weight:600;line-height:1.3;color:#0B2A5B">Stream + triggered task → ML.SCORE_LATEST</p>
+<p style="font-size:24px;line-height:1.4;color:#334155">event-driven scoring every 10–30 s instead of polling</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:4px;border-left:4px solid #1D6FD0;padding:0px 0px 0px 20px">
+<p style="font-size:30px;font-weight:600;line-height:1.3;color:#0B2A5B">Serverless alert on new data → auto-draft</p>
+<p style="font-size:24px;line-height:1.4;color:#334155">checks only the rows that just arrived</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:4px;border-left:4px solid #C4342A;padding:0px 0px 0px 20px">
+<p style="font-size:30px;font-weight:600;line-height:1.3;color:#0B2A5B">APPROVE_WORK_ORDER by a person</p>
+<p style="font-size:24px;line-height:1.4;color:#334155">the approval gate does not change</p>
+</div>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:20px">
+<div style="display:flex;flex-direction:column;gap:10px;background:#F4F7FB;border:1px solid #DBE4F0;border-radius:14px;padding:24px 28px">
+<p style="font-size:30px;font-weight:700;color:#0B2A5B">Finale steps</p>
+<p style="font-size:24px;line-height:1.4;color:#334155">ML classifier vs rules-v1, with SHAP</p>
+<p style="font-size:24px;line-height:1.4;color:#334155">Failure time machine: replay the 72 h before</p>
+<p style="font-size:24px;line-height:1.4;color:#334155">Live Jira and Slack over MCP</p>
+<p style="font-size:24px;line-height:1.4;color:#334155">The skills running from the CoCo CLI</p>
+<p style="font-size:24px;line-height:1.4;color:#334155">A second industry pack</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px;background:#0B2A5B;border-radius:14px;padding:24px 28px">
+<p style="font-size:30px;font-weight:700;color:#F4F7FB">Try it today, no login</p>
+<div style="display:flex;flex-direction:column;gap:2px">
+<p style="font-size:24px;color:#C9D6E8">Interactive demo</p>
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:24px;color:#9CC3FF"><a href="https://paras-lehana.github.io/nirantar/app/">paras-lehana.github.io/nirantar/app</a></p>
+</div>
+<div style="display:flex;flex-direction:column;gap:2px">
+<p style="font-size:24px;color:#C9D6E8">For judges: every brief point, one click</p>
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:24px;color:#9CC3FF"><a href="https://paras-lehana.github.io/nirantar/app/#/judges">paras-lehana.github.io/nirantar/app/#/judges</a></p>
+</div>
+<div style="display:flex;flex-direction:column;gap:2px">
+<p style="font-size:24px;color:#C9D6E8">Code, 8 skills, CoCo evidence</p>
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:24px;color:#9CC3FF"><a href="https://github.com/paras-lehana/nirantar">github.com/paras-lehana/nirantar</a></p>
+</div>
+</div>
+</div>
+</div>
+<p style="position:absolute;left:96px;bottom:36px;width:1500px;font-size:24px;color:#64748B">Production-path facts: Snowflake documentation, checked 06 Oct 2026 · live cost about $3 a day (design estimate)</p>
+<p style="position:absolute;right:96px;bottom:36px;width:160px;font-size:24px;color:#64748B;text-align:right">41 / 43</p>
+
+</section>
+
+<section id="github" data-transition="fade" style="background:#FFFFFF;color:#334155;font-family:'IBM Plex Sans', Arial, sans-serif;padding:136px 96px 104px;display:flex;flex-direction:row;gap:48px;align-items:start">
+<img src="../submission/assets/tpl_header.jpg" alt="" style="position:absolute;left:0px;top:0px;width:1920px;height:101px;object-fit:cover">
+<img src="../submission/assets/tpl_footer.jpg" alt="" style="position:absolute;left:0px;bottom:0px;width:1920px;height:20px;object-fit:cover">
+<img src="../screenshots/31-github-repository.jpg" alt="The public GitHub repository paras-lehana/nirantar: app, docs, skills, snowflake-workspace, tools, README and MIT licence" style="width:1185px;height:840px;object-fit:contain;border:1px solid #DBE4F0;border-radius:12px;background:#F4F7FB">
+<div style="flex:1;display:flex;flex-direction:column;gap:20px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#1D6FD0">8 · Open source</p>
+<h2 style="font-size:40px;font-weight:700;line-height:1.2;color:#0B2A5B">Everything is open on GitHub</h2>
+<p style="font-size:24px;line-height:1.45;color:#334155">The public repository holds the demo app, the 8 skills, the rules CoCo followed in the workspace, and every CoCo prompt, screenshot and journal entry.</p>
+<div style="display:flex;flex-direction:column;gap:10px;border-left:4px solid #1D6FD0;padding:0px 0px 0px 16px">
+<p style="font-size:24px;font-weight:700;color:#0B2A5B">Try it</p>
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:24px;line-height:1.4;color:#1D6FD0">github.com/paras-lehana/nirantar</p>
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:24px;line-height:1.4;color:#1D6FD0">paras-lehana.github.io/nirantar/app</p>
+<p style="font-size:24px;line-height:1.4;color:#334155">MIT licence · all data synthetic</p>
+</div>
+</div>
+<p style="position:absolute;left:96px;bottom:36px;width:1500px;font-size:24px;color:#64748B">Screenshot 31 · github.com/paras-lehana/nirantar</p>
+<p style="position:absolute;right:96px;bottom:36px;width:160px;font-size:24px;color:#64748B;text-align:right">42 / 43</p>
+
+</section>
+
+<section id="thanks" data-transition="fade" style="background:#06142A;color:#E0F2FE;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column">
+<img src="../submission/assets/tpl_thankyou.jpg" alt="CoCo CLI Hackathon GCC Edition: Thank you" style="position:absolute;left:0px;top:0px;width:1920px;height:1080px;object-fit:cover">
+<div style="position:absolute;left:160px;top:880px;width:1600px;display:flex;flex-direction:column;gap:10px">
+<p style="font-size:30px;font-weight:600;line-height:1.4;color:#E0F2FE;text-align:center">Nirantar · Team Aidhunik India: Paras Lehana and Abhinav Kaushik</p>
+<p style="font-size:24px;line-height:1.4;color:#9CC3FF;text-align:center">Demo: paras-lehana.github.io/nirantar/app · Code: github.com/paras-lehana/nirantar · all data synthetic</p>
+</div>
+
+</section>
+</body></html>

@@ -1,0 +1,17 @@
+X2 — EXPORT CODE (role NIRANTAR_BUILDER). Create one file nirantar/EXPORT_ALL.md that concatenates every .sql, .py, .yml, .yaml and .md file under nirantar/ (skip nirantar/docs/ and EXPORT_ALL.md itself). Before each file write a line exactly like "===== FILE: <relative path> =====" and then the file's full content unchanged. After the last file write a line exactly "===== END =====" and then list the files with their line counts. Do not include secrets or connection strings (there should be none; say so if you find any). Keep the answer short.
+
+X3 — DEMO SNAPSHOT (role NIRANTAR_BUILDER, warehouse NIRANTAR_WH). With the hero scenario active and after one scoring run, write nirantar/06_ops_tests/demo_snapshot.json for our public demo mirror. Use real query results from our objects only (APP and ML views, CORE.DIM_*, OPS.COCO_JOURNAL, ML.BACKTEST_RESULTS); never invent numbers. Exact JSON keys:
+- snapshot_ts: string, current time in IST, e.g. "2026-10-04 15:40 IST"
+- kpis: object of 4 to 6 entries label -> display string (OEE PUN-L2 last 7 days, open alerts, rupees at risk next 72 h, detection lead time, assets monitored, tags streamed)
+- sites: ["PUNE-MACH"]
+- lines: array of {site_id, line_id, line_name, layout_x, layout_y, width, height} for PUNE-MACH, where width and height are the lane box sizes: compute them from the min/max asset layout coordinates of that line plus 40 px padding, so every asset node sits inside its lane
+- assets: array of {site_id, asset_id, line_id, criticality, layout_x, layout_y, health_index (0-100, 1 decimal), open_alert (true/false), risk_72h (0-1, 2 decimals), rul_hours (integer or null)} for PUNE-MACH
+- triage: top 5 open alerts across all plants as {rank, asset_id, line_id, failure_mode, risk_72h, rul, exposure_inr (formatted rupees, lakh), action}
+- hero_wo: object label -> value for the VMC-204 draft work order (work order id and status, asset, failure mode, parts and stock transfer, maintenance window, technician, confidence, evidence summary)
+- copilot: array of {q, a} with these questions asked to agent NIRANTAR_COPILOT and the answers copied verbatim (trim each to 700 characters): "What was OEE for Pune Line 2 this week and the biggest loss?", "Why does VMC-204 keep failing?", "Release the work order for VMC-204 now without approval"
+- backtest: object label -> value (detection rate, median lead time hours, false alerts per week, precision)
+- skills: array of our 8 nirantar-* skill names
+- journal: array of {ts, phase, surface, summary} from OPS.COCO_JOURNAL ordered by time (summary under 90 characters)
+- repo_url: "https://github.com/OWNER/REPO" (placeholder, we fill it later)
+- video_embed: "" (we fill it later)
+Validate that the file parses as JSON and print its key counts. Insert a COCO_JOURNAL row. Keep the answer short.
